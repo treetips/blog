@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'About this site',
+  url: new URL('/about/', Astro.site ?? Astro.url).toString(),
+};
+---
+
+<BaseLayout
+  title="About this site"
+  description="文系プログラマによるTIPSブログと運営者について。"
+  structuredData={structuredData}
+>
+  <header class="site-header">
+    <div>
+      <p class="site-subtitle">
+        <a href="/">Home</a> / About
+      </p>
+      <h1 class="site-title">About this site</h1>
+      <p class="site-subtitle">
+        このブログは、はてなブログから移行した技術メモと日記をまとめた個人サイトです。
+      </p>
+    </div>
+  </header>
+
+  <main class="content">
+    <article class="article">
+      <section>
+        <h2>このサイトについて</h2>
+        <p>
+          もともとは
+          <a href="https://treeapps.hatenablog.com/" rel="noreferrer">treeapps.hatenablog.com</a>
+          で運営していた記事を、Astro と Markdown ベースの構成に移したものです。
+          記事本文はローカルの Markdown で管理し、Cloudflare Workers で配信しています。
+        </p>
+      </section>
+
+      <section>
+        <h2>運営者について</h2>
+        <p>
+          仕事では Web 開発や周辺ツールの整備をすることが多く、個人では学びのメモ、移行作業、
+          旧ブログ資産の整理を続けています。
+        </p>
+        <p>
+          このサイトでは、過去記事の再利用だけでなく、今後のメモや検証結果も少しずつ蓄積していく予定です。
+        </p>
+      </section>
+
+      <section>
+        <h2>技術スタック</h2>
+        <ul>
+          <li><a href="https://bun.com/" target="_blank" rel="nofollow noopener noreferrer">Bun</a></li>
+          <li><a href="https://astro.build/" target="_blank" rel="nofollow noopener noreferrer">Astro</a></li>
+          <li><a href="https://www.cloudflare.com/ja-jp/developer-platform/products/workers/" target="_blank" rel="nofollow noopener noreferrer">Cloudflare Workers</a></li>
+          <li><a href="https://developers.cloudflare.com/workers/wrangler/" target="_blank" rel="nofollow noopener noreferrer">Wrangler</a></li>
+          <li><a href="https://code.visualstudio.com/" target="_blank" rel="nofollow noopener noreferrer">Visual Studio Code</a></li>
+          <li><a href="https://openai.com/ja-JP/codex/get-started/" target="_blank" rel="nofollow noopener noreferrer">Codex.app</a></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>補足</h2>
+        <p>
+          記事一覧やタグページはサイト内に用意しています。古い URL との互換性もできるだけ維持しています。
+        </p>
+        <p>
+          <a href="/">トップページへ戻る</a>
+        </p>
+      </section>
+    </article>
+  </main>
+</BaseLayout>
