@@ -61,7 +61,7 @@ const paginationItems = getPaginationItems(pageNumber, totalPages);
           </div>
           {post.data.categories.length > 0 && (
             <ul class="categories">
-              {post.data.categories.map((category) => (
+              {post.data.categories.map((category: string) => (
                 <li>
                   <a href={getTagHref(category)}>{category}</a>
                 </li>

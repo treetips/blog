@@ -38,7 +38,7 @@ const jsonLdItems = Array.isArray(structuredData) ? structuredData : [structured
     <meta name="twitter:description" content={description} />
     {socialImage && <meta name="twitter:image" content={socialImage} />}
     {jsonLdItems.map((item) => (
-      <script type="application/ld+json" set:html={JSON.stringify(item).replace(/</g, '\\u003c')} />
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(item).replace(/</g, '\\u003c')} />
     ))}
   </head>
   <body>

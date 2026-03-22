@@ -8,15 +8,36 @@ import {
 
 export { PAGE_SIZE, PAGINATION_AROUND_CURRENT_PAGE_COUNT, PAGINATION_EDGE_PAGE_COUNT, getPageHref };
 
+/**
+ * @typedef {import('astro:content').CollectionEntry<'blog'>} BlogPost
+ */
+
+/**
+ * @returns {Promise<BlogPost[]>}
+ */
 export async function getSortedPosts() {
+  /** @type {BlogPost[]} */
   const posts = await getCollection('blog');
   return [...posts].sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime());
 }
 
+/**
+ * @param {number} totalPosts
+ * @returns {number}
+ */
 export function getTotalPages(totalPosts) {
   return Math.max(1, Math.ceil(totalPosts / PAGE_SIZE));
 }
 
+/**
+ * @param {BlogPost[]} posts
+ * @param {number} page
+ * @returns {{
+ *   posts: BlogPost[];
+ *   page: number;
+ *   totalPages: number;
+ * }}
+ */
 export function getPageSlice(posts, page) {
   const currentPage = Math.max(1, page);
   const totalPages = getTotalPages(posts.length);
@@ -28,6 +49,10 @@ export function getPageSlice(posts, page) {
   };
 }
 
+/**
+ * @param {string} tag
+ * @returns {string}
+ */
 export function getTagHref(tag) {
   return `/tags/${encodeURIComponent(tag)}/`;
 }
