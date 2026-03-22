@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bunkei-programmer.net/sitemap.xml

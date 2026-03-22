@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPageSlice, getSortedPosts, getTagHref, getPageHref, getPaginationItems } from '../lib/blog';
+
+const sortedPosts = await getSortedPosts();
+const { posts, totalPages } = getPageSlice(sortedPosts, 1);
+const paginationItems = getPaginationItems(1, totalPages);
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: '文系プログラマによるTIPSブログ',
+  url: new URL('/', Astro.site ?? Astro.url).toString(),
+};
+---
+
+<BaseLayout
+  title="文系プログラマによるTIPSブログ"
+  description="はてなブログから移行した Astro + Markdown のブログです。"
+  structuredData={structuredData}
+>
+  <header class="site-header">
+    <div>
+      <h1 class="site-title">
+        <a href="/" aria-label="トップページへ戻る">文系プログラマによるTIPSブログ</a>
+      </h1>
+    </div>
+  </header>
+
+  <main class="content">
+    <ul class="post-list">
+      {posts.map((post) => (
+        <li class="post-card">
+          <h2>
+            <a href={`/entry/${post.id}/`}>{post.data.title}</a>
+          </h2>
+          <div class="meta">
+            <time datetime={post.data.publishedAt.toISOString()}>
+              {post.data.publishedAt.toLocaleDateString('ja-JP')}
+            </time>
+          </div>
+          {post.data.categories.length > 0 && (
+            <ul class="categories">
+              {post.data.categories.map((category) => (
+                <li>
+                  <a href={getTagHref(category)}>{category}</a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+      ))}
+    </ul>
+
+    {totalPages > 1 && (
+      <nav class="pagination" aria-label="記事一覧のページ送り">
+        <span class="pagination-prev is-disabled" aria-disabled="true">
+          前へ
+        </span>
+
+        <div class="pagination-pages" aria-label="ページ番号">
+          {paginationItems.map((item) =>
+            item.type === 'ellipsis' ? (
+              <span class="pagination-ellipsis" aria-hidden="true">
+                ...
+              </span>
+            ) : item.current ? (
+              <span class="pagination-current" aria-current="page">
+                {item.page}
+              </span>
+            ) : (
+              <a class="pagination-page" href={item.href}>
+                {item.page}
+              </a>
+            ),
+          )}
+        </div>
+
+        <a class="pagination-next" href={getPageHref(2)}>
+          次へ
+        </a>
+      </nav>
+    )}
+  </main>
+</BaseLayout>

@@ -1,0 +1,13 @@
+# Astro / Node
+node_modules/
+dist/
+.astro/
+
+# Cloudflare Wrangler local state and logs
+.wrangler/
+.wrangler-logs/
+
+# Local scratch files
+.tmp/
+.DS_Store
+*.tsbuildinfo

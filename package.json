@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "astro": "6.0.8"
+  },
+  "name": "blog",
+  "packageManager": "bun@1.3.10",
+  "private": true,
+  "scripts": {
+    "build": "bun run redirects:generate && astro build",
+    "check": "astro check",
+    "content:generate": "bun scripts/convert-hatena-export.mjs backup/treeapps.hatenablog.com.export.txt --output src/content/blog && bun run redirects:generate",
+    "deploy": "bun run build && WRANGLER_LOG_PATH=.wrangler-logs bunx wrangler deploy",
+    "dev": "bun run redirects:generate && astro dev",
+    "images:download": "bun scripts/download-hatena-images.mjs src/content/blog --output public/hatena-images",
+    "preview": "astro preview",
+    "redirects:generate": "bun scripts/generate-hatena-pagination-redirects.mjs"
+  },
+  "type": "module"
+}

@@ -1,0 +1,23 @@
+{
+  "name": "bunkei-programmer-net",
+  "compatibility_date": "2026-03-22",
+  "main": "./src/worker.ts",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": true
+  },
+  "routes": [
+    {
+      "pattern": "bunkei-programmer.net/*",
+      "zone_name": "bunkei-programmer.net"
+    },
+    {
+      "pattern": "www.bunkei-programmer.net/*",
+      "zone_name": "bunkei-programmer.net"
+    }
+  ],
+  "observability": {
+    "enabled": true
+  }
+}

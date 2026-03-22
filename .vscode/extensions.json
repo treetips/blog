@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "editorconfig.editorconfig",
+    "formulahendry.auto-rename-tag",
+    "ionutvmi.path-autocomplete",
+    "IronGeek.vscode-env",
+    "ms-azuretools.vscode-docker",
+    "oderwat.indent-rainbow",
+    "oxc.oxc-vscode",
+    "usernamehw.errorlens",
+    "vadimcn.vscode-lldb",
+    "vitest.explorer",
+    "yzhang.markdown-all-in-one"
+  ]
+}

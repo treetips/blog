@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+function decodeTag(value) {
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return value;
+  }
+}
+
+function tagHref(tag) {
+  return `/tags/${encodeURIComponent(tag)}/`;
+}
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  const tags = [...new Set(posts.flatMap((post) => post.data.categories))].sort((a, b) =>
+    a.localeCompare(b, 'ja'),
+  );
+
+  return tags.map((tag) => ({
+    params: { tag },
+    props: { tag },
+  }));
+}
+
+const { tag } = Astro.props;
+const decodedTag = decodeTag(tag);
+const posts = (await getCollection('blog'))
+  .filter((post) => post.data.categories.includes(decodedTag))
+  .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime());
+---
+
+<BaseLayout title={`タグ: ${decodedTag}`} description={`${decodedTag} に属する記事一覧です。`}>
+  <header class="site-header">
+    <div>
+      <p class="site-subtitle">
+        <a href="/">Home</a> / タグ
+      </p>
+      <h1 class="site-title">タグ: {decodedTag}</h1>
+      <p class="site-subtitle">{posts.length}件の記事があります。</p>
+    </div>
+  </header>
+
+  <main class="content">
+    <ul class="post-list">
+      {posts.map((post) => (
+        <li class="post-card">
+          <h2>
+            <a href={`/entry/${post.id}/`}>{post.data.title}</a>
+          </h2>
+          <div class="meta">
+            <time datetime={post.data.publishedAt.toISOString()}>
+              {post.data.publishedAt.toLocaleDateString('ja-JP')}
+            </time>
+          </div>
+          {post.data.categories.length > 0 && (
+            <ul class="categories">
+              {post.data.categories.map((category) => (
+                <li>
+                  <a href={tagHref(category)}>{category}</a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+      ))}
+    </ul>
+  </main>
+</BaseLayout>

@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import {
+  getPageHref,
+  getPageSlice,
+  getSortedPosts,
+  getTagHref,
+  getTotalPages,
+  getPaginationItems,
+} from '../../lib/blog';
+
+export async function getStaticPaths() {
+  const sortedPosts = await getSortedPosts();
+  const totalPages = getTotalPages(sortedPosts.length);
+
+  return Array.from({ length: Math.max(0, totalPages - 1) }, (_, index) => {
+    const page = index + 2;
+    return {
+      params: { page: String(page) },
+      props: { page },
+    };
+  });
+}
+
+const { page } = Astro.props;
+const pageNumber = Number(page);
+const sortedPosts = await getSortedPosts();
+const pageData = getPageSlice(sortedPosts, pageNumber);
+const posts = pageData.posts;
+const totalPages = pageData.totalPages;
+const hasPrevPage = pageNumber > 1;
+const hasNextPage = pageNumber < totalPages;
+const prevPageHref = getPageHref(pageNumber - 1);
+const nextPageHref = getPageHref(pageNumber + 1);
+const paginationItems = getPaginationItems(pageNumber, totalPages);
+---
+
+<BaseLayout
+  title={`文系プログラマによるTIPSブログ - ${pageNumber}ページ目`}
+  description="はてなブログから移行した Astro + Markdown のブログです。"
+>
+  <header class="site-header">
+    <div>
+      <h1 class="site-title">
+        <a href="/" aria-label="トップページへ戻る">文系プログラマによるTIPSブログ</a>
+      </h1>
+    </div>
+  </header>
+
+  <main class="content">
+    <ul class="post-list">
+      {posts.map((post) => (
+        <li class="post-card">
+          <h2>
+            <a href={`/entry/${post.id}/`}>{post.data.title}</a>
+          </h2>
+          <div class="meta">
+            <time datetime={post.data.publishedAt.toISOString()}>
+              {post.data.publishedAt.toLocaleDateString('ja-JP')}
+            </time>
+          </div>
+          {post.data.categories.length > 0 && (
+            <ul class="categories">
+              {post.data.categories.map((category) => (
+                <li>
+                  <a href={getTagHref(category)}>{category}</a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+      ))}
+    </ul>
+
+    <nav class="pagination" aria-label="記事一覧のページ送り">
+      {hasPrevPage ? (
+        <a class="pagination-prev" href={prevPageHref}>
+          前へ
+        </a>
+      ) : (
+        <span class="pagination-prev is-disabled" aria-disabled="true">
+          前へ
+        </span>
+      )}
+
+      <div class="pagination-pages" aria-label="ページ番号">
+        {paginationItems.map((item) =>
+          item.type === 'ellipsis' ? (
+            <span class="pagination-ellipsis" aria-hidden="true">
+              ...
+            </span>
+          ) : item.current ? (
+            <span class="pagination-current" aria-current="page">
+              {item.page}
+            </span>
+          ) : (
+            <a class="pagination-page" href={item.href}>
+              {item.page}
+            </a>
+          ),
+        )}
+      </div>
+
+      {hasNextPage ? (
+        <a class="pagination-next" href={nextPageHref}>
+          次へ
+        </a>
+      ) : (
+        <span class="pagination-next is-disabled" aria-disabled="true">
+          次へ
+        </span>
+      )}
+    </nav>
+  </main>
+</BaseLayout>
