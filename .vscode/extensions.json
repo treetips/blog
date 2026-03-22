@@ -1,5 +1,6 @@
 {
   "recommendations": [
+    "astro-build.astro-vscode",
     "editorconfig.editorconfig",
     "formulahendry.auto-rename-tag",
     "ionutvmi.path-autocomplete",
