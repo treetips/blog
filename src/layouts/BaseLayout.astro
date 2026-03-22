@@ -37,13 +37,13 @@ const jsonLdItems = Array.isArray(structuredData) ? structuredData : [structured
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     {socialImage && <meta name="twitter:image" content={socialImage} />}
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-ZQBN07DRNC"></script>
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-PKB6YJE88Z"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-ZQBN07DRNC');
+      gtag('config', 'G-PKB6YJE88Z');
     </script>
     {jsonLdItems.map((item) => (
       <script is:inline type="application/ld+json" set:html={JSON.stringify(item).replace(/</g, '\\u003c')} />
