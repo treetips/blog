@@ -8,7 +8,7 @@
     "source.fixAll.oxc": "explicit",
     "source.organizeImports": "explicit",
     "source.removeUnusedImports": "explicit",
-    "source.sort.json": "explicit",
+    "source.sort.json": "never",
     "source.sortImports": "explicit"
   },
   "editor.copyWithSyntaxHighlighting": false,
