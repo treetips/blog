@@ -107,6 +107,10 @@ pre {
   max-width: 60ch;
 }
 
+.site-search {
+  padding: 0;
+}
+
 .content {
   padding: 0 2rem 2rem;
 }

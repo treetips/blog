@@ -37,6 +37,7 @@ const jsonLdItems = Array.isArray(structuredData) ? structuredData : [structured
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     {socialImage && <meta name="twitter:image" content={socialImage} />}
+    <link rel="stylesheet" href="https://unpkg.com/@algolia/sitesearch@latest/dist/search.min.css" />
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-PKB6YJE88Z"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
@@ -54,6 +55,31 @@ const jsonLdItems = Array.isArray(structuredData) ? structuredData : [structured
     <div class="shell">
       <div class="panel">
         <slot />
+        <div id="search" class="site-search" role="search" aria-label="サイト内検索"></div>
+        <script is:inline src="https://unpkg.com/@algolia/sitesearch@latest/dist/search.min.js"></script>
+        <script is:inline>
+          const searchContainer = document.getElementById('search');
+          const siteHeader = document.querySelector('.site-header');
+
+          if (searchContainer && siteHeader) {
+            siteHeader.appendChild(searchContainer);
+          }
+
+          SiteSearch.init({
+            container: '#search',
+            applicationId: 'LDI14IJOZS',
+            apiKey: '7a0ef963c4a89f7a3dbe6fb174d0602f',
+            indexName: 'bunkei_programmer_net_ldi14ijozs_pages',
+            attributes: {
+              primaryText: 'title',
+              secondaryText: 'description',
+              tertiaryText: 'path',
+              url: 'path',
+              image: '',
+            },
+            darkMode: false,
+          });
+        </script>
       </div>
     </div>
     <a class="scroll-to-top" href="#top" aria-label="トップへ戻る">
