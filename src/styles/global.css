@@ -18,10 +18,7 @@
 }
 
 html {
-  background:
-    radial-gradient(circle at top left, rgba(184, 92, 56, 0.14), transparent 32%),
-    radial-gradient(circle at top right, rgba(33, 79, 107, 0.12), transparent 30%),
-    linear-gradient(180deg, var(--bg), var(--bg-alt));
+  background: linear-gradient(315deg, #fcb8e2 0.000%, #ffc8ed 20.000%, #fbe8f9 40.000%, #e8f9ff 60.000%, #d0ecff 80.000%, #b8cdfa 100.000%);
   min-height: 100%;
   scroll-behavior: smooth;
 }
