@@ -52,10 +52,10 @@
 }
 
 .panel--glass .article h1 {
-  display: inline-block;
-  max-width: 100%;
+  display: block;
+  width: 100%;
   margin: 0;
-  padding: 0.2em 0.46em;
+  padding: 0.24em 0.6em;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 0.5em;
   background:
@@ -68,8 +68,6 @@
   backdrop-filter: blur(14px) saturate(1.15);
   -webkit-backdrop-filter: blur(14px) saturate(1.15);
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.12);
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
 }
 
 .panel--glass .site-header {
@@ -86,6 +84,6 @@
   }
 
   .panel--glass .article h1 {
-    padding: 0.18em 0.38em;
+    padding: 0.18em 0.5em;
   }
 }
