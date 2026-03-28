@@ -48,7 +48,13 @@ const paginationItems = getPaginationItems(pageNumber, totalPages);
   </header>
 
   <main class="px-8 pb-8 max-md:px-4">
+    <section class="about-link-frame liquid-glass liquid-glass--compact liquid-shadow" aria-label="このサイトについて">
+      <p class="panel-title">個別ページ</p>
+      <a class="about-link-title" href="/about/">このサイトについて</a>
+    </section>
+
     <section class="post-list-frame liquid-glass liquid-glass--subtle liquid-shadow">
+      <p class="panel-title">記事一覧</p>
       <ul class="post-list">
         {posts.map((post) => (
           <li class="post-card">
@@ -113,9 +119,5 @@ const paginationItems = getPaginationItems(pageNumber, totalPages);
         </span>
       )}
     </nav>
-
-    <footer class="list-footer">
-      <a href="/about/">このサイトについて</a>
-    </footer>
   </main>
 </BaseLayout>

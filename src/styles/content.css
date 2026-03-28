@@ -4,8 +4,26 @@
   @apply mt-6 grid list-none gap-4 p-0;
 }
 
+.post-list-frame,
+.about-link-frame {
+  --panel-frame-spacing: 1rem;
+}
+
 .post-list-frame {
   @apply mt-6 p-4;
+}
+
+.about-link-frame {
+  @apply mt-6 p-4;
+}
+
+.panel-title {
+  @apply m-0 text-site-muted text-[0.9rem];
+  margin-bottom: var(--panel-frame-spacing);
+}
+
+.about-link-title {
+  @apply inline-block text-[clamp(1.15rem,1.6vw,1.35rem)] font-extrabold leading-[1.25];
 }
 
 .post-list-frame .post-list {
