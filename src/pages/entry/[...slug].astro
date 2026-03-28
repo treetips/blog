@@ -52,7 +52,13 @@ const structuredData = {
 };
 ---
 
-<BaseLayout title={post.data.title} description={description} ogType="article" structuredData={structuredData}>
+<BaseLayout
+  title={post.data.title}
+  description={description}
+  ogType="article"
+  structuredData={structuredData}
+  panelClass="panel--glass"
+>
   <article class="article">
     <header class="site-header">
       <div>
