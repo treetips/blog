@@ -80,6 +80,15 @@
   padding-left: 2em;
 }
 
+.article-body :is(p, figure, .post-media) + img,
+.article-body img + :is(p, figure, .post-media) {
+  margin-top: 0.9rem;
+}
+
+.article-body img {
+  margin-block: 0.65rem;
+}
+
 .article-body ul {
   list-style: disc;
 }
