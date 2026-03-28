@@ -123,6 +123,7 @@ pre {
 
 .site-breadcrumb {
   margin: 0;
+  white-space: nowrap;
 }
 
 .site-header-search {
@@ -146,12 +147,22 @@ pre {
 
 @media (max-width: 760px) {
   .site-header-top {
-    flex-direction: column;
+    flex-direction: row;
     align-items: stretch;
+    justify-content: space-between;
+    gap: 0.5rem;
   }
 
   .site-header-search {
+    flex: none;
+    width: auto;
     max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .site-header-search .site-search {
+    width: auto;
   }
 }
 
