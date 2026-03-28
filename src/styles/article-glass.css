@@ -13,7 +13,7 @@
   display: block;
   width: 100%;
   margin: 0;
-  padding: 0.24em 0.6em;
+  padding: 0.32em 0.78em;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 0.5em;
   background:
@@ -38,6 +38,6 @@
 
 @media (max-width: 720px) {
   .panel--glass .article h1 {
-    padding: 0.18em 0.5em;
+    padding: 0.26em 0.62em;
   }
 }
