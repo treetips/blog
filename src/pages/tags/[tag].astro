@@ -34,9 +34,12 @@ const posts = (await getSortedPosts()).filter((post) => post.data.categories.inc
 <BaseLayout title={`タグ: ${decodedTag}`} description={`${decodedTag} に属する記事一覧です。`}>
   <header class="site-header">
     <div>
-      <p class="site-subtitle">
-        <a href="/">Home</a> / タグ
-      </p>
+      <div class="site-header-top">
+        <p class="site-subtitle site-breadcrumb">
+          <a href="/">Home</a>
+        </p>
+        <div class="site-header-search"></div>
+      </div>
       <h1 class="site-title">タグ: {decodedTag}</h1>
       <p class="site-subtitle">{posts.length}件の記事があります。</p>
     </div>

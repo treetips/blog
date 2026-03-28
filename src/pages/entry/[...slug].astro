@@ -56,9 +56,12 @@ const structuredData = {
   <article class="article">
     <header class="site-header">
       <div>
-        <p class="site-subtitle">
-          <a href="/">Home</a> / {post.data.categories.join(' / ')}
-        </p>
+        <div class="site-header-top">
+          <p class="site-subtitle site-breadcrumb">
+            <a href="/">Home</a>
+          </p>
+          <div class="site-header-search"></div>
+        </div>
         <h1>{post.data.title}</h1>
         <p class="lede">
           <time datetime={post.data.publishedAt.toISOString()}>

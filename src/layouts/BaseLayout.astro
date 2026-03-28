@@ -59,9 +59,12 @@ const jsonLdItems = Array.isArray(structuredData) ? structuredData : [structured
         <script is:inline src="https://unpkg.com/@algolia/sitesearch@latest/dist/search.min.js"></script>
         <script is:inline>
           const searchContainer = document.getElementById('search');
+          const searchHost = document.querySelector('.site-header-search');
           const siteHeader = document.querySelector('.site-header');
 
-          if (searchContainer && siteHeader) {
+          if (searchContainer && searchHost) {
+            searchHost.appendChild(searchContainer);
+          } else if (searchContainer && siteHeader) {
             siteHeader.appendChild(searchContainer);
           }
 
