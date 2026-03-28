@@ -14,23 +14,23 @@ const structuredData = {
   description="文系プログラマによるTIPSブログと運営者について。"
   structuredData={structuredData}
 >
-  <header class="site-header">
-    <div>
-      <div class="site-header-top">
-        <p class="site-subtitle site-breadcrumb">
+  <header class="block p-8 max-md:p-4">
+    <div class="w-full">
+      <div class="flex w-full items-center justify-between gap-4 max-md:gap-2">
+        <p class="m-0 whitespace-nowrap text-site-muted">
           <a href="/">Home</a>
         </p>
-        <div class="site-header-search"></div>
+        <div class="site-header-search ml-auto mr-0 w-full max-w-[24rem] flex-[0_1_24rem] max-md:ml-0 max-md:w-auto max-md:max-w-none max-md:flex-none"></div>
       </div>
-      <h1 class="site-title">About this site</h1>
-      <p class="site-subtitle">
+      <h1 class="m-0 flex-1 min-w-0 text-[clamp(2rem,3vw,3.4rem)] leading-[1.1] tracking-[-0.04em]">About this site</h1>
+      <p class="mt-2.5 max-w-[60ch] text-site-muted">
         このブログは、はてなブログから移行した技術メモと日記をまとめた個人サイトです。
       </p>
     </div>
   </header>
 
-  <main class="content">
-    <article class="article">
+  <main class="px-8 pb-8 max-md:px-4">
+    <article class="article border-none px-8 pb-8 max-md:px-4">
       <section>
         <h2>このサイトについて</h2>
         <p>

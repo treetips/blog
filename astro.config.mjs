@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import tailwind from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://bunkei-programmer.net',
@@ -14,6 +15,7 @@ export default defineConfig({
     },
   },
   vite: {
+    plugins: [tailwind()],
     build: {
       rollupOptions: {
         onwarn(warning, defaultWarn) {

@@ -1,0 +1,79 @@
+@reference "./reference.css";
+
+.pagination {
+  @apply mt-7 flex items-center justify-between gap-4 px-[1.1rem] py-4;
+}
+
+.pagination--glass {
+  border-radius: 24px;
+  --liquid-glass-radius: 24px;
+  --liquid-glass-bg: rgba(255, 255, 255, 0.18);
+  --liquid-glass-border: rgba(255, 255, 255, 0.2);
+  --liquid-glass-blur: 18px;
+}
+
+.pagination-pages {
+  @apply flex flex-1 flex-wrap items-center justify-center gap-1.5;
+}
+
+.pagination a,
+.pagination span {
+  @apply inline-flex min-h-10 items-center;
+}
+
+.pagination-current {
+  @apply rounded-full border border-[rgba(33,79,107,0.18)] bg-[rgba(33,79,107,0.16)] px-3 py-1 font-bold text-site-text;
+  font-variant-numeric: tabular-nums;
+}
+
+.pagination-page,
+.pagination-ellipsis {
+  @apply rounded-full border border-[rgba(33,79,107,0.12)] bg-[rgba(33,79,107,0.05)] px-3 py-1 text-site-text;
+  font-variant-numeric: tabular-nums;
+}
+
+.pagination-ellipsis {
+  @apply border-dashed text-site-muted;
+  background: transparent;
+}
+
+.pagination-prev,
+.pagination-next {
+  @apply rounded-full border border-[rgba(33,79,107,0.18)] bg-[rgba(33,79,107,0.08)] px-3 py-1;
+}
+
+.pagination .is-disabled {
+  opacity: 0.5;
+}
+
+.scroll-to-top {
+  @apply fixed right-4 bottom-4 z-20 inline-flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(33,79,107,0.18)] bg-white/88 text-site-accent-2 text-[1.2rem] shadow-site-drop;
+}
+
+.scroll-to-top:hover {
+  @apply text-site-accent;
+}
+
+@media (max-width: 720px) {
+  .pagination {
+    flex-wrap: wrap;
+    padding: 0.85rem 0.9rem;
+  }
+
+  .pagination-prev,
+  .pagination-next {
+    order: 2;
+  }
+
+  .pagination-pages {
+    order: 1;
+    flex-basis: 100%;
+  }
+
+  .scroll-to-top {
+    right: 0.75rem;
+    bottom: 0.75rem;
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}

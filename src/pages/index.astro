@@ -18,23 +18,23 @@ const structuredData = {
   description="はてなブログから移行した Astro + Markdown のブログです。"
   structuredData={structuredData}
 >
-  <header class="site-header">
-    <div>
-      <div class="site-header-top">
-        <h1 class="site-title">
+  <header class="block p-8 max-md:p-4">
+    <div class="w-full">
+      <div class="flex w-full items-center justify-between gap-4 max-md:gap-2">
+        <h1 class="m-0 flex-1 min-w-0 text-[clamp(2rem,3vw,3.4rem)] leading-[1.1] tracking-[-0.04em]">
           <a href="/" aria-label="トップページへ戻る">文系プログラマによるTIPSブログ</a>
         </h1>
-        <div class="site-header-search"></div>
+        <div class="site-header-search ml-auto mr-0 w-full max-w-[24rem] flex-[0_1_24rem] max-md:ml-0 max-md:w-auto max-md:max-w-none max-md:flex-none"></div>
       </div>
     </div>
   </header>
 
-  <main class="content">
+  <main class="px-8 pb-8 max-md:px-4">
     <section class="post-list-frame liquid-glass liquid-glass--subtle liquid-shadow">
       <ul class="post-list">
         {posts.map((post) => (
           <li class="post-card post-card--home">
-            <h2>
+            <h2 class="m-0 text-[clamp(1.55rem,2.2vw,1.72rem)] font-extrabold leading-[1.2] tracking-[-0.01em]">
               <a href={`/entry/${post.id}/`}>{post.data.title}</a>
             </h2>
             <div class="meta">

@@ -1,12 +1,12 @@
-.panel--glass .site-header,
-.panel--glass .content,
+@reference "./reference.css";
+
 .panel--glass .article {
   background: transparent;
 }
 
-.panel--glass .site-header,
+.panel--glass .article > header,
 .panel--glass .article {
-  color: var(--text);
+  color: var(--color-site-text);
 }
 
 .panel--glass .article h1 {
@@ -28,7 +28,7 @@
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
-.panel--glass .site-header {
+.panel--glass .article > header {
   padding-top: 2.25rem;
 }
 

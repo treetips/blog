@@ -32,24 +32,24 @@ const posts = (await getSortedPosts()).filter((post) => post.data.categories.inc
 ---
 
 <BaseLayout title={`タグ: ${decodedTag}`} description={`${decodedTag} に属する記事一覧です。`}>
-  <header class="site-header">
-    <div>
-      <div class="site-header-top">
-        <p class="site-subtitle site-breadcrumb">
+  <header class="block p-8 max-md:p-4">
+    <div class="w-full">
+      <div class="flex w-full items-center justify-between gap-4 max-md:gap-2">
+        <p class="m-0 whitespace-nowrap text-site-muted">
           <a href="/">Home</a>
         </p>
-        <div class="site-header-search"></div>
+        <div class="site-header-search ml-auto mr-0 w-full max-w-[24rem] flex-[0_1_24rem] max-md:ml-0 max-md:w-auto max-md:max-w-none max-md:flex-none"></div>
       </div>
-      <h1 class="site-title">タグ: {decodedTag}</h1>
-      <p class="site-subtitle">{posts.length}件の記事があります。</p>
+      <h1 class="m-0 flex-1 min-w-0 text-[clamp(2rem,3vw,3.4rem)] leading-[1.1] tracking-[-0.04em]">タグ: {decodedTag}</h1>
+      <p class="mt-2.5 max-w-[60ch] text-site-muted">{posts.length}件の記事があります。</p>
     </div>
   </header>
 
-  <main class="content">
+  <main class="px-8 pb-8 max-md:px-4">
     <ul class="post-list">
       {posts.map((post) => (
         <li class="post-card">
-          <h2>
+          <h2 class="m-0 text-[clamp(1.55rem,2.2vw,1.72rem)] font-extrabold leading-[1.2] tracking-[-0.01em]">
             <a href={`/entry/${post.id}/`}>{post.data.title}</a>
           </h2>
           <div class="meta">
