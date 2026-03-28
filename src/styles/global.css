@@ -203,6 +203,21 @@ pre {
   box-shadow: var(--card-shadow);
 }
 
+.post-card--home {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-color: #fcfbfa;
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 181, 167, 0.22) 0%,
+    rgba(248, 215, 218, 0.18) 25%,
+    rgba(232, 245, 232, 0.18) 75%,
+    rgba(184, 242, 208, 0.22) 100%
+  );
+  background-repeat: no-repeat;
+}
+
 .post-card h2,
 .post-card h3 {
   margin: 0;
