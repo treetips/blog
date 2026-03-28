@@ -48,31 +48,33 @@ const paginationItems = getPaginationItems(pageNumber, totalPages);
   </header>
 
   <main class="content">
-    <ul class="post-list">
-      {posts.map((post) => (
-        <li class="post-card">
-          <h2>
-            <a href={`/entry/${post.id}/`}>{post.data.title}</a>
-          </h2>
-          <div class="meta">
-            <time datetime={post.data.publishedAt.toISOString()}>
-              {post.data.publishedAt.toLocaleDateString('ja-JP')}
-            </time>
-          </div>
-          {post.data.categories.length > 0 && (
-            <ul class="categories">
-              {post.data.categories.map((category: string) => (
-                <li>
-                  <a href={getTagHref(category)}>{category}</a>
-                </li>
-              ))}
-            </ul>
-          )}
-        </li>
-      ))}
-    </ul>
+    <section class="post-list-frame liquid-glass liquid-glass--subtle liquid-shadow">
+      <ul class="post-list">
+        {posts.map((post) => (
+          <li class="post-card">
+            <h2>
+              <a href={`/entry/${post.id}/`}>{post.data.title}</a>
+            </h2>
+            <div class="meta">
+              <time datetime={post.data.publishedAt.toISOString()}>
+                {post.data.publishedAt.toLocaleDateString('ja-JP')}
+              </time>
+            </div>
+            {post.data.categories.length > 0 && (
+              <ul class="categories">
+                {post.data.categories.map((category: string) => (
+                  <li>
+                    <a href={getTagHref(category)}>{category}</a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
 
-    <nav class="pagination" aria-label="記事一覧のページ送り">
+    <nav class="pagination liquid-glass liquid-glass--compact liquid-shadow pagination--glass" aria-label="記事一覧のページ送り">
       {hasPrevPage ? (
         <a class="pagination-prev" href={prevPageHref}>
           前へ
