@@ -10,6 +10,15 @@
   @apply relative isolate overflow-hidden rounded-[24px] border border-site-border bg-site-card shadow-site-panel backdrop-blur-[10px];
 }
 
+.site-header-search {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.site-search .sitesearch-button {
+  justify-content: flex-end;
+}
+
 @media (max-width: 720px) {
   .shell {
     width: min(100vw - 1rem, 1080px);
