@@ -7,6 +7,20 @@ const structuredData = {
   name: 'About this site',
   url: new URL('/about/', Astro.site ?? Astro.url).toString(),
 };
+
+const technologyStack = [
+  { href: 'https://bun.com/', label: 'Bun' },
+  { href: 'https://astro.build/', label: 'Astro' },
+  { href: 'https://tailwindcss.com/', label: 'Tailwind CSS' },
+  {
+    href: 'https://www.cloudflare.com/ja-jp/developer-platform/products/workers/',
+    label: 'Cloudflare Workers',
+  },
+  { href: 'https://developers.cloudflare.com/workers/wrangler/', label: 'Wrangler' },
+  { href: 'https://code.visualstudio.com/', label: 'Visual Studio Code' },
+  { href: 'https://developers.openai.com/codex/cli', label: 'Codex CLI' },
+  { href: 'https://openai.com/ja-JP/codex/get-started/', label: 'Codex.app' },
+];
 ---
 
 <BaseLayout
@@ -23,56 +37,113 @@ const structuredData = {
         <div class="site-header-search ml-auto mr-0 w-full max-w-[24rem] flex-[0_1_24rem] max-md:ml-0 max-md:w-auto max-md:max-w-none max-md:flex-none"></div>
       </div>
       <h1 class="m-0 flex-1 min-w-0 text-[clamp(2rem,3vw,3.4rem)] leading-[1.1] tracking-[-0.04em]">About this site</h1>
-      <p class="mt-2.5 max-w-[60ch] text-site-muted">
+      <p class="mt-2.5 w-full max-w-none text-site-muted">
         このブログは、はてなブログから移行した技術メモと日記をまとめた個人サイトです。
       </p>
     </div>
   </header>
 
   <main class="px-8 pb-8 max-md:px-4">
-    <article class="article border-none px-8 pb-8 max-md:px-4">
-      <section>
-        <h2>このサイトについて</h2>
-        <p>
-          もともとは
-          <a href="https://treeapps.hatenablog.com/" rel="noreferrer">treeapps.hatenablog.com</a>
-          で運営していた記事を、Astro と Markdown ベースの構成に移したものです。
-          記事本文はローカルの Markdown で管理し、Cloudflare Workers で配信しています。
-        </p>
-      </section>
+    <section class="post-list-frame liquid-glass liquid-glass--subtle liquid-shadow">
+      <div class="grid gap-4 md:grid-cols-2">
+        <section class="post-card about-card md:col-span-2">
+          <p class="m-0 text-[0.95rem] text-site-muted">Site overview</p>
+          <h2 class="mt-2 m-0 text-[clamp(1.55rem,2.2vw,1.72rem)] font-extrabold leading-[1.2] tracking-[-0.01em]">
+            このサイトについて
+          </h2>
+          <div class="article-body mt-4 max-w-[72ch]">
+            <p>
+              もともとは
+              <a href="https://treeapps.hatenablog.com/" rel="noreferrer">treeapps.hatenablog.com</a>
+              で運営していた記事を、Astro と Markdown ベースの構成に移したものです。
+              記事本文はローカルの Markdown で管理し、Cloudflare Workers で配信しています。
+            </p>
+          </div>
+        </section>
 
-      <section>
-        <h2>運営者について</h2>
-        <p>
-          仕事では Web 開発や周辺ツールの整備をすることが多く、個人では学びのメモ、移行作業、
-          旧ブログ資産の整理を続けています。
-        </p>
-        <p>
-          このサイトでは、過去記事の再利用だけでなく、今後のメモや検証結果も少しずつ蓄積していく予定です。
-        </p>
-      </section>
+        <section class="post-card about-card">
+          <p class="m-0 text-[0.95rem] text-site-muted">Author</p>
+          <h2 class="mt-2 m-0 text-[clamp(1.55rem,2.2vw,1.72rem)] font-extrabold leading-[1.2] tracking-[-0.01em]">
+            運営者について
+          </h2>
+          <div class="article-body mt-4">
+            <p>
+              仕事では Web 開発や周辺ツールの整備をすることが多く、個人では学びのメモ、移行作業、
+              旧ブログ資産の整理を続けています。
+            </p>
+            <p>
+              このサイトでは、過去記事の再利用だけでなく、今後のメモや検証結果も少しずつ蓄積していく予定です。
+            </p>
+          </div>
+        </section>
 
-      <section>
-        <h2>技術スタック</h2>
-        <ul>
-          <li><a href="https://bun.com/" target="_blank" rel="nofollow noopener noreferrer">Bun</a></li>
-          <li><a href="https://astro.build/" target="_blank" rel="nofollow noopener noreferrer">Astro</a></li>
-          <li><a href="https://www.cloudflare.com/ja-jp/developer-platform/products/workers/" target="_blank" rel="nofollow noopener noreferrer">Cloudflare Workers</a></li>
-          <li><a href="https://developers.cloudflare.com/workers/wrangler/" target="_blank" rel="nofollow noopener noreferrer">Wrangler</a></li>
-          <li><a href="https://code.visualstudio.com/" target="_blank" rel="nofollow noopener noreferrer">Visual Studio Code</a></li>
-          <li><a href="https://openai.com/ja-JP/codex/get-started/" target="_blank" rel="nofollow noopener noreferrer">Codex.app</a></li>
-        </ul>
-      </section>
+        <section class="post-card about-card">
+          <p class="m-0 text-[0.95rem] text-site-muted">Stack</p>
+          <h2 class="mt-2 m-0 text-[clamp(1.55rem,2.2vw,1.72rem)] font-extrabold leading-[1.2] tracking-[-0.01em]">
+            技術スタック
+          </h2>
+          <p class="mt-4 mb-0 text-site-muted">
+            コンテンツ管理、配信、日々のメンテナンスで使っているものです。
+          </p>
+          <ul class="categories mt-4">
+            {technologyStack.map((item) => (
+              <li>
+                <a href={item.href} target="_blank" rel="nofollow noopener noreferrer">
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
 
-      <section>
-        <h2>補足</h2>
-        <p>
-          記事一覧やタグページはサイト内に用意しています。古い URL との互換性もできるだけ維持しています。
-        </p>
-        <p>
-          <a href="/">トップページへ戻る</a>
-        </p>
-      </section>
-    </article>
+        <section class="post-card about-card">
+          <p class="m-0 text-[0.95rem] text-site-muted">Notes</p>
+          <h2 class="mt-2 m-0 text-[clamp(1.55rem,2.2vw,1.72rem)] font-extrabold leading-[1.2] tracking-[-0.01em]">
+            補足
+          </h2>
+          <div class="article-body mt-4">
+            <p>
+              記事一覧やタグページはサイト内に用意しています。古い URL との互換性もできるだけ維持しています。
+            </p>
+          </div>
+        </section>
+
+        <section class="post-card about-card">
+          <p class="m-0 text-[0.95rem] text-site-muted">Links</p>
+          <h2 class="mt-2 m-0 text-[clamp(1.55rem,2.2vw,1.72rem)] font-extrabold leading-[1.2] tracking-[-0.01em]">
+            関連リンク
+          </h2>
+          <p class="mt-4 mb-0 text-site-muted">
+            移行元のブログや RSS フィードにもそのままアクセスできます。
+          </p>
+          <ul class="categories mt-4">
+            <li>
+              <a href="https://treeapps.hatenablog.com/" rel="noreferrer">旧ブログ</a>
+            </li>
+            <li>
+              <a href="/rss.xml">RSS</a>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </section>
+
+    <footer class="list-footer">
+      <a href="/">トップページへ戻る</a>
+    </footer>
   </main>
 </BaseLayout>
+
+<style>
+  .about-card {
+    background-color: #f7fbfc;
+    background-image: linear-gradient(
+      225deg,
+      rgba(179, 229, 252, 0.22) 0%,
+      rgba(224, 242, 241, 0.18) 25%,
+      rgba(240, 244, 195, 0.16) 50%,
+      rgba(255, 248, 225, 0.16) 75%,
+      rgba(255, 236, 179, 0.2) 100%
+    );
+  }
+</style>
