@@ -1,0 +1,63 @@
+---
+type PaginationItem =
+  | { type: 'ellipsis' }
+  | { type?: 'page'; page: number; href?: string; current?: boolean };
+
+const {
+  hasPrevPage = false,
+  hasNextPage = false,
+  prevPageHref,
+  nextPageHref,
+  paginationItems = [],
+  ariaLabel = '記事一覧のページ送り',
+  className = '',
+} = Astro.props as {
+  hasPrevPage?: boolean;
+  hasNextPage?: boolean;
+  prevPageHref?: string;
+  nextPageHref?: string;
+  paginationItems?: PaginationItem[];
+  ariaLabel?: string;
+  className?: string;
+};
+---
+
+<nav class={`pagination liquid-glass liquid-glass--compact liquid-shadow pagination--glass ${className}`.trim()} aria-label={ariaLabel}>
+  {hasPrevPage ? (
+    <a class="pagination-prev" href={prevPageHref}>
+      前へ
+    </a>
+  ) : (
+    <span class="pagination-prev is-disabled" aria-disabled="true">
+      前へ
+    </span>
+  )}
+
+  <div class="pagination-pages" aria-label="ページ番号">
+    {paginationItems.map((item) =>
+      item.type === 'ellipsis' ? (
+        <span class="pagination-ellipsis" aria-hidden="true">
+          ...
+        </span>
+      ) : item.current ? (
+        <span class="pagination-current" aria-current="page">
+          {item.page}
+        </span>
+      ) : (
+        <a class="pagination-page" href={item.href}>
+          {item.page}
+        </a>
+      ),
+    )}
+  </div>
+
+  {hasNextPage ? (
+    <a class="pagination-next" href={nextPageHref}>
+      次へ
+    </a>
+  ) : (
+    <span class="pagination-next is-disabled" aria-disabled="true">
+      次へ
+    </span>
+  )}
+</nav>

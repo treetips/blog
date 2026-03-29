@@ -1,6 +1,7 @@
 ---
 import AboutLinksPanel from '../../components/AboutLinksPanel.astro';
 import BlogListHeader from '../../components/BlogListHeader.astro';
+import PaginationNav from '../../components/PaginationNav.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import {
 getPageHref,
@@ -48,6 +49,14 @@ const paginationItems = getPaginationItems(pageNumber, totalPages);
 
     <section class="post-list-frame liquid-glass liquid-glass--subtle liquid-shadow">
       <h2 class="panel-title">記事一覧</h2>
+      <PaginationNav
+        className="pagination--inside-top"
+        hasPrevPage={hasPrevPage}
+        hasNextPage={hasNextPage}
+        prevPageHref={prevPageHref}
+        nextPageHref={nextPageHref}
+        paginationItems={paginationItems}
+      />
       <ul class="post-list">
         {posts.map((post) => (
           <li class="post-card post-card--home">
@@ -71,46 +80,13 @@ const paginationItems = getPaginationItems(pageNumber, totalPages);
           </li>
         ))}
       </ul>
+      <PaginationNav
+        hasPrevPage={hasPrevPage}
+        hasNextPage={hasNextPage}
+        prevPageHref={prevPageHref}
+        nextPageHref={nextPageHref}
+        paginationItems={paginationItems}
+      />
     </section>
-
-    <nav class="pagination liquid-glass liquid-glass--compact liquid-shadow pagination--glass" aria-label="記事一覧のページ送り">
-      {hasPrevPage ? (
-        <a class="pagination-prev" href={prevPageHref}>
-          前へ
-        </a>
-      ) : (
-        <span class="pagination-prev is-disabled" aria-disabled="true">
-          前へ
-        </span>
-      )}
-
-      <div class="pagination-pages" aria-label="ページ番号">
-        {paginationItems.map((item) =>
-          item.type === 'ellipsis' ? (
-            <span class="pagination-ellipsis" aria-hidden="true">
-              ...
-            </span>
-          ) : item.current ? (
-            <span class="pagination-current" aria-current="page">
-              {item.page}
-            </span>
-          ) : (
-            <a class="pagination-page" href={item.href}>
-              {item.page}
-            </a>
-          ),
-        )}
-      </div>
-
-      {hasNextPage ? (
-        <a class="pagination-next" href={nextPageHref}>
-          次へ
-        </a>
-      ) : (
-        <span class="pagination-next is-disabled" aria-disabled="true">
-          次へ
-        </span>
-      )}
-    </nav>
   </main>
 </BaseLayout>
