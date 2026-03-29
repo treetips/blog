@@ -1,41 +1,11 @@
 ---
+import AboutLinksPanel from '../components/AboutLinksPanel.astro';
+import BlogListHeader from '../components/BlogListHeader.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getPageHref, getPageSlice, getPaginationItems, getSortedPosts, getTagHref } from '../lib/blog';
 
 const sortedPosts = await getSortedPosts();
 const { posts, totalPages } = getPageSlice(sortedPosts, 1);
-const primaryLinks = [
-  {
-    href: '/about/',
-    label: 'このサイトについて',
-    external: false,
-  },
-  {
-    href: 'https://treeapps.hatenablog.com/',
-    label: '旧はてなブログ',
-    external: true,
-  },
-];
-const secondaryLinks = [
-  {
-    href: 'https://www.tree-maps.com/',
-    label: 'tree-maps',
-    external: true,
-    icon: '/icon/map-pin-01.png',
-  },
-  {
-    href: 'https://www.string-utility.com/',
-    label: 'String Utility',
-    external: true,
-    icon: '/icon/string-utility_512x512.png',
-  },
-  {
-    href: 'https://github.com/treetips',
-    label: 'GitHub',
-    external: true,
-    icon: '/icon/github-logos/GitHub_Invertocat_Black.svg',
-  },
-];
 const paginationItems = getPaginationItems(1, totalPages);
 const structuredData = {
   '@context': 'https://schema.org',
@@ -50,71 +20,10 @@ const structuredData = {
   description="はてなブログから移行した Astro + Markdown のブログです。"
   structuredData={structuredData}
 >
-  <header class="block p-8 max-md:p-4">
-    <div class="w-full">
-      <div class="flex w-full items-center justify-between gap-4 max-md:gap-2">
-        <h1 class="m-0 flex-1 min-w-0 text-[clamp(2rem,3vw,3.4rem)] leading-[1.1] tracking-[-0.04em]">
-          <a class="site-title-link" href="/" aria-label="トップページへ戻る">文系プログラマによるTIPSブログ</a>
-        </h1>
-        <div class="site-header-search ml-auto mr-0 w-full max-w-[24rem] flex-[0_1_24rem] max-md:ml-0 max-md:w-auto max-md:max-w-none max-md:flex-none"></div>
-      </div>
-    </div>
-  </header>
+  <BlogListHeader />
 
   <main class="px-8 pb-8 max-md:px-4">
-    <section class="about-link-frame liquid-glass liquid-glass--compact liquid-shadow" aria-label="このサイトについて">
-      <h2 class="panel-title">個別ページ</h2>
-      <div class="grid gap-3 md:grid-cols-2">
-        <div class="min-w-0">
-          <h3 class="panel-subtitle">サイト内リンク</h3>
-          <ul class="about-link-list">
-            {primaryLinks.map((link) => (
-              <li>
-                <a
-                  class="about-link-title"
-                  href={link.href}
-                  target={link.external ? '_blank' : undefined}
-                  rel={link.external ? 'nofollow noopener noreferrer' : undefined}
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div class="min-w-0 border-t border-site-border pt-2 md:border-t-0 md:border-l md:pt-0 md:pl-3">
-          <h3 class="panel-subtitle">サイト外リンク</h3>
-          <ul class="about-link-list">
-            {secondaryLinks.map((link) => (
-              <li>
-                <a
-                  class:list={[
-                    'about-link-title',
-                    link.icon && 'about-link-title--with-icon',
-                  ]}
-                  href={link.href}
-                  target={link.external ? '_blank' : undefined}
-                  rel={link.external ? 'nofollow noopener noreferrer' : undefined}
-                >
-                  {link.icon && (
-                    <img
-                      class="about-link-icon"
-                      src={link.icon}
-                      alt=""
-                      width="20"
-                      height="20"
-                      aria-hidden="true"
-                    />
-                  )}
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </section>
+    <AboutLinksPanel />
 
     <section class="post-list-frame liquid-glass liquid-glass--subtle liquid-shadow">
       <h2 class="panel-title">記事一覧</h2>
