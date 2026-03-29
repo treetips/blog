@@ -106,8 +106,22 @@ const jsonLdItems = Array.isArray(structuredData) ? structuredData : [structured
         </script>
       </div>
     </div>
-    <a class="scroll-to-top liquid-shadow" href="#top" aria-label="トップへ戻る">
-      ↑
-    </a>
+    <div class="floating-actions" aria-label="ページ操作">
+      <a class="floating-action liquid-shadow" href="/" aria-label="トップページへ移動" title="Homeに戻る">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path
+            d="M4.5 10.6L12 4l7.5 6.6v8.4a1 1 0 0 1-1 1h-4.6v-6h-3.8v6H5.5a1 1 0 0 1-1-1z"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.8"
+          />
+        </svg>
+      </a>
+      <a class="floating-action scroll-to-top liquid-shadow" href="#top" aria-label="トップへ戻る" title="トップにスクロール">
+        ↑
+      </a>
+    </div>
   </body>
 </html>
