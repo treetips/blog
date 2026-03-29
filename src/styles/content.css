@@ -14,16 +14,37 @@
 }
 
 .about-link-frame {
-  @apply mt-6 p-4;
+  @apply px-4 py-2;
+  --panel-frame-spacing: 0.7rem;
 }
 
 .panel-title {
-  @apply m-0 text-site-muted text-[0.9rem];
+  @apply m-0 text-site-muted text-[1rem] font-bold;
   margin-bottom: var(--panel-frame-spacing);
+}
+
+.panel-subtitle {
+  @apply m-0 mb-1.5 text-site-muted text-[0.9rem] font-bold;
+}
+
+.about-link-list {
+  @apply m-0 grid list-none gap-2 p-0;
 }
 
 .about-link-title {
   @apply inline-block text-[clamp(1.15rem,1.6vw,1.35rem)] font-extrabold leading-[1.25];
+}
+
+.about-link-title--with-icon {
+  @apply inline-flex items-center gap-2;
+}
+
+.about-link-icon {
+  @apply h-5 w-5 shrink-0;
+}
+
+.site-title-link {
+  @apply font-extrabold no-underline;
 }
 
 .post-list-frame .post-list {
