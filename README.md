@@ -96,6 +96,12 @@ bun run images:download
 bun run redirects:generate
 ```
 
+旧ブログ側のページング URL を再クロールしてスナップショットごと更新したい場合は、インターバルを指定して実行します。
+
+```sh
+bun run redirects:generate -- --refresh --delay-ms 1000
+```
+
 ## 主要スクリプト
 
 - `bun run dev`
@@ -107,7 +113,7 @@ bun run redirects:generate
 - `bun run images:download`
   - 記事内で参照する画像を `public/hatena-images/` に保存します
 - `bun run redirects:generate`
-  - はてなブログのページング URL を Astro 側の URL に対応付けます
+  - 保存済みスナップショットから、はてなブログのページング URL を Astro 側の URL に対応付けます
 - `bun run deploy`
   - ビルド後に Cloudflare Workers へデプロイします
 
