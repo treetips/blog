@@ -110,7 +110,7 @@ X 用カード画像を差分のある記事だけに対して生成する場合
 bun run x-card
 ```
 
-`magick` と `/Users/tester/Library/Fonts/PlemolJP-Bold.ttf` が必要です。フォントを変える場合は `X_CARD_FONT_PATH=/path/to/font.ttf bun run x-card` を使います。
+`magick` と `design/fonts/PlemolJP-Bold.ttf` が必要です。フォントを変える場合は `X_CARD_FONT_PATH=/path/to/font.ttf bun run x-card` を使います。
 
 X への投稿文を確認したい場合は次です。`src/content/` 配下の記事から、現在時刻の 12 時間以内に `publishedAt` があるものだけを対象に、投稿文を標準出力します。
 

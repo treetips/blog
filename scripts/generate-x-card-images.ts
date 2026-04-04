@@ -8,7 +8,7 @@ const execFileAsync = promisify(execFile);
 const CONTENT_ROOT = path.resolve('src/content/blog');
 const PUBLIC_ROOT = path.resolve('public');
 const TEMPLATE_PATH = path.resolve('design/x-post-image-template.png');
-const DEFAULT_FONT_PATH = '/Users/tester/Library/Fonts/PlemolJP-Bold.ttf';
+const DEFAULT_FONT_PATH = path.resolve('design/fonts/PlemolJP-Bold.ttf');
 const CARD_FILENAME_PREFIX = 'card-image-';
 const CARD_FILENAME_RE = /^card-image-\d{14}\.png$/;
 const FRONTMATTER_DELIMITER = '---';
@@ -70,9 +70,26 @@ const runGit = async (args: string[]): Promise<string[]> => {
     .filter(Boolean);
 };
 
+const isZeroSha = (value: string | undefined): boolean => Boolean(value) && /^0+$/.test(value);
+
+const getDiffMarkdownPaths = async (baseRef: string, headRef: string): Promise<string[]> => {
+  if (isZeroSha(baseRef)) {
+    return runGit(['show', '--pretty=', '--name-only', headRef, '--', 'src/content/blog']);
+  }
+
+  return runGit(['diff', '--name-only', '--diff-filter=ACMRTUXB', baseRef, headRef, '--', 'src/content/blog']);
+};
+
 const getChangedMarkdownPaths = async (): Promise<ChangedArticle[]> => {
-  const trackedDiffs = await runGit(['diff', '--name-only', '--diff-filter=ACMRTUXB', 'HEAD', '--', 'src/content/blog']);
-  const untracked = await runGit(['ls-files', '--others', '--exclude-standard', '--', 'src/content/blog']);
+  const baseRef = process.env.X_CARD_BASE_REF?.trim();
+  const headRef = process.env.X_CARD_HEAD_REF?.trim();
+  const trackedDiffs =
+    baseRef && headRef
+      ? await getDiffMarkdownPaths(baseRef, headRef)
+      : await runGit(['diff', '--name-only', '--diff-filter=ACMRTUXB', 'HEAD', '--', 'src/content/blog']);
+  const untracked = baseRef && headRef
+    ? []
+    : await runGit(['ls-files', '--others', '--exclude-standard', '--', 'src/content/blog']);
   const uniquePaths = [...new Set([...trackedDiffs, ...untracked])]
     .filter((filePath) => filePath.endsWith('.md'))
     .sort();
