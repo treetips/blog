@@ -3,15 +3,15 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "new-post": "bun scripts/create-article.mjs",
+    "new-post": "bun scripts/create-article.ts",
     "build": "bun run redirects:generate && astro build",
     "check": "astro check",
-    "content:generate": "bun scripts/convert-hatena-export.mjs backup/treeapps.hatenablog.com.export.txt --output src/content/blog && bun run redirects:generate",
+    "content:generate": "bun scripts/convert-hatena-export.ts backup/treeapps.hatenablog.com.export.txt --output src/content/blog && bun run redirects:generate",
     "deploy": "bun run build && WRANGLER_LOG_PATH=.wrangler-logs bunx wrangler deploy",
     "dev": "bun run redirects:generate && astro dev",
-    "images:download": "bun scripts/download-hatena-images.mjs src/content/blog --output public/hatena-images",
+    "images:download": "bun scripts/download-hatena-images.ts src/content/blog --output public/hatena-images",
     "preview": "astro preview",
-    "redirects:generate": "bun scripts/generate-hatena-pagination-redirects.mjs"
+    "redirects:generate": "bun scripts/generate-hatena-pagination-redirects.ts"
   },
   "dependencies": {
     "astro": "^6.1.1"

@@ -15,26 +15,121 @@ const HATENA_IMAGE_HOSTS = new Set([
   'f.st-hatena.com',
 ]);
 
-function usage() {
+type CliArgs = {
+  input: string;
+  outputDir: string;
+  help?: boolean;
+};
+
+type EntryFields = Map<string, string[]>;
+
+type ParsedRecord = {
+  fields: EntryFields;
+  body: string;
+  extendedBody: string;
+};
+
+type ExportEntry = {
+  title: string;
+  basename: string;
+  publishedAt: string;
+  categories: string[];
+  image: string;
+  body: string;
+  extendedBody: string;
+};
+
+type EntryMap = Map<string, string>;
+type HtmlAttributes = Record<string, string>;
+
+type HtmlTextNode = {
+  type: 'text';
+  text: string;
+};
+
+type HtmlElementNode = {
+  type: 'element';
+  tag: string;
+  attrs: HtmlAttributes;
+  children: HtmlNode[];
+};
+
+type HtmlRootNode = {
+  type: 'root';
+  children: HtmlNode[];
+};
+
+type HtmlNode = HtmlTextNode | HtmlElementNode | HtmlRootNode;
+type HtmlParentNode = HtmlElementNode | HtmlRootNode;
+
+type ExtractTextOptions = {
+  preserveLineBreaks?: boolean;
+};
+
+type RenderContext = {
+  mode?: 'block' | 'inline' | 'code';
+  listDepth?: number;
+  entryMap: EntryMap;
+};
+
+const NAMED_HTML_ENTITIES = {
+  amp: '&',
+  lt: '<',
+  gt: '>',
+  quot: '"',
+  apos: "'",
+  nbsp: ' ',
+  ldquo: '“',
+  rdquo: '”',
+  lsquo: '‘',
+  rsquo: '’',
+  hellip: '…',
+  middot: '・',
+  rarr: '→',
+  larr: '←',
+  uarr: '↑',
+  darr: '↓',
+} as const satisfies Record<string, string>;
+
+const voidTags = new Set([
+  'br',
+  'img',
+  'hr',
+  'meta',
+  'input',
+  'link',
+  'source',
+  'area',
+  'base',
+  'col',
+  'embed',
+  'param',
+  'track',
+  'wbr',
+]);
+
+const usage = (): void => {
   console.error(
     [
       'Usage:',
-      '  node scripts/convert-hatena-export.mjs [input] [--output dir]',
+      '  bun scripts/convert-hatena-export.ts [input] [--output dir]',
       '',
       'Examples:',
-      '  node scripts/convert-hatena-export.mjs',
-      '  node scripts/convert-hatena-export.mjs backup/treeapps.hatenablog.com.export.txt --output src/content/blog',
+      '  bun scripts/convert-hatena-export.ts',
+      '  bun scripts/convert-hatena-export.ts backup/treeapps.hatenablog.com.export.txt --output src/content/blog',
     ].join('\n'),
   );
-}
+};
 
-function parseArgs(argv) {
-  const args = {
+const isElementNode = (node: HtmlNode | HtmlParentNode): node is HtmlElementNode => node.type === 'element';
+
+const parseArgs = (argv: string[]): CliArgs => {
+  const args: CliArgs = {
     input: DEFAULT_INPUT,
     outputDir: DEFAULT_OUTPUT_DIR,
   };
 
-  const positional = [];
+  const positional: string[] = [];
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
     if (arg === '--output' || arg === '-o') {
@@ -58,18 +153,17 @@ function parseArgs(argv) {
   }
 
   return args;
-}
+};
 
-function splitRecords(text) {
-  return text
+const splitRecords = (text: string): string[] =>
+  text
     .replace(/\r\n/g, '\n')
     .split(/\n--------\n/g)
     .map((record) => record.trim())
     .filter(Boolean);
-}
 
-function parseFields(lines) {
-  const fields = new Map();
+const parseFields = (lines: string[]): EntryFields => {
+  const fields: EntryFields = new Map();
   for (const line of lines) {
     if (!line || line === '-----') {
       continue;
@@ -83,12 +177,12 @@ function parseFields(lines) {
     if (!fields.has(key)) {
       fields.set(key, []);
     }
-    fields.get(key).push(value);
+    fields.get(key)!.push(value);
   }
   return fields;
-}
+};
 
-function parseRecord(record) {
+const parseRecord = (record: string): ParsedRecord => {
   const lines = record.split('\n');
   const bodySeparatorIndex = lines.indexOf('-----');
   if (bodySeparatorIndex === -1) {
@@ -123,31 +217,27 @@ function parseRecord(record) {
     body,
     extendedBody,
   };
-}
+};
 
-function findNextSeparator(lines, startIndex) {
+const findNextSeparator = (lines: string[], startIndex: number): number => {
   for (let i = startIndex; i < lines.length; i += 1) {
     if (lines[i] === '-----') {
       return i;
     }
   }
   return -1;
-}
+};
 
-function getFieldValues(fields, key) {
-  return fields.get(key) ?? [];
-}
+const getFieldValues = (fields: EntryFields, key: string): string[] => fields.get(key) ?? [];
 
-function getFieldValue(fields, key) {
+const getFieldValue = (fields: EntryFields, key: string): string => {
   const values = getFieldValues(fields, key);
   return values[0] ?? '';
-}
+};
 
-function getCategories(fields) {
-  return getFieldValues(fields, 'CATEGORY').filter(Boolean);
-}
+const getCategories = (fields: EntryFields): string[] => getFieldValues(fields, 'CATEGORY').filter(Boolean);
 
-function parseJstDate(value) {
+const parseJstDate = (value: string): string | null => {
   const match = value.match(
     /^(?<month>\d{2})\/(?<day>\d{2})\/(?<year>\d{4}) (?<hour>\d{2}):(?<minute>\d{2}):(?<second>\d{2})$/,
   );
@@ -157,9 +247,9 @@ function parseJstDate(value) {
 
   const { year, month, day, hour, minute, second } = match.groups;
   return `${year}-${month}-${day}T${hour}:${minute}:${second}+09:00`;
-}
+};
 
-function detectSlugLang(attrs) {
+const detectSlugLang = (attrs: HtmlAttributes): string => {
   const dataLang = attrs['data-lang'];
   if (dataLang) {
     return dataLang;
@@ -167,31 +257,12 @@ function detectSlugLang(attrs) {
   const className = attrs.class ?? '';
   const match = className.match(/\blang-([A-Za-z0-9_+-]+)\b/);
   return match ? match[1] : '';
-}
+};
 
-function decodeHtmlEntities(value) {
+const decodeHtmlEntities = (value: string): string => {
   if (!value) {
     return '';
   }
-
-  const named = {
-    amp: '&',
-    lt: '<',
-    gt: '>',
-    quot: '"',
-    apos: "'",
-    nbsp: ' ',
-    ldquo: '“',
-    rdquo: '”',
-    lsquo: '‘',
-    rsquo: '’',
-    hellip: '…',
-    middot: '・',
-    rarr: '→',
-    larr: '←',
-    uarr: '↑',
-    darr: '↓',
-  };
 
   return value.replace(/&(#x?[0-9a-fA-F]+|[a-zA-Z]+);/g, (match, entity) => {
     if (entity[0] === '#') {
@@ -207,50 +278,44 @@ function decodeHtmlEntities(value) {
       }
       return match;
     }
-    return named[entity] ?? match;
+    return NAMED_HTML_ENTITIES[entity as keyof typeof NAMED_HTML_ENTITIES] ?? match;
   });
-}
+};
 
-function normalizeInlineText(value) {
-  return decodeHtmlEntities(value)
+const normalizeInlineText = (value: string): string =>
+  decodeHtmlEntities(value)
     .replace(/\s+/g, ' ')
     .replace(/ \n/g, '\n')
     .trim();
-}
 
-function trimTrailingSpaces(value) {
-  return value.replace(/[ \t]+$/gm, '');
-}
+const trimTrailingSpaces = (value: string): string => value.replace(/[ \t]+$/gm, '');
 
-function escapeMarkdownText(value) {
-  return value
+const escapeMarkdownText = (value: string): string =>
+  value
     .replace(/\\/g, '\\\\')
     .replace(/\[/g, '\\[')
     .replace(/\]/g, '\\]')
     .replace(/\(/g, '\\(')
     .replace(/\)/g, '\\)');
-}
 
-function parseAttributes(attributeText) {
-  const attrs = {};
+const parseAttributes = (attributeText: string): HtmlAttributes => {
+  const attrs: HtmlAttributes = {};
   const regex = /([A-Za-z0-9:-]+)(?:=(?:"([^"]*)"|'([^']*)'|([^\s"'`=<>]+)))?/g;
-  let match;
+  let match: RegExpExecArray | null;
   while ((match = regex.exec(attributeText))) {
     const [, key, doubleQuoted, singleQuoted, bare] = match;
     attrs[key] = doubleQuoted ?? singleQuoted ?? bare ?? '';
   }
   return attrs;
-}
+};
 
-function tokenizeHtml(html) {
-  return html.match(/<!--[\s\S]*?-->|<\/?[A-Za-z0-9:-]+(?:\s[^<>]*?)?>|[^<]+/g) ?? [];
-}
+const tokenizeHtml = (html: string): string[] =>
+  html.match(/<!--[\s\S]*?-->|<\/?[A-Za-z0-9:-]+(?:\s[^<>]*?)?>|[^<]+/g) ?? [];
 
-function parseHtml(html) {
-  const root = { type: 'root', children: [] };
-  const stack = [root];
+const parseHtml = (html: string): HtmlRootNode => {
+  const root: HtmlRootNode = { type: 'root', children: [] };
+  const stack: HtmlParentNode[] = [root];
   const tokens = tokenizeHtml(html);
-  const voidTags = new Set(['br', 'img', 'hr', 'meta', 'input', 'link', 'source', 'area', 'base', 'col', 'embed', 'param', 'track', 'wbr']);
 
   for (const token of tokens) {
     if (!token) {
@@ -266,7 +331,7 @@ function parseHtml(html) {
       }
       const closeTag = closeMatch[1].toLowerCase();
       for (let i = stack.length - 1; i > 0; i -= 1) {
-        if (stack[i].tag === closeTag) {
+        if (isElementNode(stack[i]) && stack[i].tag === closeTag) {
           stack.length = i;
           break;
         }
@@ -281,7 +346,7 @@ function parseHtml(html) {
       const tag = openMatch[1].toLowerCase();
       const rawAttrs = openMatch[2] ?? '';
       const selfClosing = /\/\s*>$/.test(token) || voidTags.has(tag);
-      const node = {
+      const node: HtmlElementNode = {
         type: 'element',
         tag,
         attrs: parseAttributes(rawAttrs),
@@ -301,18 +366,19 @@ function parseHtml(html) {
   }
 
   return root;
-}
+};
 
-function current(stack) {
-  return stack[stack.length - 1];
-}
+const current = (stack: HtmlParentNode[]): HtmlParentNode => stack[stack.length - 1];
 
-function hasClass(node, className) {
+const hasClass = (node: HtmlElementNode, className: string): boolean => {
   const classList = (node.attrs.class ?? '').split(/\s+/).filter(Boolean);
   return classList.includes(className);
-}
+};
 
-function findFirstDescendant(node, predicate) {
+const findFirstDescendant = (
+  node: HtmlElementNode | HtmlRootNode,
+  predicate: (candidate: HtmlElementNode) => boolean,
+): HtmlElementNode | null => {
   for (const child of node.children ?? []) {
     if (child.type === 'element') {
       if (predicate(child)) {
@@ -325,16 +391,16 @@ function findFirstDescendant(node, predicate) {
     }
   }
   return null;
-}
+};
 
-function extractText(node, options = {}) {
+const extractText = (node: HtmlNode, options: ExtractTextOptions = {}): string => {
   const { preserveLineBreaks = false } = options;
   if (node.type === 'text') {
     return decodeHtmlEntities(node.text);
   }
 
-  if (node.type !== 'element' && node.type !== 'root') {
-    return '';
+  if (node.type === 'root') {
+    return node.children.map((child) => extractText(child, { preserveLineBreaks })).join('');
   }
 
   switch (node.tag) {
@@ -349,13 +415,12 @@ function extractText(node, options = {}) {
     default:
       return node.children.map((child) => extractText(child, { preserveLineBreaks })).join('');
   }
-}
+};
 
-function renderChildren(children, context) {
-  return children.map((child) => renderNode(child, context)).join('');
-}
+const renderChildren = (children: HtmlNode[], context: RenderContext): string =>
+  children.map((child) => renderNode(child, context)).join('');
 
-function renderNode(node, context = { mode: 'block', listDepth: 0 }) {
+const renderNode = (node: HtmlNode, context: RenderContext): string => {
   if (node.type === 'text') {
     if (context.mode === 'code') {
       return decodeHtmlEntities(node.text);
@@ -524,22 +589,29 @@ function renderNode(node, context = { mode: 'block', listDepth: 0 }) {
   }
 
   return renderChildren(node.children, context);
-}
+};
 
-function renderList(node, context, ordered) {
-  const items = node.children.filter((child) => child.type === 'element' && child.tag === 'li');
+const renderList = (node: HtmlElementNode, context: RenderContext, ordered: boolean): string => {
+  const items = node.children.filter(
+    (child): child is HtmlElementNode => child.type === 'element' && child.tag === 'li',
+  );
   const rendered = items
     .map((item, index) => renderListItem(item, context, ordered, index + 1))
     .filter(Boolean)
     .join('\n');
   return rendered;
-}
+};
 
-function renderListItem(node, context, ordered, index) {
+const renderListItem = (
+  node: HtmlElementNode,
+  context: RenderContext,
+  ordered: boolean,
+  index: number,
+): string => {
   const indent = '  '.repeat(context.listDepth ?? 0);
   const bullet = ordered ? `${index}.` : '-';
-  const inlineParts = [];
-  const nestedLists = [];
+  const inlineParts: string[] = [];
+  const nestedLists: string[] = [];
 
   for (const child of node.children) {
     if (child.type === 'element' && (child.tag === 'ul' || child.tag === 'ol')) {
@@ -558,9 +630,9 @@ function renderListItem(node, context, ordered, index) {
     return line;
   }
   return `${line}\n${nested}`;
-}
+};
 
-function renderIframe(node, entryMap) {
+const renderIframe = (node: HtmlElementNode, entryMap: EntryMap): string => {
   const src = node.attrs.src ?? '';
   if (!src) {
     return '';
@@ -572,9 +644,9 @@ function renderIframe(node, entryMap) {
     title ||
     (url.includes('youtube.com/watch') ? 'YouTube' : url.includes('amazon.co.jp') ? 'Amazon' : 'embed');
   return `[${escapeMarkdownText(label)}](${url})`;
-}
+};
 
-function renderHatenaAsinDetail(node, entryMap) {
+const renderHatenaAsinDetail = (node: HtmlElementNode, entryMap: EntryMap): string => {
   const anchor = findFirstDescendant(node, (candidate) => candidate.tag === 'a' && (candidate.attrs.href ?? '') !== '');
   const image = findFirstDescendant(node, (candidate) => candidate.tag === 'img' && (candidate.attrs.src ?? '') !== '');
   const titleNode = findFirstDescendant(node, (candidate) =>
@@ -592,7 +664,7 @@ function renderHatenaAsinDetail(node, entryMap) {
     (image ? normalizeInlineText(image.attrs.alt ?? image.attrs.title ?? '') : '') ||
     link;
 
-  const parts = [];
+  const parts: string[] = [];
   if (title && link) {
     parts.push(`[${escapeMarkdownText(title)}](${link})`);
   } else if (link) {
@@ -605,23 +677,21 @@ function renderHatenaAsinDetail(node, entryMap) {
     parts.push(`![${escapeMarkdownText(imageAlt)}](${image.attrs.src})`);
   }
   return parts.join('\n\n');
-}
+};
 
-function normalizeBlock(value) {
-  return trimTrailingSpaces(value)
+const normalizeBlock = (value: string): string =>
+  trimTrailingSpaces(value)
     .replace(/\n{3,}/g, '\n\n')
     .trim();
-}
 
-function escapeHtml(value) {
-  return value
+const escapeHtml = (value: string): string =>
+  value
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
-}
 
-function rewriteUrl(href, entryMap) {
+const rewriteUrl = (href: string, entryMap: EntryMap): string => {
   const trimmed = href.trim();
   if (!trimmed) {
     return '';
@@ -643,9 +713,9 @@ function rewriteUrl(href, entryMap) {
   }
 
   return trimmed;
-}
+};
 
-function rewriteBareUrls(text, entryMap) {
+const rewriteBareUrls = (text: string, entryMap: EntryMap): string => {
   if (!text) {
     return text;
   }
@@ -660,9 +730,9 @@ function rewriteBareUrls(text, entryMap) {
       }
     },
   );
-}
+};
 
-function normalizeLegacyEntryReferences(text, entryMap) {
+const normalizeLegacyEntryReferences = (text: string, entryMap: EntryMap): string => {
   if (!text) {
     return text;
   }
@@ -685,10 +755,10 @@ function normalizeLegacyEntryReferences(text, entryMap) {
       return `/entry/${decoded}${suffix}`;
     },
   );
-}
+};
 
-function rewriteIframeUrl(src, entryMap) {
-  let url;
+const rewriteIframeUrl = (src: string, entryMap: EntryMap): string => {
+  let url: URL;
   try {
     url = new URL(src, 'https://example.com');
   } catch {
@@ -723,10 +793,10 @@ function rewriteIframeUrl(src, entryMap) {
   }
 
   return src;
-}
+};
 
-function isHatenaImageUrl(value) {
-  let url;
+const isHatenaImageUrl = (value: string): boolean => {
+  let url: URL;
   try {
     url = new URL(value, 'https://example.com');
   } catch {
@@ -734,10 +804,10 @@ function isHatenaImageUrl(value) {
   }
 
   return HATENA_IMAGE_HOSTS.has(url.hostname) && url.pathname.startsWith('/images/');
-}
+};
 
-function rewriteHatenaImageUrl(value) {
-  let url;
+const rewriteHatenaImageUrl = (value: string): string => {
+  let url: URL;
   try {
     url = new URL(value, 'https://example.com');
   } catch {
@@ -753,19 +823,17 @@ function rewriteHatenaImageUrl(value) {
   }
 
   return `/hatena-images${url.pathname}`;
-}
+};
 
-function isHatenaVideoPath(value) {
-  return rewriteHatenaImageUrl(value).endsWith('.mp4');
-}
+const isHatenaVideoPath = (value: string): boolean => rewriteHatenaImageUrl(value).endsWith('.mp4');
 
-function renderVideoElement(src, alt) {
+const renderVideoElement = (src: string, alt: string): string => {
   const title = alt ? ` title="${escapeHtml(alt)}"` : '';
   const aria = alt ? ` aria-label="${escapeHtml(alt)}"` : '';
   return `<video class="post-media" controls playsinline preload="metadata"${title}${aria}>\n  <source src="${escapeHtml(src)}" type="video/mp4" />\n</video>`;
-}
+};
 
-function rewriteInternalUrl(url, entryMap) {
+const rewriteInternalUrl = (url: URL, entryMap: EntryMap): string => {
   const match = url.pathname.match(/^\/entry\/(.+)$/);
   if (match) {
     let basename = match[1].replace(/\/$/, '');
@@ -781,10 +849,10 @@ function rewriteInternalUrl(url, entryMap) {
   }
 
   return `${url.pathname}${url.search ?? ''}${url.hash ?? ''}`;
-}
+};
 
-function buildEntryMap(entries) {
-  const map = new Map();
+const buildEntryMap = (entries: ExportEntry[]): EntryMap => {
+  const map: EntryMap = new Map();
   for (const entry of entries) {
     if (!entry.basename) {
       continue;
@@ -792,9 +860,9 @@ function buildEntryMap(entries) {
     map.set(entry.basename, `/entry/${entry.basename}/`);
   }
   return map;
-}
+};
 
-function buildMarkdown(entry, entryMap) {
+const buildMarkdown = (entry: ExportEntry, entryMap: EntryMap): string => {
   const sourceUrl = `/entry/${entry.basename}/`;
   const legacyUrl = `/entry/${entry.basename}/`;
   const categories = entry.categories;
@@ -823,25 +891,20 @@ function buildMarkdown(entry, entryMap) {
   );
 
   return normalizeAnimeTerminology(`${frontmatter}${markdown}\n`);
-}
+};
 
-function normalizeAnimeTerminology(text) {
-  return text
+const normalizeAnimeTerminology = (text: string): string =>
+  text
     .replace(/GIFアニメ/g, '動画')
     .replace(/GIF アニメ/g, '動画')
     .replace(/gifアニメ/g, '動画')
     .replace(/gif アニメ/g, '動画');
-}
 
-function yamlString(value) {
-  return JSON.stringify(String(value));
-}
+const yamlString = (value: string): string => JSON.stringify(String(value));
 
-function yamlArray(values) {
-  return `[${values.map((value) => yamlString(value)).join(', ')}]`;
-}
+const yamlArray = (values: string[]): string => `[${values.map((value) => yamlString(value)).join(', ')}]`;
 
-async function main() {
+const main = async (): Promise<void> => {
   const args = parseArgs(process.argv.slice(2));
   if (args.help) {
     usage();
@@ -853,7 +916,7 @@ async function main() {
   const source = await readFile(sourcePath, 'utf8');
   const records = splitRecords(source);
 
-  const parsedEntries = records.map((record) => {
+  const parsedEntries = records.map((record): ExportEntry => {
     const { fields, body, extendedBody } = parseRecord(record);
     const title = getFieldValue(fields, 'TITLE');
     const basename = getFieldValue(fields, 'BASENAME');
@@ -888,9 +951,9 @@ async function main() {
   }
 
   console.error(`Converted ${parsedEntries.length} entries into ${outputDir}`);
-}
+};
 
-main().catch((error) => {
+void main().catch((error: unknown) => {
   console.error(error instanceof Error ? error.stack ?? error.message : String(error));
   process.exit(1);
 });
