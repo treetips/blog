@@ -15,6 +15,7 @@ const blog = defineCollection({
     legacyUrl: z.string(),
     categories: z.array(z.string()),
     image: z.string().optional(),
+    cardImage: z.string().optional(),
   }),
 });
 

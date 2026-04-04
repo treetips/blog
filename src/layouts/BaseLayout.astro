@@ -16,6 +16,7 @@ const baseUrl = Astro.site ?? new URL('https://bunkei-programmer.net');
 const canonical = new URL(Astro.url.pathname, baseUrl).toString();
 const siteTitle = '文系プログラマによるTIPSブログ';
 const socialImage = image ? new URL(image, baseUrl).toString() : undefined;
+const socialImageAlt = image ? title : undefined;
 const jsonLdItems = Array.isArray(structuredData) ? structuredData : [structuredData];
 ---
 
@@ -36,10 +37,13 @@ const jsonLdItems = Array.isArray(structuredData) ? structuredData : [structured
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     {socialImage && <meta property="og:image" content={socialImage} />}
+    {socialImageAlt && <meta property="og:image:alt" content={socialImageAlt} />}
     <meta name="twitter:card" content={socialImage ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:url" content={canonical} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     {socialImage && <meta name="twitter:image" content={socialImage} />}
+    {socialImageAlt && <meta name="twitter:image:alt" content={socialImageAlt} />}
     {ogType === 'article' && <link rel="stylesheet" href={articleGlassStylesUrl} />}
     <link rel="stylesheet" href="https://unpkg.com/@algolia/sitesearch@latest/dist/search.min.css" />
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-PKB6YJE88Z"></script>

@@ -11,7 +11,8 @@
     "dev": "bun run redirects:generate && astro dev",
     "images:download": "bun scripts/download-hatena-images.ts src/content/blog --output public/hatena-images",
     "preview": "astro preview",
-    "redirects:generate": "bun scripts/generate-hatena-pagination-redirects.ts"
+    "redirects:generate": "bun scripts/generate-hatena-pagination-redirects.ts",
+    "x-card": "bun scripts/generate-x-card-images.ts"
   },
   "dependencies": {
     "astro": "^6.1.1"

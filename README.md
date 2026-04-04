@@ -16,6 +16,7 @@
 - [Astro 6.0.8](https://astro.build/)
 - [Bun](https://bun.sh/)
 - [Cloudflare Workers](https://developers.cloudflare.com/workers/)
+- [ImageMagick](https://imagemagick.org/)
 
 ## 必要環境
 
@@ -28,6 +29,7 @@
 
 ```sh
 bun install
+brew install imagemagick
 ```
 
 ## ローカル確認
@@ -102,6 +104,14 @@ bun run redirects:generate
 bun run redirects:generate -- --refresh --delay-ms 1000
 ```
 
+X 用カード画像を差分のある記事だけに対して生成する場合は次です。`design/x-post-image-template.png` に記事タイトルを焼き込み、記事と同じ階層の `public/` 配下へ出力し、対象記事の frontmatter に `cardImage` を書き込みます。
+
+```sh
+bun run x-card
+```
+
+`magick` と `/Users/tester/Library/Fonts/PlemolJP-Bold.ttf` が必要です。フォントを変える場合は `X_CARD_FONT_PATH=/path/to/font.ttf bun run x-card` を使います。
+
 ## 新規記事の作成
 
 フロントマター付きの新規記事ファイルを作成します。`publishedAt` には実行時点の JST が入ります。
@@ -124,6 +134,8 @@ bun run new-post -- "記事タイトル"
   - はてなブログの export から Markdown を再生成します
 - `bun run images:download`
   - 記事内で参照する画像を `public/hatena-images/` に保存します
+- `bun run x-card`
+  - git 差分のある記事だけに対して X カード画像を生成し、`cardImage` を frontmatter に反映します
 - `bun run redirects:generate`
   - 保存済みスナップショットから、はてなブログのページング URL を Astro 側の URL に対応付けます
 - `bun run deploy`
