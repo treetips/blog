@@ -50,6 +50,8 @@ type GeneratedCard = {
   cardImageUrl: string;
 };
 
+let resolvedImageMagickCommand: string | null = null;
+
 const fileExists = async (filePath: string): Promise<boolean> => {
   try {
     await stat(filePath);
@@ -57,6 +59,36 @@ const fileExists = async (filePath: string): Promise<boolean> => {
   } catch {
     return false;
   }
+};
+
+const commandExists = async (command: string): Promise<boolean> => {
+  try {
+    await execFileAsync('bash', ['-lc', `command -v ${command}`]);
+    return true;
+  } catch {
+    return false;
+  }
+};
+
+const getImageMagickCommand = async (): Promise<string> => {
+  if (resolvedImageMagickCommand) {
+    return resolvedImageMagickCommand;
+  }
+
+  const override = process.env.X_CARD_IMAGEMAGICK_BIN?.trim();
+  if (override) {
+    resolvedImageMagickCommand = override;
+    return resolvedImageMagickCommand;
+  }
+
+  for (const command of ['magick', 'convert']) {
+    if (await commandExists(command)) {
+      resolvedImageMagickCommand = command;
+      return resolvedImageMagickCommand;
+    }
+  }
+
+  throw new Error('ImageMagick command not found. Install "magick" or "convert".');
 };
 
 const runGit = async (args: string[]): Promise<string[]> => {
@@ -233,6 +265,7 @@ const removePreviousCardImage = async (
 
 const generateCardImage = async (target: GenerationTarget, outputAbsolutePath: string): Promise<void> => {
   const fontPath = process.env.X_CARD_FONT_PATH || DEFAULT_FONT_PATH;
+  const imageMagickCommand = await getImageMagickCommand();
 
   if (!(await fileExists(TEMPLATE_PATH))) {
     throw new Error(`Template file not found: ${TEMPLATE_PATH}`);
@@ -242,7 +275,7 @@ const generateCardImage = async (target: GenerationTarget, outputAbsolutePath: s
     throw new Error(`Font file not found: ${fontPath}`);
   }
 
-  await execFileAsync('magick', [
+  await execFileAsync(imageMagickCommand, [
     TEMPLATE_PATH,
     '(',
     '-background',
