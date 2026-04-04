@@ -12,6 +12,7 @@
     "images:download": "bun scripts/download-hatena-images.ts src/content/blog --output public/hatena-images",
     "preview": "astro preview",
     "redirects:generate": "bun scripts/generate-hatena-pagination-redirects.ts",
+    "x-post": "bun scripts/generate-x-post-text.ts",
     "x-card": "bun scripts/generate-x-card-images.ts"
   },
   "dependencies": {

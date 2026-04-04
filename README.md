@@ -112,6 +112,12 @@ bun run x-card
 
 `magick` と `/Users/tester/Library/Fonts/PlemolJP-Bold.ttf` が必要です。フォントを変える場合は `X_CARD_FONT_PATH=/path/to/font.ttf bun run x-card` を使います。
 
+X への投稿文を確認したい場合は次です。`src/content/` 配下の記事から、現在時刻の 12 時間以内に `publishedAt` があるものだけを対象に、投稿文を標準出力します。
+
+```sh
+bun run x-post
+```
+
 ## 新規記事の作成
 
 フロントマター付きの新規記事ファイルを作成します。`publishedAt` には実行時点の JST が入ります。
@@ -136,6 +142,8 @@ bun run new-post -- "記事タイトル"
   - 記事内で参照する画像を `public/hatena-images/` に保存します
 - `bun run x-card`
   - git 差分のある記事だけに対して X カード画像を生成し、`cardImage` を frontmatter に反映します
+- `bun run x-post`
+  - 直近 12 時間以内の記事を対象に、X 投稿用の文面を標準出力します
 - `bun run redirects:generate`
   - 保存済みスナップショットから、はてなブログのページング URL を Astro 側の URL に対応付けます
 - `bun run deploy`
