@@ -80,5 +80,8 @@
   "workbench.editor.closeEmptyGroups": true,
   "workbench.editor.enablePreview": false,
   "workbench.tree.indent": 16,
-  "workbench.tree.renderIndentGuides": "always"
+  "workbench.tree.renderIndentGuides": "always",
+  "[markdown]": {
+    "editor.defaultFormatter": "fcrespo82.markdown-table-formatter",
+  }
 }
