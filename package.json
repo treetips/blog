@@ -3,6 +3,7 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "new-post": "bun scripts/create-article.mjs",
     "build": "bun run redirects:generate && astro build",
     "check": "astro check",
     "content:generate": "bun scripts/convert-hatena-export.mjs backup/treeapps.hatenablog.com.export.txt --output src/content/blog && bun run redirects:generate",

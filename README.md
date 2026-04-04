@@ -102,8 +102,20 @@ bun run redirects:generate
 bun run redirects:generate -- --refresh --delay-ms 1000
 ```
 
+## 新規記事の作成
+
+フロントマター付きの新規記事ファイルを作成します。`publishedAt` には実行時点の JST が入ります。
+
+```sh
+bun run new-post -- "記事タイトル"
+```
+
+タイトルを省略した場合は `タイトル未設定` で生成されます。生成先は `src/content/blog/YYYY/MM/DD/HHmmss.md` です。
+
 ## 主要スクリプト
 
+- `bun run new-post -- "記事タイトル"`
+  - `src/content/blog/` にフロントマター付きの新規記事を作成します
 - `bun run dev`
   - 開発サーバーを起動します
 - `bun run build`
