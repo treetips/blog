@@ -4,6 +4,16 @@ import tailwind from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://bunkei-programmer.net',
   output: 'static',
+  markdown: {
+    shikiConfig: {
+      langAlias: {
+        mysql: 'sql',
+        conf: 'ini',
+        jsp: 'html',
+        ant: 'xml',
+      },
+    },
+  },
   image: {
     service: {
       config: {
