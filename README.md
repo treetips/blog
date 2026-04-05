@@ -118,6 +118,14 @@ X への投稿文を確認したい場合は次です。`src/content/` 配下の
 bun run x-post
 ```
 
+Astro 本体と公式インテグレーションを Astro 公式の手順で更新する場合は次です。
+
+```sh
+bun run update-deps
+```
+
+この script は、まず `@astrojs/upgrade` で Astro 本体と公式インテグレーションを更新し、その後 `npm-check-updates` で残りの依存を更新して最後に `bun install` を実行します。
+
 ## 新規記事の作成
 
 フロントマター付きの新規記事ファイルを作成します。`publishedAt` には実行時点の JST が入ります。
@@ -132,6 +140,8 @@ bun run new-post -- "記事タイトル"
 
 - `bun run new-post -- "記事タイトル"`
   - `src/content/blog/` にフロントマター付きの新規記事を作成します
+- `bun run update-deps`
+  - `@astrojs/upgrade` で Astro 本体と公式インテグレーションを更新した後、`npm-check-updates` で残りの依存を更新し、最後に `bun install` を実行します
 - `bun run dev`
   - 開発サーバーを起動します
 - `bun run build`
