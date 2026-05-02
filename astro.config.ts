@@ -1,5 +1,5 @@
-import { defineConfig } from 'astro/config';
 import tailwind from '@tailwindcss/vite';
+import { defineConfig, sharpImageService } from 'astro/config';
 
 export default defineConfig({
   site: 'https://bunkei-programmer.net',
@@ -12,17 +12,10 @@ export default defineConfig({
         jsp: 'html',
         ant: 'xml',
       },
-    },
+},
   },
   image: {
-    service: {
-      config: {
-        jpeg: { mozjpeg: true },
-        webp: { effort: 6, alphaQuality: 80 },
-        avif: { effort: 4, chromaSubsampling: '4:2:0' },
-        png: { compressionLevel: 9 },
-      },
-    },
+    service: sharpImageService()
   },
   vite: {
     plugins: [tailwind()],
