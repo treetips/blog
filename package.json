@@ -17,7 +17,7 @@
     "x-card": "bun scripts/generate-x-card-images.ts"
   },
   "dependencies": {
-    "astro": "6.2.1",
+    "astro": "6.3.1",
     "sharp": "^0.34.5"
   },
   "devDependencies": {
