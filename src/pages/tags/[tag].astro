@@ -31,7 +31,7 @@ const decodedTag = decodeTag(tag);
 const posts = (await getSortedPosts()).filter((post) => post.data.categories.includes(decodedTag));
 ---
 
-<BaseLayout title={`タグ: ${decodedTag}`} description={`${decodedTag} に属する記事一覧です。`}>
+<BaseLayout title={`タグ: ${decodedTag}`} description={`${decodedTag} に属する記事一覧です。`} panelClass="panel--glass liquid-shadow">
   <header class="block p-8 max-md:p-4">
     <div class="w-full">
       <div class="flex w-full items-center justify-between gap-4 max-md:gap-2">
