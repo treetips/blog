@@ -28,6 +28,11 @@ const jsonLdItems = Array.isArray(structuredData) ? structuredData : [structured
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="preload" as="image" href="/wallpaper/wallpaper-01.jpg" />
+    <style is:inline>
+      html{background:linear-gradient(315deg,#fcb8e2 0%,#ffc8ed 20%,#fbe8f9 40%,#e8f9ff 60%,#d0ecff 80%,#b8cdfa 100%);min-height:100%}
+      body{margin:0;background-image:url(/wallpaper/wallpaper-01.jpg);background-size:100% 100%;background-repeat:no-repeat;background-attachment:fixed}
+    </style>
     <link rel="canonical" href={canonical} />
     <link rel="alternate" type="application/rss+xml" title={siteTitle} href={new URL('/rss.xml', baseUrl).toString()} />
     <meta name="robots" content="index,follow" />
