@@ -1,0 +1,9 @@
+# JS/CSS/画像は1週間キャッシュ（ハッシュ付きファイル名のため安全）
+/*.js
+  Cache-Control: public, max-age=604800, immutable
+/*.css
+  Cache-Control: public, max-age=604800, immutable
+/*.jpg
+  Cache-Control: public, max-age=604800, immutable
+/*.webp
+  Cache-Control: public, max-age=604800, immutable
