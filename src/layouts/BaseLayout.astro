@@ -2,6 +2,8 @@
 import '../styles/global.css';
 import '../styles/liquid-glass.css';
 import articleGlassStylesUrl from '../styles/article-glass.css?url';
+import wallpaperJpg from '../assets/images/wallpaper/wallpaper-01.jpg';
+import wallpaperWebp from '../assets/images/wallpaper/wallpaper-01.webp';
 
 const {
   title = '文系プログラマによるTIPSブログ',
@@ -28,13 +30,16 @@ const jsonLdItems = Array.isArray(structuredData) ? structuredData : [structured
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="preload" as="image" href="/wallpaper/wallpaper-01.jpg" />
-    <style is:inline>
+    <link rel="preload" as="image" href={wallpaperJpg.src} fetchpriority="high" />
+    <link rel="preload" as="image" href={wallpaperWebp.src} type="image/webp" fetchpriority="high" />
+    <style is:inline set:html={`
       html{background:linear-gradient(315deg,#fcb8e2 0%,#ffc8ed 20%,#fbe8f9 40%,#e8f9ff 60%,#d0ecff 80%,#b8cdfa 100%);min-height:100%}
-      body{margin:0;background-image:url(/wallpaper/wallpaper-01.jpg);background-size:100% 100%;background-repeat:no-repeat;background-attachment:fixed}
+      :root{--wp-webp:url(${wallpaperWebp.src});--wp-jpg:url(${wallpaperJpg.src})}
+    `}></style>
+    <style is:inline>
+      body{margin:0;background-color:#e0d1d5;background-image:image-set(var(--wp-webp) type("image/webp"),var(--wp-jpg) type("image/jpeg"));background-size:100% 100%;background-repeat:no-repeat;background-attachment:fixed}
     </style>
     <link rel="canonical" href={canonical} />
-    <link rel="alternate" type="application/rss+xml" title={siteTitle} href={new URL('/rss.xml', baseUrl).toString()} />
     <meta name="robots" content="index,follow" />
     <meta property="og:site_name" content={siteTitle} />
     <meta property="og:type" content={ogType} />

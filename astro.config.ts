@@ -18,7 +18,19 @@ export default defineConfig({
     service: sharpImageService()
   },
   vite: {
-    plugins: [tailwind()],
+    plugins: [tailwind(), {
+      name: 'suppress-tailwind-css-warnings',
+      enforce: 'pre',
+      apply: 'build',
+      buildStart() {
+        const originalWarn = console.warn;
+        console.warn = (...args) => {
+          const msg = args.join(' ');
+          if (msg.includes('Unexpected token Ident("children")') || msg.includes('Unexpected token Ident("vars")')) return;
+          originalWarn.apply(console, args);
+        };
+      },
+    }],
     build: {
       rollupOptions: {
         onwarn(warning, defaultWarn) {
