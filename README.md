@@ -20,7 +20,7 @@
 
 ## 必要環境
 
-- Bun 1.3 系
+- Bun 1.4 系
 - Node.js 相当の実行環境
 - `ffmpeg` 画像変換をやり直す場合に必要
 - `bun install` 済みの `node_modules`
