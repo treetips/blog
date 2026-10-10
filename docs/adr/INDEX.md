@@ -6,6 +6,7 @@
 | 0002 | はてな痕跡の除去 (de-hatena)                          | Accepted   | 画像URL・Worker・コンテンツ |
 | 0003 | lint / formatter に Vite+ (`vp check`) を採用         | Accepted   | ツールチェーン              |
 | 0004 | 背景描画の fixed レイヤー化と記事画像の長期キャッシュ | Accepted   | 表示・キャッシュ            |
+| 0005 | SVG グラス歪みフィルタの廃止と color-scheme の先行宣言 | Accepted   | 表示 (Chrome 黒フラッシュ)  |
 
 - ステータス凡例
   - 提案済み (Proposed)
