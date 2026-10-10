@@ -7,6 +7,10 @@ export interface Env {
 const CANONICAL_HOST = "bunkei-programmer.net";
 const WWW_HOST = "www.bunkei-programmer.net";
 const LEGACY_IMAGES_PREFIX = "/hatena-images/";
+const BLOG_IMAGES_PREFIX = "/blog-images/";
+// はてな由来のコンテンツアドレス済みファイル名 (タイムスタンプ+ハッシュ) なので
+// 同一 URL の内容は不変。長期の immutable キャッシュが安全。
+const IMAGE_CACHE_CONTROL = "public, max-age=31536000, immutable";
 
 function redirectToCanonical(request: Request) {
   const url = new URL(request.url);
@@ -56,6 +60,24 @@ export default {
       if (redirectResponse) {
         return redirectResponse;
       }
+    }
+
+    // _headers は Assets パイプラインを通る直配信でのみ効く可能性があり、
+    // ASSETS binding 経由では適用が保証されない。Why: 画像の毎回の取り直しを
+    // 止めるため、binding 経由でも Cache-Control が確実に付くようにする
+    // (既に付いている場合は上書きしない) (ADR 0004)。
+    if (url.pathname.startsWith(BLOG_IMAGES_PREFIX)) {
+      const assetsResponse = await env.ASSETS.fetch(request);
+      if (assetsResponse.headers.get("cache-control")) {
+        return assetsResponse;
+      }
+      const headers = new Headers(assetsResponse.headers);
+      headers.set("Cache-Control", IMAGE_CACHE_CONTROL);
+      return new Response(assetsResponse.body, {
+        status: assetsResponse.status,
+        statusText: assetsResponse.statusText,
+        headers,
+      });
     }
 
     return env.ASSETS.fetch(request);

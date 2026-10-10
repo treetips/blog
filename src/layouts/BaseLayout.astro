@@ -37,7 +37,12 @@ const jsonLdItems = Array.isArray(structuredData) ? structuredData : [structured
       :root{--wp-webp:url(${wallpaperWebp.src});--wp-jpg:url(${wallpaperJpg.src})}
     `}></style>
     <style is:inline>
-      body{margin:0;background-color:#e0d1d5;background-image:image-set(var(--wp-webp) type("image/webp"),var(--wp-jpg) type("image/jpeg"));background-size:100% 100%;background-repeat:no-repeat;background-attachment:fixed}
+      body{margin:0}
+      /* Why not: background-attachment: fixed は WebKit (Safari) で slow
+         repaint の温床 (2026-10 調査)。position:fixed の疑似要素レイヤーに
+         置き換える定跡で、同様の固定の見た目を保つ (ADR 0004)。下地色は
+         壁紙の平均色 (#dad4dd) で、画像未ロード時の色飛びを防ぐ。 */
+      body::before{content:"";position:fixed;inset:0;z-index:-1;background-color:#dad4dd;background-image:image-set(var(--wp-webp) type("image/webp"),var(--wp-jpg) type("image/jpeg"));background-repeat:no-repeat;background-size:100% 100%;pointer-events:none}
     </style>
     <link rel="canonical" href={canonical} />
     <meta name="robots" content="index,follow" />
