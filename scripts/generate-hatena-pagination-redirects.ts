@@ -1,17 +1,17 @@
-import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { PAGE_SIZE, getPageHref } from '../src/lib/pagination.js';
+import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { PAGE_SIZE, getPageHref } from "../src/lib/pagination.js";
 
-const HATENA_BLOG_ORIGIN = 'https://treeapps.hatenablog.com';
+const HATENA_BLOG_ORIGIN = "https://treeapps.hatenablog.com";
 const HATENA_BLOG_ROOT_URL = `${HATENA_BLOG_ORIGIN}/`;
 const DEFAULT_REFRESH_DELAY_MS = 1000;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const projectRoot = path.resolve(__dirname, '..');
-const contentRoot = path.join(projectRoot, 'src/content/blog');
-const outputFile = path.join(projectRoot, 'src/generated/hatena-pagination-redirects.js');
-const snapshotFile = path.join(projectRoot, 'src/generated/hatena-pagination-pages.json');
+const projectRoot = path.resolve(__dirname, "..");
+const contentRoot = path.join(projectRoot, "src/content/blog");
+const outputFile = path.join(projectRoot, "src/generated/hatena-pagination-redirects.js");
+const snapshotFile = path.join(projectRoot, "src/generated/hatena-pagination-pages.json");
 
 type CliOptions = {
   delayMs: number;
@@ -38,7 +38,7 @@ type Snapshot = {
 };
 
 const isErrnoException = (error: unknown): error is NodeJS.ErrnoException =>
-  error instanceof Error && 'code' in error;
+  error instanceof Error && "code" in error;
 
 const parseArgs = (argv: string[]): CliOptions => {
   const options: CliOptions = {
@@ -49,15 +49,15 @@ const parseArgs = (argv: string[]): CliOptions => {
   for (let index = 0; index < argv.length; index += 1) {
     const value = argv[index];
 
-    if (value === '--refresh') {
+    if (value === "--refresh") {
       options.refresh = true;
       continue;
     }
 
-    if (value === '--delay-ms') {
+    if (value === "--delay-ms") {
       const nextValue = argv[index + 1];
       if (!nextValue) {
-        throw new Error('--delay-ms requires a value');
+        throw new Error("--delay-ms requires a value");
       }
 
       const parsedValue = Number(nextValue);
@@ -87,7 +87,7 @@ const collectMarkdownFiles = async (dir: string): Promise<string[]> => {
       continue;
     }
 
-    if (entry.isFile() && entry.name.endsWith('.md')) {
+    if (entry.isFile() && entry.name.endsWith(".md")) {
       files.push(fullPath);
     }
   }
@@ -96,12 +96,12 @@ const collectMarkdownFiles = async (dir: string): Promise<string[]> => {
 };
 
 const readFrontmatterValue = (content: string, fieldName: string): string | null => {
-  const match = content.match(new RegExp(`^${fieldName}:\\s*"([^"]+)"$`, 'm'));
+  const match = content.match(new RegExp(`^${fieldName}:\\s*"([^"]+)"$`, "m"));
   return match?.[1] ?? null;
 };
 
 const parsePublishedAt = (content: string, filePath: string): Date => {
-  const value = readFrontmatterValue(content, 'publishedAt');
+  const value = readFrontmatterValue(content, "publishedAt");
   if (!value) {
     throw new Error(`publishedAt not found in ${filePath}`);
   }
@@ -115,7 +115,8 @@ const parsePublishedAt = (content: string, filePath: string): Date => {
 };
 
 const parseLegacyPath = (content: string, filePath: string): string => {
-  const legacyValue = readFrontmatterValue(content, 'legacyUrl') ?? readFrontmatterValue(content, 'sourceUrl');
+  const legacyValue =
+    readFrontmatterValue(content, "legacyUrl") ?? readFrontmatterValue(content, "sourceUrl");
   if (!legacyValue) {
     throw new Error(`legacyUrl not found in ${filePath}`);
   }
@@ -133,8 +134,8 @@ const normalizeEntryPath = (value: string, context = value): string => {
   }
 
   const decodedPath = decodeURIComponent(url.pathname);
-  const normalizedPath = decodedPath.endsWith('/') ? decodedPath : `${decodedPath}/`;
-  return normalizedPath.replace(/\/{2,}/g, '/');
+  const normalizedPath = decodedPath.endsWith("/") ? decodedPath : `${decodedPath}/`;
+  return normalizedPath.replace(/\/{2,}/g, "/");
 };
 
 const extractEntryPaths = (html: string): string[] => {
@@ -150,7 +151,7 @@ const extractEntryPaths = (html: string): string[] => {
     }
 
     const entryPath = normalizeEntryPath(href);
-    if (!entryPath.startsWith('/entry/')) {
+    if (!entryPath.startsWith("/entry/")) {
       continue;
     }
 
@@ -178,7 +179,8 @@ const extractNextPageUrl = (html: string): string | null => {
   return new URL(href, HATENA_BLOG_ROOT_URL).toString();
 };
 
-const extractPageCursor = (pageUrl: string): string | null => new URL(pageUrl).searchParams.get('page');
+const extractPageCursor = (pageUrl: string): string | null =>
+  new URL(pageUrl).searchParams.get("page");
 
 const sleep = (delayMs: number): Promise<void> =>
   new Promise((resolve) => {
@@ -200,7 +202,7 @@ const refreshHatenaPaginationSnapshot = async (delayMs: number): Promise<Snapsho
 
     const response = await fetch(nextPageUrl, {
       headers: {
-        'user-agent': 'bunkei-programmer.net redirect refresh bot/1.0',
+        "user-agent": "bunkei-programmer.net redirect refresh bot/1.0",
       },
     });
 
@@ -241,10 +243,10 @@ const refreshHatenaPaginationSnapshot = async (delayMs: number): Promise<Snapsho
 
 const loadHatenaPaginationSnapshot = async (): Promise<Snapshot> => {
   try {
-    const content = await readFile(snapshotFile, 'utf8');
+    const content = await readFile(snapshotFile, "utf8");
     return JSON.parse(content) as Snapshot;
   } catch (error) {
-    if (isErrnoException(error) && error.code === 'ENOENT') {
+    if (isErrnoException(error) && error.code === "ENOENT") {
       throw new Error(
         `Snapshot file not found: ${snapshotFile}. Run "bun run redirects:generate -- --refresh --delay-ms ${DEFAULT_REFRESH_DELAY_MS}" first.`,
       );
@@ -267,7 +269,10 @@ const buildLocalPageIndex = (posts: BlogPostMetadata[]): Map<string, number> => 
   return pageByLegacyPath;
 };
 
-const createRedirectMap = (pageByLegacyPath: Map<string, number>, snapshot: Snapshot): Record<string, string> => {
+const createRedirectMap = (
+  pageByLegacyPath: Map<string, number>,
+  snapshot: Snapshot,
+): Record<string, string> => {
   if (!Array.isArray(snapshot.pages) || snapshot.pages.length === 0) {
     throw new Error(`Invalid Hatena pagination snapshot: ${snapshotFile}`);
   }
@@ -303,7 +308,7 @@ const main = async (): Promise<void> => {
   const posts: BlogPostMetadata[] = [];
 
   for (const filePath of markdownFiles) {
-    const content = await readFile(filePath, 'utf8');
+    const content = await readFile(filePath, "utf8");
     posts.push({
       filePath,
       legacyPath: parseLegacyPath(content, filePath),

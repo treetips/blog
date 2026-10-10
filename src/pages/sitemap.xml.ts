@@ -1,23 +1,23 @@
-import type { APIRoute } from 'astro';
-import { getSortedPosts, getTotalPages, getPageHref } from '../lib/blog';
+import type { APIRoute } from "astro";
+import { getSortedPosts, getTotalPages, getPageHref } from "../lib/blog";
 
 function escapeXml(value: string) {
   return value
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&apos;');
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
 }
 
 export const GET: APIRoute = async ({ site }) => {
-  const base = site ?? new URL('https://bunkei-programmer.net');
+  const base = site ?? new URL("https://bunkei-programmer.net");
   const sortedPosts = await getSortedPosts();
   const totalPages = getTotalPages(sortedPosts.length);
 
   const urls = [
     {
-      url: new URL('/', base).toString(),
+      url: new URL("/", base).toString(),
       lastmod: new Date().toISOString(),
     },
     ...Array.from({ length: Math.max(0, totalPages - 1) }, (_, index) => {
@@ -42,13 +42,13 @@ ${urls
     <lastmod>${escapeXml(lastmod)}</lastmod>
   </url>`,
   )
-  .join('\n')}
+  .join("\n")}
 </urlset>
 `;
 
   return new Response(xml, {
     headers: {
-      'Content-Type': 'application/xml; charset=utf-8',
+      "Content-Type": "application/xml; charset=utf-8",
     },
   });
 };

@@ -5,19 +5,19 @@
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
-    "run_worker_first": true
+    "run_worker_first": true,
   },
   "routes": [
     {
       "pattern": "bunkei-programmer.net/*",
-      "zone_name": "bunkei-programmer.net"
+      "zone_name": "bunkei-programmer.net",
     },
     {
       "pattern": "www.bunkei-programmer.net/*",
-      "zone_name": "bunkei-programmer.net"
-    }
+      "zone_name": "bunkei-programmer.net",
+    },
   ],
   "observability": {
-    "enabled": true
-  }
+    "enabled": true,
+  },
 }

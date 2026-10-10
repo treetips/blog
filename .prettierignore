@@ -1,0 +1,10 @@
+src/content/
+src/generated/
+backup/
+public/
+dist/
+.astro/
+.wrangler/
+.wrangler-logs/
+.cloudflare/
+AGENTS.md

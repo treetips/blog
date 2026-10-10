@@ -20,17 +20,17 @@
 
 ## 現状のインベントリ (2026-10-10 調査)
 
-| 種別 | 現状 | 残す/消す |
-| --- | --- | --- |
-| 画像実体 | `public/hatena-images/{897ファイル,206MB}` (git追跡, md参照 895点、ローカルアセット側と全部対応) | **改名する**(git mvで履歴継続) |
-| URLパス | `/hatena-images/images/fotolife/t/treeapps/...` (md 548ファイル) | **`/blog-images/images/fotolife/t/treeapps/...`へ改名** |
-| altテキスト | `![f:id:treeapps:...]` が md に残留 | **空 alt に(標準markdown のまま)** |
-| Worker 送信先 | `HATENA_IMAGE_CDN` への404時フォールバック + referer: treeapps.hatenablog.com | **関数と constant を削除** |
-| Worker 旧URL 301 | `/hatena-images/*` は将来 404 になる | **`/blog-images/*`への 301 を追加** |
-| 旧ページURL互換 | `/?page=N` を `/entry/` へ寄せる (worker, Actionsで常時更新) と `/entry/entry/*` (`public/_redirects`) | **継続**(機能変更なし) |
-| 一時ツール | `scripts/convert-hatena-export.ts`, `scripts/download-hatena-images.ts`, `package.json#images:download` | **削除** |
-| 文章リンク | md内に はてなドメイン への `<a>` など | 触らない |
-| docs参照波及 | README.md / DEPLOYMENT.md / `.agents/skills/cloudflare/SKILL.md` に画像DL手順の記述 | 更新 |
+| 種別             | 現状                                                                                                    | 残す/消す                                               |
+| ---------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| 画像実体         | `public/hatena-images/{897ファイル,206MB}` (git追跡, md参照 895点、ローカルアセット側と全部対応)        | **改名する**(git mvで履歴継続)                          |
+| URLパス          | `/hatena-images/images/fotolife/t/treeapps/...` (md 548ファイル)                                        | **`/blog-images/images/fotolife/t/treeapps/...`へ改名** |
+| altテキスト      | `![f:id:treeapps:...]` が md に残留                                                                     | **空 alt に(標準markdown のまま)**                      |
+| Worker 送信先    | `HATENA_IMAGE_CDN` への404時フォールバック + referer: treeapps.hatenablog.com                           | **関数と constant を削除**                              |
+| Worker 旧URL 301 | `/hatena-images/*` は将来 404 になる                                                                    | **`/blog-images/*`への 301 を追加**                     |
+| 旧ページURL互換  | `/?page=N` を `/entry/` へ寄せる (worker, Actionsで常時更新) と `/entry/entry/*` (`public/_redirects`)  | **継続**(機能変更なし)                                  |
+| 一時ツール       | `scripts/convert-hatena-export.ts`, `scripts/download-hatena-images.ts`, `package.json#images:download` | **削除**                                                |
+| 文章リンク       | md内に はてなドメイン への `<a>` など                                                                   | 触らない                                                |
+| docs参照波及     | README.md / DEPLOYMENT.md / `.agents/skills/cloudflare/SKILL.md` に画像DL手順の記述                     | 更新                                                    |
 
 ## 構成 (かかわる単位と責務)
 

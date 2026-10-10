@@ -1,19 +1,16 @@
 #!/usr/bin/env node
 
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
-import path from 'node:path';
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import path from "node:path";
 
-const DEFAULT_INPUT = 'backup/treeapps.hatenablog.com.export.txt';
-const DEFAULT_OUTPUT_DIR = 'src/content/blog';
+const DEFAULT_INPUT = "backup/treeapps.hatenablog.com.export.txt";
+const DEFAULT_OUTPUT_DIR = "src/content/blog";
 const LEGACY_HOSTS = new Set([
-  'treeapps.hatenablog.com',
-  'bunkei-programmer.net',
-  'www.bunkei-programmer.net',
+  "treeapps.hatenablog.com",
+  "bunkei-programmer.net",
+  "www.bunkei-programmer.net",
 ]);
-const HATENA_IMAGE_HOSTS = new Set([
-  'cdn-ak.f.st-hatena.com',
-  'f.st-hatena.com',
-]);
+const HATENA_IMAGE_HOSTS = new Set(["cdn-ak.f.st-hatena.com", "f.st-hatena.com"]);
 
 type CliArgs = {
   input: string;
@@ -43,19 +40,19 @@ type EntryMap = Map<string, string>;
 type HtmlAttributes = Record<string, string>;
 
 type HtmlTextNode = {
-  type: 'text';
+  type: "text";
   text: string;
 };
 
 type HtmlElementNode = {
-  type: 'element';
+  type: "element";
   tag: string;
   attrs: HtmlAttributes;
   children: HtmlNode[];
 };
 
 type HtmlRootNode = {
-  type: 'root';
+  type: "root";
   children: HtmlNode[];
 };
 
@@ -67,61 +64,62 @@ type ExtractTextOptions = {
 };
 
 type RenderContext = {
-  mode?: 'block' | 'inline' | 'code';
+  mode?: "block" | "inline" | "code";
   listDepth?: number;
   entryMap: EntryMap;
 };
 
 const NAMED_HTML_ENTITIES = {
-  amp: '&',
-  lt: '<',
-  gt: '>',
+  amp: "&",
+  lt: "<",
+  gt: ">",
   quot: '"',
   apos: "'",
-  nbsp: ' ',
-  ldquo: '“',
-  rdquo: '”',
-  lsquo: '‘',
-  rsquo: '’',
-  hellip: '…',
-  middot: '・',
-  rarr: '→',
-  larr: '←',
-  uarr: '↑',
-  darr: '↓',
+  nbsp: " ",
+  ldquo: "“",
+  rdquo: "”",
+  lsquo: "‘",
+  rsquo: "’",
+  hellip: "…",
+  middot: "・",
+  rarr: "→",
+  larr: "←",
+  uarr: "↑",
+  darr: "↓",
 } as const satisfies Record<string, string>;
 
 const voidTags = new Set([
-  'br',
-  'img',
-  'hr',
-  'meta',
-  'input',
-  'link',
-  'source',
-  'area',
-  'base',
-  'col',
-  'embed',
-  'param',
-  'track',
-  'wbr',
+  "br",
+  "img",
+  "hr",
+  "meta",
+  "input",
+  "link",
+  "source",
+  "area",
+  "base",
+  "col",
+  "embed",
+  "param",
+  "track",
+  "wbr",
 ]);
 
 const usage = (): void => {
   console.error(
     [
-      'Usage:',
-      '  bun scripts/convert-hatena-export.ts [input] [--output dir]',
-      '',
-      'Examples:',
-      '  bun scripts/convert-hatena-export.ts',
-      '  bun scripts/convert-hatena-export.ts backup/treeapps.hatenablog.com.export.txt --output src/content/blog',
-    ].join('\n'),
+      "Usage:",
+      "  bun scripts/convert-hatena-export.ts [input] [--output dir]",
+      "",
+      "Examples:",
+      "  bun scripts/convert-hatena-export.ts",
+      "  bun scripts/convert-hatena-export.ts backup/treeapps.hatenablog.com.export.txt --output src/content/blog",
+    ].join("\n"),
   );
 };
 
-const isElementNode = (node: HtmlNode | HtmlParentNode): node is HtmlElementNode => node.type === 'element';
+const isElementNode = (node: HtmlNode | HtmlParentNode): node is HtmlElementNode =>
+  node.type === "element";
 
 const parseArgs = (argv: string[]): CliArgs => {
   const args: CliArgs = {
@@ -132,16 +130,16 @@ const parseArgs = (argv: string[]): CliArgs => {
   const positional: string[] = [];
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
-    if (arg === '--output' || arg === '-o') {
+    if (arg === "--output" || arg === "-o") {
       const next = argv[i + 1];
       if (!next) {
-        throw new Error('Missing value for --output');
+        throw new Error("Missing value for --output");
       }
       args.outputDir = next;
       i += 1;
       continue;
     }
-    if (arg === '--help' || arg === '-h') {
+    if (arg === "--help" || arg === "-h") {
       args.help = true;
       continue;
     }
@@ -157,7 +155,7 @@ const parseArgs = (argv: string[]): CliArgs => {
 
 const splitRecords = (text: string): string[] =>
   text
-    .replace(/\r\n/g, '\n')
+    .replace(/\r\n/g, "\n")
     .split(/\n--------\n/g)
     .map((record) => record.trim())
     .filter(Boolean);
@@ -165,10 +163,10 @@ const splitRecords = (text: string): string[] =>
 const parseFields = (lines: string[]): EntryFields => {
   const fields: EntryFields = new Map();
   for (const line of lines) {
-    if (!line || line === '-----') {
+    if (!line || line === "-----") {
       continue;
     }
-    const separatorIndex = line.indexOf(': ');
+    const separatorIndex = line.indexOf(": ");
     if (separatorIndex === -1) {
       continue;
     }
@@ -183,33 +181,33 @@ const parseFields = (lines: string[]): EntryFields => {
 };
 
 const parseRecord = (record: string): ParsedRecord => {
-  const lines = record.split('\n');
-  const bodySeparatorIndex = lines.indexOf('-----');
+  const lines = record.split("\n");
+  const bodySeparatorIndex = lines.indexOf("-----");
   if (bodySeparatorIndex === -1) {
-    throw new Error('Invalid export record: missing BODY separator');
+    throw new Error("Invalid export record: missing BODY separator");
   }
 
   const fields = parseFields(lines.slice(0, bodySeparatorIndex));
   const bodyHeaderIndex = bodySeparatorIndex + 1;
-  if (lines[bodyHeaderIndex] !== 'BODY:') {
-    throw new Error('Invalid export record: missing BODY header');
+  if (lines[bodyHeaderIndex] !== "BODY:") {
+    throw new Error("Invalid export record: missing BODY header");
   }
 
   const bodyEndIndex = findNextSeparator(lines, bodyHeaderIndex + 1);
   if (bodyEndIndex === -1) {
-    throw new Error('Invalid export record: missing end of BODY');
+    throw new Error("Invalid export record: missing end of BODY");
   }
 
-  const body = lines.slice(bodyHeaderIndex + 1, bodyEndIndex).join('\n');
+  const body = lines.slice(bodyHeaderIndex + 1, bodyEndIndex).join("\n");
   const extendedHeaderIndex = bodyEndIndex + 1;
 
-  let extendedBody = '';
-  if (lines[extendedHeaderIndex] === 'EXTENDED BODY:') {
+  let extendedBody = "";
+  if (lines[extendedHeaderIndex] === "EXTENDED BODY:") {
     const extendedEndIndex = findNextSeparator(lines, extendedHeaderIndex + 1);
     if (extendedEndIndex === -1) {
-      throw new Error('Invalid export record: missing end of EXTENDED BODY');
+      throw new Error("Invalid export record: missing end of EXTENDED BODY");
     }
-    extendedBody = lines.slice(extendedHeaderIndex + 1, extendedEndIndex).join('\n');
+    extendedBody = lines.slice(extendedHeaderIndex + 1, extendedEndIndex).join("\n");
   }
 
   return {
@@ -221,7 +219,7 @@ const parseRecord = (record: string): ParsedRecord => {
 
 const findNextSeparator = (lines: string[], startIndex: number): number => {
   for (let i = startIndex; i < lines.length; i += 1) {
-    if (lines[i] === '-----') {
+    if (lines[i] === "-----") {
       return i;
     }
   }
@@ -232,10 +230,11 @@ const getFieldValues = (fields: EntryFields, key: string): string[] => fields.ge
 
 const getFieldValue = (fields: EntryFields, key: string): string => {
   const values = getFieldValues(fields, key);
-  return values[0] ?? '';
+  return values[0] ?? "";
 };
 
-const getCategories = (fields: EntryFields): string[] => getFieldValues(fields, 'CATEGORY').filter(Boolean);
+const getCategories = (fields: EntryFields): string[] =>
+  getFieldValues(fields, "CATEGORY").filter(Boolean);
 
 const parseJstDate = (value: string): string | null => {
   const match = value.match(
@@ -250,23 +249,23 @@ const parseJstDate = (value: string): string | null => {
 };
 
 const detectSlugLang = (attrs: HtmlAttributes): string => {
-  const dataLang = attrs['data-lang'];
+  const dataLang = attrs["data-lang"];
   if (dataLang) {
     return dataLang;
   }
-  const className = attrs.class ?? '';
+  const className = attrs.class ?? "";
   const match = className.match(/\blang-([A-Za-z0-9_+-]+)\b/);
-  return match ? match[1] : '';
+  return match ? match[1] : "";
 };
 
 const decodeHtmlEntities = (value: string): string => {
   if (!value) {
-    return '';
+    return "";
   }
 
   return value.replace(/&(#x?[0-9a-fA-F]+|[a-zA-Z]+);/g, (match, entity) => {
-    if (entity[0] === '#') {
-      const base = entity[1] === 'x' || entity[1] === 'X' ? 16 : 10;
+    if (entity[0] === "#") {
+      const base = entity[1] === "x" || entity[1] === "X" ? 16 : 10;
       const digits = base === 16 ? entity.slice(2) : entity.slice(1);
       const codePoint = Number.parseInt(digits, base);
       if (Number.isFinite(codePoint)) {
@@ -283,20 +282,17 @@ const decodeHtmlEntities = (value: string): string => {
 };
 
 const normalizeInlineText = (value: string): string =>
-  decodeHtmlEntities(value)
-    .replace(/\s+/g, ' ')
-    .replace(/ \n/g, '\n')
-    .trim();
+  decodeHtmlEntities(value).replace(/\s+/g, " ").replace(/ \n/g, "\n").trim();
 
-const trimTrailingSpaces = (value: string): string => value.replace(/[ \t]+$/gm, '');
+const trimTrailingSpaces = (value: string): string => value.replace(/[ \t]+$/gm, "");
 
 const escapeMarkdownText = (value: string): string =>
   value
-    .replace(/\\/g, '\\\\')
-    .replace(/\[/g, '\\[')
-    .replace(/\]/g, '\\]')
-    .replace(/\(/g, '\\(')
-    .replace(/\)/g, '\\)');
+    .replace(/\\/g, "\\\\")
+    .replace(/\[/g, "\\[")
+    .replace(/\]/g, "\\]")
+    .replace(/\(/g, "\\(")
+    .replace(/\)/g, "\\)");
 
 const parseAttributes = (attributeText: string): HtmlAttributes => {
   const attrs: HtmlAttributes = {};
@@ -304,7 +300,7 @@ const parseAttributes = (attributeText: string): HtmlAttributes => {
   let match: RegExpExecArray | null;
   while ((match = regex.exec(attributeText))) {
     const [, key, doubleQuoted, singleQuoted, bare] = match;
-    attrs[key] = doubleQuoted ?? singleQuoted ?? bare ?? '';
+    attrs[key] = doubleQuoted ?? singleQuoted ?? bare ?? "";
   }
   return attrs;
 };
@@ -313,7 +309,7 @@ const tokenizeHtml = (html: string): string[] =>
   html.match(/<!--[\s\S]*?-->|<\/?[A-Za-z0-9:-]+(?:\s[^<>]*?)?>|[^<]+/g) ?? [];
 
 const parseHtml = (html: string): HtmlRootNode => {
-  const root: HtmlRootNode = { type: 'root', children: [] };
+  const root: HtmlRootNode = { type: "root", children: [] };
   const stack: HtmlParentNode[] = [root];
   const tokens = tokenizeHtml(html);
 
@@ -321,10 +317,10 @@ const parseHtml = (html: string): HtmlRootNode => {
     if (!token) {
       continue;
     }
-    if (token.startsWith('<!--')) {
+    if (token.startsWith("<!--")) {
       continue;
     }
-    if (token.startsWith('</')) {
+    if (token.startsWith("</")) {
       const closeMatch = token.match(/^<\/\s*([A-Za-z0-9:-]+)\s*>$/);
       if (!closeMatch) {
         continue;
@@ -338,16 +334,16 @@ const parseHtml = (html: string): HtmlRootNode => {
       }
       continue;
     }
-    if (token.startsWith('<')) {
+    if (token.startsWith("<")) {
       const openMatch = token.match(/^<\s*([A-Za-z0-9:-]+)([\s\S]*?)\/?\s*>$/);
       if (!openMatch) {
         continue;
       }
       const tag = openMatch[1].toLowerCase();
-      const rawAttrs = openMatch[2] ?? '';
+      const rawAttrs = openMatch[2] ?? "";
       const selfClosing = /\/\s*>$/.test(token) || voidTags.has(tag);
       const node: HtmlElementNode = {
-        type: 'element',
+        type: "element",
         tag,
         attrs: parseAttributes(rawAttrs),
         children: [],
@@ -360,7 +356,7 @@ const parseHtml = (html: string): HtmlRootNode => {
     }
 
     current(stack).children.push({
-      type: 'text',
+      type: "text",
       text: token,
     });
   }
@@ -371,7 +367,7 @@ const parseHtml = (html: string): HtmlRootNode => {
 const current = (stack: HtmlParentNode[]): HtmlParentNode => stack[stack.length - 1];
 
 const hasClass = (node: HtmlElementNode, className: string): boolean => {
-  const classList = (node.attrs.class ?? '').split(/\s+/).filter(Boolean);
+  const classList = (node.attrs.class ?? "").split(/\s+/).filter(Boolean);
   return classList.includes(className);
 };
 
@@ -380,7 +376,7 @@ const findFirstDescendant = (
   predicate: (candidate: HtmlElementNode) => boolean,
 ): HtmlElementNode | null => {
   for (const child of node.children ?? []) {
-    if (child.type === 'element') {
+    if (child.type === "element") {
       if (predicate(child)) {
         return child;
       }
@@ -395,67 +391,67 @@ const findFirstDescendant = (
 
 const extractText = (node: HtmlNode, options: ExtractTextOptions = {}): string => {
   const { preserveLineBreaks = false } = options;
-  if (node.type === 'text') {
+  if (node.type === "text") {
     return decodeHtmlEntities(node.text);
   }
 
-  if (node.type === 'root') {
-    return node.children.map((child) => extractText(child, { preserveLineBreaks })).join('');
+  if (node.type === "root") {
+    return node.children.map((child) => extractText(child, { preserveLineBreaks })).join("");
   }
 
   switch (node.tag) {
-    case 'br':
-      return '\n';
-    case 'p':
-    case 'div':
-    case 'section':
-    case 'li':
-    case 'blockquote':
-      return `${node.children.map((child) => extractText(child, { preserveLineBreaks })).join('')}${preserveLineBreaks ? '\n' : ' '}`;
+    case "br":
+      return "\n";
+    case "p":
+    case "div":
+    case "section":
+    case "li":
+    case "blockquote":
+      return `${node.children.map((child) => extractText(child, { preserveLineBreaks })).join("")}${preserveLineBreaks ? "\n" : " "}`;
     default:
-      return node.children.map((child) => extractText(child, { preserveLineBreaks })).join('');
+      return node.children.map((child) => extractText(child, { preserveLineBreaks })).join("");
   }
 };
 
 const renderChildren = (children: HtmlNode[], context: RenderContext): string =>
-  children.map((child) => renderNode(child, context)).join('');
+  children.map((child) => renderNode(child, context)).join("");
 
 const renderNode = (node: HtmlNode, context: RenderContext): string => {
-  if (node.type === 'text') {
-    if (context.mode === 'code') {
+  if (node.type === "text") {
+    if (context.mode === "code") {
       return decodeHtmlEntities(node.text);
     }
-    if (context.mode === 'inline') {
-      return rewriteBareUrls(decodeHtmlEntities(node.text), context.entryMap).replace(/\s+/g, ' ');
+    if (context.mode === "inline") {
+      return rewriteBareUrls(decodeHtmlEntities(node.text), context.entryMap).replace(/\s+/g, " ");
     }
-    return rewriteBareUrls(decodeHtmlEntities(node.text), context.entryMap).replace(/\s+/g, ' ');
+    return rewriteBareUrls(decodeHtmlEntities(node.text), context.entryMap).replace(/\s+/g, " ");
   }
 
-  if (node.type !== 'element') {
-    return '';
+  if (node.type !== "element") {
+    return "";
   }
 
-  const mode = context.mode ?? 'block';
+  const mode = context.mode ?? "block";
 
-  if (node.tag === 'cite' && hasClass(node, 'hatena-citation')) {
-    return '';
+  if (node.tag === "cite" && hasClass(node, "hatena-citation")) {
+    return "";
   }
 
-  if (node.tag === 'img') {
-    const src = node.attrs.src ?? '';
+  if (node.tag === "img") {
+    const src = node.attrs.src ?? "";
     if (!src) {
-      return '';
+      return "";
     }
-    const alt = normalizeInlineText(node.attrs.alt ?? node.attrs.title ?? '');
+    const alt = normalizeInlineText(node.attrs.alt ?? node.attrs.title ?? "");
     if (isHatenaVideoPath(src)) {
       return renderVideoElement(rewriteHatenaImageUrl(src), alt);
     }
     return `![${escapeMarkdownText(alt)}](${rewriteHatenaImageUrl(src)})`;
   }
 
-  if (node.tag === 'a') {
-    const href = rewriteUrl(node.attrs.href ?? '', context.entryMap);
-    const text = normalizeInlineText(renderChildren(node.children, { ...context, mode: 'inline' }));
+  if (node.tag === "a") {
+    const href = rewriteUrl(node.attrs.href ?? "", context.entryMap);
+    const text = normalizeInlineText(renderChildren(node.children, { ...context, mode: "inline" }));
     const label = text || href;
     if (!href) {
       return label;
@@ -466,39 +462,46 @@ const renderNode = (node: HtmlNode, context: RenderContext): string => {
     return `[${escapeMarkdownText(label)}](${href})`;
   }
 
-  if (node.tag === 'br') {
-    return mode === 'code' ? '\n' : '  \n';
+  if (node.tag === "br") {
+    return mode === "code" ? "\n" : "  \n";
   }
 
   if (/^h[1-6]$/.test(node.tag)) {
     const level = Number(node.tag.slice(1));
-    const id = node.attrs.id ? `<a id="${escapeHtml(node.attrs.id)}"></a>\n\n` : '';
-    const text = normalizeInlineText(renderChildren(node.children, { ...context, mode: 'inline' }));
+    const id = node.attrs.id ? `<a id="${escapeHtml(node.attrs.id)}"></a>\n\n` : "";
+    const text = normalizeInlineText(renderChildren(node.children, { ...context, mode: "inline" }));
     if (!text) {
-      return '';
+      return "";
     }
-    if (mode === 'inline') {
+    if (mode === "inline") {
       return text;
     }
-    return `\n\n${id}${'#'.repeat(level)} ${text}\n\n`;
+    return `\n\n${id}${"#".repeat(level)} ${text}\n\n`;
   }
 
-  if (node.tag === 'p') {
+  if (node.tag === "p") {
     const significantChildren = node.children.filter(
-      (child) => !(child.type === 'text' && normalizeInlineText(child.text) === ''),
+      (child) => !(child.type === "text" && normalizeInlineText(child.text) === ""),
     );
     const specialVideoIndex = significantChildren.findIndex(
-      (child) => child.type === 'element' && child.tag === 'img' && isHatenaVideoPath(child.attrs.src ?? ''),
+      (child) =>
+        child.type === "element" && child.tag === "img" && isHatenaVideoPath(child.attrs.src ?? ""),
     );
     if (specialVideoIndex !== -1) {
       const before = normalizeInlineText(
-        renderChildren(significantChildren.slice(0, specialVideoIndex), { ...context, mode: 'inline' }),
+        renderChildren(significantChildren.slice(0, specialVideoIndex), {
+          ...context,
+          mode: "inline",
+        }),
       );
       const after = normalizeInlineText(
-        renderChildren(significantChildren.slice(specialVideoIndex + 1), { ...context, mode: 'inline' }),
+        renderChildren(significantChildren.slice(specialVideoIndex + 1), {
+          ...context,
+          mode: "inline",
+        }),
       );
       const videoNode = significantChildren[specialVideoIndex];
-      const video = renderNode(videoNode, { ...context, mode: 'block' }).trim();
+      const video = renderNode(videoNode, { ...context, mode: "block" }).trim();
       const parts = [];
       if (before) {
         parts.push(`\n\n${before}\n\n`);
@@ -507,40 +510,40 @@ const renderNode = (node: HtmlNode, context: RenderContext): string => {
         parts.push(`${video}\n\n`);
       }
       if (after) {
-        parts.push(after ? `${after}\n\n` : '');
+        parts.push(after ? `${after}\n\n` : "");
       }
-      return parts.join('');
+      return parts.join("");
     }
     const canRenderAsBlock =
       significantChildren.length > 0 &&
       significantChildren.every((child) => {
-        if (child.type !== 'element') {
+        if (child.type !== "element") {
           return false;
         }
-        if (child.tag === 'cite' && hasClass(child, 'hatena-citation')) {
+        if (child.tag === "cite" && hasClass(child, "hatena-citation")) {
           return true;
         }
-        return ['iframe', 'div', 'img', 'blockquote', 'pre'].includes(child.tag);
+        return ["iframe", "div", "img", "blockquote", "pre"].includes(child.tag);
       });
     if (canRenderAsBlock) {
-      const rendered = significantChildren.map((child) => renderNode(child, { ...context, mode: 'block' })).join('');
-      return rendered.trim() ? `\n\n${normalizeBlock(rendered)}\n\n` : '';
+      const rendered = significantChildren
+        .map((child) => renderNode(child, { ...context, mode: "block" }))
+        .join("");
+      return rendered.trim() ? `\n\n${normalizeBlock(rendered)}\n\n` : "";
     }
 
-    const text = normalizeInlineText(renderChildren(node.children, { ...context, mode: 'inline' }));
+    const text = normalizeInlineText(renderChildren(node.children, { ...context, mode: "inline" }));
     if (!text) {
-      return '';
+      return "";
     }
-    return mode === 'inline' ? text : `\n\n${text}\n\n`;
+    return mode === "inline" ? text : `\n\n${text}\n\n`;
   }
 
-  if (node.tag === 'pre') {
+  if (node.tag === "pre") {
     const lang = detectSlugLang(node.attrs);
     const code = normalizeLegacyEntryReferences(
       rewriteBareUrls(
-        extractText(node, { preserveLineBreaks: true })
-          .replace(/^\n+/, '')
-          .replace(/\n+$/, ''),
+        extractText(node, { preserveLineBreaks: true }).replace(/^\n+/, "").replace(/\n+$/, ""),
         context.entryMap,
       ),
       context.entryMap,
@@ -548,43 +551,50 @@ const renderNode = (node: HtmlNode, context: RenderContext): string => {
     return `\n\n\`\`\`${lang}\n${code}\n\`\`\`\n\n`;
   }
 
-  if (node.tag === 'blockquote') {
-    const inner = normalizeBlock(renderChildren(node.children, { ...context, mode: 'block' })).trim();
+  if (node.tag === "blockquote") {
+    const inner = normalizeBlock(
+      renderChildren(node.children, { ...context, mode: "block" }),
+    ).trim();
     if (!inner) {
-      return '';
+      return "";
     }
     const quoted = inner
-      .split('\n')
-      .map((line) => (line.trim() ? `> ${line}` : '>'))
-      .join('\n');
+      .split("\n")
+      .map((line) => (line.trim() ? `> ${line}` : ">"))
+      .join("\n");
     return `\n\n${quoted}\n\n`;
   }
 
-  if (node.tag === 'ul' || node.tag === 'ol') {
-    const ordered = node.tag === 'ol';
+  if (node.tag === "ul" || node.tag === "ol") {
+    const ordered = node.tag === "ol";
     const rendered = renderList(node, { ...context, listDepth: context.listDepth ?? 0 }, ordered);
-    return mode === 'inline' ? rendered.trim() : `\n\n${rendered}\n\n`;
+    return mode === "inline" ? rendered.trim() : `\n\n${rendered}\n\n`;
   }
 
-  if (node.tag === 'li') {
-    return renderListItem(node, { ...context, listDepth: context.listDepth ?? 0 }, false, 1).trimEnd();
+  if (node.tag === "li") {
+    return renderListItem(
+      node,
+      { ...context, listDepth: context.listDepth ?? 0 },
+      false,
+      1,
+    ).trimEnd();
   }
 
-  if (node.tag === 'iframe') {
+  if (node.tag === "iframe") {
     const rendered = renderIframe(node, context.entryMap);
-    return mode === 'inline' ? rendered : `\n\n${rendered}\n\n`;
+    return mode === "inline" ? rendered : `\n\n${rendered}\n\n`;
   }
 
-  if (node.tag === 'div' && hasClass(node, 'hatena-asin-detail')) {
+  if (node.tag === "div" && hasClass(node, "hatena-asin-detail")) {
     const rendered = renderHatenaAsinDetail(node, context.entryMap);
-    return mode === 'inline' ? rendered : `\n\n${rendered}\n\n`;
+    return mode === "inline" ? rendered : `\n\n${rendered}\n\n`;
   }
 
-  if (node.tag === 'div' && hasClass(node, 'section')) {
+  if (node.tag === "div" && hasClass(node, "section")) {
     return renderChildren(node.children, context);
   }
 
-  if (node.tag === 'span' || node.tag === 'cite' || node.tag === 'div') {
+  if (node.tag === "span" || node.tag === "cite" || node.tag === "div") {
     return renderChildren(node.children, context);
   }
 
@@ -593,12 +603,12 @@ const renderNode = (node: HtmlNode, context: RenderContext): string => {
 
 const renderList = (node: HtmlElementNode, context: RenderContext, ordered: boolean): string => {
   const items = node.children.filter(
-    (child): child is HtmlElementNode => child.type === 'element' && child.tag === 'li',
+    (child): child is HtmlElementNode => child.type === "element" && child.tag === "li",
   );
   const rendered = items
     .map((item, index) => renderListItem(item, context, ordered, index + 1))
     .filter(Boolean)
-    .join('\n');
+    .join("\n");
   return rendered;
 };
 
@@ -608,24 +618,28 @@ const renderListItem = (
   ordered: boolean,
   index: number,
 ): string => {
-  const indent = '  '.repeat(context.listDepth ?? 0);
-  const bullet = ordered ? `${index}.` : '-';
+  const indent = "  ".repeat(context.listDepth ?? 0);
+  const bullet = ordered ? `${index}.` : "-";
   const inlineParts: string[] = [];
   const nestedLists: string[] = [];
 
   for (const child of node.children) {
-    if (child.type === 'element' && (child.tag === 'ul' || child.tag === 'ol')) {
+    if (child.type === "element" && (child.tag === "ul" || child.tag === "ol")) {
       nestedLists.push(
-        renderList(child, { ...context, listDepth: (context.listDepth ?? 0) + 1 }, child.tag === 'ol'),
+        renderList(
+          child,
+          { ...context, listDepth: (context.listDepth ?? 0) + 1 },
+          child.tag === "ol",
+        ),
       );
       continue;
     }
-    inlineParts.push(renderNode(child, { ...context, mode: 'inline' }));
+    inlineParts.push(renderNode(child, { ...context, mode: "inline" }));
   }
 
-  const content = normalizeInlineText(inlineParts.join(' '));
+  const content = normalizeInlineText(inlineParts.join(" "));
   const line = content ? `${indent}${bullet} ${content}` : `${indent}${bullet}`;
-  const nested = nestedLists.filter(Boolean).join('\n');
+  const nested = nestedLists.filter(Boolean).join("\n");
   if (!nested) {
     return line;
   }
@@ -633,35 +647,49 @@ const renderListItem = (
 };
 
 const renderIframe = (node: HtmlElementNode, entryMap: EntryMap): string => {
-  const src = node.attrs.src ?? '';
+  const src = node.attrs.src ?? "";
   if (!src) {
-    return '';
+    return "";
   }
 
   const url = rewriteIframeUrl(src, entryMap);
-  const title = normalizeInlineText(node.attrs.title ?? '');
+  const title = normalizeInlineText(node.attrs.title ?? "");
   const label =
     title ||
-    (url.includes('youtube.com/watch') ? 'YouTube' : url.includes('amazon.co.jp') ? 'Amazon' : 'embed');
+    (url.includes("youtube.com/watch")
+      ? "YouTube"
+      : url.includes("amazon.co.jp")
+        ? "Amazon"
+        : "embed");
   return `[${escapeMarkdownText(label)}](${url})`;
 };
 
 const renderHatenaAsinDetail = (node: HtmlElementNode, entryMap: EntryMap): string => {
-  const anchor = findFirstDescendant(node, (candidate) => candidate.tag === 'a' && (candidate.attrs.href ?? '') !== '');
-  const image = findFirstDescendant(node, (candidate) => candidate.tag === 'img' && (candidate.attrs.src ?? '') !== '');
-  const titleNode = findFirstDescendant(node, (candidate) =>
-    candidate.tag === 'p' && hasClass(candidate, 'hatena-asin-detail-title'),
+  const anchor = findFirstDescendant(
+    node,
+    (candidate) => candidate.tag === "a" && (candidate.attrs.href ?? "") !== "",
+  );
+  const image = findFirstDescendant(
+    node,
+    (candidate) => candidate.tag === "img" && (candidate.attrs.src ?? "") !== "",
+  );
+  const titleNode = findFirstDescendant(
+    node,
+    (candidate) => candidate.tag === "p" && hasClass(candidate, "hatena-asin-detail-title"),
   );
   const titleAnchor = titleNode
-    ? findFirstDescendant(titleNode, (candidate) => candidate.tag === 'a' && (candidate.attrs.href ?? '') !== '')
+    ? findFirstDescendant(
+        titleNode,
+        (candidate) => candidate.tag === "a" && (candidate.attrs.href ?? "") !== "",
+      )
     : null;
 
-  const link = anchor ? rewriteUrl(anchor.attrs.href ?? '', entryMap) : '';
+  const link = anchor ? rewriteUrl(anchor.attrs.href ?? "", entryMap) : "";
   const title =
-    (titleAnchor ? normalizeInlineText(extractText(titleAnchor)) : '') ||
-    (titleNode ? normalizeInlineText(extractText(titleNode)) : '') ||
-    (anchor ? normalizeInlineText(extractText(anchor)) : '') ||
-    (image ? normalizeInlineText(image.attrs.alt ?? image.attrs.title ?? '') : '') ||
+    (titleAnchor ? normalizeInlineText(extractText(titleAnchor)) : "") ||
+    (titleNode ? normalizeInlineText(extractText(titleNode)) : "") ||
+    (anchor ? normalizeInlineText(extractText(anchor)) : "") ||
+    (image ? normalizeInlineText(image.attrs.alt ?? image.attrs.title ?? "") : "") ||
     link;
 
   const parts: string[] = [];
@@ -673,37 +701,33 @@ const renderHatenaAsinDetail = (node: HtmlElementNode, entryMap: EntryMap): stri
     parts.push(title);
   }
   if (image?.attrs.src) {
-    const imageAlt = title || normalizeInlineText(image.attrs.alt ?? image.attrs.title ?? '');
+    const imageAlt = title || normalizeInlineText(image.attrs.alt ?? image.attrs.title ?? "");
     parts.push(`![${escapeMarkdownText(imageAlt)}](${image.attrs.src})`);
   }
-  return parts.join('\n\n');
+  return parts.join("\n\n");
 };
 
 const normalizeBlock = (value: string): string =>
   trimTrailingSpaces(value)
-    .replace(/\n{3,}/g, '\n\n')
+    .replace(/\n{3,}/g, "\n\n")
     .trim();
 
 const escapeHtml = (value: string): string =>
-  value
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
+  value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 const rewriteUrl = (href: string, entryMap: EntryMap): string => {
   const trimmed = href.trim();
   if (!trimmed) {
-    return '';
+    return "";
   }
 
-  if (trimmed.startsWith('#') || trimmed.startsWith('mailto:') || trimmed.startsWith('tel:')) {
+  if (trimmed.startsWith("#") || trimmed.startsWith("mailto:") || trimmed.startsWith("tel:")) {
     return trimmed;
   }
 
   let url;
   try {
-    url = new URL(trimmed, 'https://example.com');
+    url = new URL(trimmed, "https://example.com");
   } catch {
     return trimmed;
   }
@@ -739,7 +763,7 @@ const normalizeLegacyEntryReferences = (text: string, entryMap: EntryMap): strin
 
   return text.replace(
     /https?:\/\/(?:www\.)?(?:treeapps\.hatenablog\.com|bunkei-programmer\.net)\/entry\/((?:[^\/\s<>"')\]:]+\/)*[^\/\s<>"')\]:]+)(:title:[^\s<>"')\]]+)?/g,
-    (match, basename, suffix = '') => {
+    (match, basename, suffix = "") => {
       let decoded = basename;
       try {
         decoded = decodeURIComponent(basename);
@@ -760,12 +784,12 @@ const normalizeLegacyEntryReferences = (text: string, entryMap: EntryMap): strin
 const rewriteIframeUrl = (src: string, entryMap: EntryMap): string => {
   let url: URL;
   try {
-    url = new URL(src, 'https://example.com');
+    url = new URL(src, "https://example.com");
   } catch {
     return src;
   }
 
-  if (url.hostname === 'www.youtube.com' || url.hostname === 'youtube.com') {
+  if (url.hostname === "www.youtube.com" || url.hostname === "youtube.com") {
     const embedMatch = url.pathname.match(/^\/embed\/([A-Za-z0-9_-]+)/);
     if (embedMatch) {
       return `https://www.youtube.com/watch?v=${embedMatch[1]}`;
@@ -773,16 +797,16 @@ const rewriteIframeUrl = (src: string, entryMap: EntryMap): string => {
     return url.toString();
   }
 
-  if (url.hostname === 'youtu.be') {
-    const id = url.pathname.replace(/^\//, '');
+  if (url.hostname === "youtu.be") {
+    const id = url.pathname.replace(/^\//, "");
     if (id) {
       return `https://www.youtube.com/watch?v=${id}`;
     }
     return url.toString();
   }
 
-  if (url.hostname === 'hatenablog-parts.com') {
-    const embedded = url.searchParams.get('url');
+  if (url.hostname === "hatenablog-parts.com") {
+    const embedded = url.searchParams.get("url");
     if (embedded) {
       return rewriteUrl(decodeURIComponent(embedded), entryMap);
     }
@@ -798,18 +822,18 @@ const rewriteIframeUrl = (src: string, entryMap: EntryMap): string => {
 const isHatenaImageUrl = (value: string): boolean => {
   let url: URL;
   try {
-    url = new URL(value, 'https://example.com');
+    url = new URL(value, "https://example.com");
   } catch {
     return false;
   }
 
-  return HATENA_IMAGE_HOSTS.has(url.hostname) && url.pathname.startsWith('/images/');
+  return HATENA_IMAGE_HOSTS.has(url.hostname) && url.pathname.startsWith("/images/");
 };
 
 const rewriteHatenaImageUrl = (value: string): string => {
   let url: URL;
   try {
-    url = new URL(value, 'https://example.com');
+    url = new URL(value, "https://example.com");
   } catch {
     return value;
   }
@@ -818,25 +842,25 @@ const rewriteHatenaImageUrl = (value: string): string => {
     return value;
   }
 
-  if (url.pathname.endsWith('.gif')) {
-    return `/hatena-images${url.pathname.replace(/\.gif$/i, '.mp4')}`;
+  if (url.pathname.endsWith(".gif")) {
+    return `/hatena-images${url.pathname.replace(/\.gif$/i, ".mp4")}`;
   }
 
   return `/hatena-images${url.pathname}`;
 };
 
-const isHatenaVideoPath = (value: string): boolean => rewriteHatenaImageUrl(value).endsWith('.mp4');
+const isHatenaVideoPath = (value: string): boolean => rewriteHatenaImageUrl(value).endsWith(".mp4");
 
 const renderVideoElement = (src: string, alt: string): string => {
-  const title = alt ? ` title="${escapeHtml(alt)}"` : '';
-  const aria = alt ? ` aria-label="${escapeHtml(alt)}"` : '';
+  const title = alt ? ` title="${escapeHtml(alt)}"` : "";
+  const aria = alt ? ` aria-label="${escapeHtml(alt)}"` : "";
   return `<video class="post-media" controls playsinline preload="metadata"${title}${aria}>\n  <source src="${escapeHtml(src)}" type="video/mp4" />\n</video>`;
 };
 
 const rewriteInternalUrl = (url: URL, entryMap: EntryMap): string => {
   const match = url.pathname.match(/^\/entry\/(.+)$/);
   if (match) {
-    let basename = match[1].replace(/\/$/, '');
+    let basename = match[1].replace(/\/$/, "");
     try {
       basename = decodeURIComponent(basename);
     } catch {
@@ -844,11 +868,11 @@ const rewriteInternalUrl = (url: URL, entryMap: EntryMap): string => {
     }
     const currentPath = entryMap.get(basename);
     if (currentPath) {
-      return `${currentPath}${url.search ?? ''}${url.hash ?? ''}`;
+      return `${currentPath}${url.search ?? ""}${url.hash ?? ""}`;
     }
   }
 
-  return `${url.pathname}${url.search ?? ''}${url.hash ?? ''}`;
+  return `${url.pathname}${url.search ?? ""}${url.hash ?? ""}`;
 };
 
 const buildEntryMap = (entries: ExportEntry[]): EntryMap => {
@@ -866,10 +890,10 @@ const buildMarkdown = (entry: ExportEntry, entryMap: EntryMap): string => {
   const sourceUrl = `/entry/${entry.basename}/`;
   const legacyUrl = `/entry/${entry.basename}/`;
   const categories = entry.categories;
-  const image = entry.image ? rewriteHatenaImageUrl(entry.image) : '';
+  const image = entry.image ? rewriteHatenaImageUrl(entry.image) : "";
 
   const frontmatter = [
-    '---',
+    "---",
     `title: ${yamlString(entry.title)}`,
     `publishedAt: ${yamlString(entry.publishedAt)}`,
     `basename: ${yamlString(entry.basename)}`,
@@ -877,16 +901,16 @@ const buildMarkdown = (entry: ExportEntry, entryMap: EntryMap): string => {
     `legacyUrl: ${yamlString(legacyUrl)}`,
     `categories: ${yamlArray(categories)}`,
     image ? `image: ${yamlString(image)}` : null,
-    '---',
-    '',
+    "---",
+    "",
   ]
     .filter((line) => line !== null)
-    .join('\n');
+    .join("\n");
 
-  const html = [entry.body, entry.extendedBody].filter(Boolean).join('\n');
+  const html = [entry.body, entry.extendedBody].filter(Boolean).join("\n");
   const tree = parseHtml(html);
   const markdown = normalizeLegacyEntryReferences(
-    normalizeBlock(renderChildren(tree.children, { mode: 'block', listDepth: 0, entryMap })),
+    normalizeBlock(renderChildren(tree.children, { mode: "block", listDepth: 0, entryMap })),
     entryMap,
   );
 
@@ -895,14 +919,15 @@ const buildMarkdown = (entry: ExportEntry, entryMap: EntryMap): string => {
 
 const normalizeAnimeTerminology = (text: string): string =>
   text
-    .replace(/GIFアニメ/g, '動画')
-    .replace(/GIF アニメ/g, '動画')
-    .replace(/gifアニメ/g, '動画')
-    .replace(/gif アニメ/g, '動画');
+    .replace(/GIFアニメ/g, "動画")
+    .replace(/GIF アニメ/g, "動画")
+    .replace(/gifアニメ/g, "動画")
+    .replace(/gif アニメ/g, "動画");
 
 const yamlString = (value: string): string => JSON.stringify(String(value));
 
-const yamlArray = (values: string[]): string => `[${values.map((value) => yamlString(value)).join(', ')}]`;
+const yamlArray = (values: string[]): string =>
+  `[${values.map((value) => yamlString(value)).join(", ")}]`;
 
 const main = async (): Promise<void> => {
   const args = parseArgs(process.argv.slice(2));
@@ -913,20 +938,20 @@ const main = async (): Promise<void> => {
 
   const sourcePath = path.resolve(args.input);
   const outputDir = path.resolve(args.outputDir);
-  const source = await readFile(sourcePath, 'utf8');
+  const source = await readFile(sourcePath, "utf8");
   const records = splitRecords(source);
 
   const parsedEntries = records.map((record): ExportEntry => {
     const { fields, body, extendedBody } = parseRecord(record);
-    const title = getFieldValue(fields, 'TITLE');
-    const basename = getFieldValue(fields, 'BASENAME');
-    const date = getFieldValue(fields, 'DATE');
+    const title = getFieldValue(fields, "TITLE");
+    const basename = getFieldValue(fields, "BASENAME");
+    const date = getFieldValue(fields, "DATE");
     const publishedAt = parseJstDate(date);
     if (!publishedAt) {
       throw new Error(`Failed to parse date: ${date}`);
     }
     const categories = getCategories(fields);
-    const image = getFieldValue(fields, 'IMAGE');
+    const image = getFieldValue(fields, "IMAGE");
 
     return {
       title,
@@ -945,15 +970,15 @@ const main = async (): Promise<void> => {
 
   for (const entry of parsedEntries) {
     const markdown = buildMarkdown(entry, entryMap);
-    const filePath = path.join(outputDir, ...entry.basename.split('/')) + '.md';
+    const filePath = path.join(outputDir, ...entry.basename.split("/")) + ".md";
     await mkdir(path.dirname(filePath), { recursive: true });
-    await writeFile(filePath, markdown, 'utf8');
+    await writeFile(filePath, markdown, "utf8");
   }
 
   console.error(`Converted ${parsedEntries.length} entries into ${outputDir}`);
 };
 
 void main().catch((error: unknown) => {
-  console.error(error instanceof Error ? error.stack ?? error.message : String(error));
+  console.error(error instanceof Error ? (error.stack ?? error.message) : String(error));
   process.exit(1);
 });
