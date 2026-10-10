@@ -1,3 +1,7 @@
+# 記事画像は内容不変の URL (はてなのタイムスタンプ付きファイル名) なので長期 immutable キャッシュ
+/blog-images/*
+  Cache-Control: public, max-age=31536000, immutable
+
 # JS/CSS/画像は1週間キャッシュ（ハッシュ付きファイル名のため安全）
 /*.js
   Cache-Control: public, max-age=604800, immutable
