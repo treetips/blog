@@ -33,6 +33,11 @@
   pointer-events: none;
 }
 
+/* Why not: かつて ::after に backdrop-filter と SVG グラス歪み
+   (filter: url(#glass-distortion)) を重ねていたが、Chrome (Blink) で
+   初回ラスタが黒タイルとして一瞬見えるチラつきの温床だったため廃止。
+   価値としても微小な歪み表現に対し、全面レイヤーの合成コストが過大
+   (ADR 0005)。 */
 .liquid-glass::after,
 .panel--glass::after {
   content: "";
@@ -41,10 +46,6 @@
   z-index: -1;
   border-radius: inherit;
   background-color: var(--liquid-glass-sheen);
-  backdrop-filter: blur(var(--liquid-glass-blur));
-  -webkit-backdrop-filter: blur(var(--liquid-glass-blur));
-  filter: url(#glass-distortion);
-  -webkit-filter: url(#glass-distortion);
   pointer-events: none;
 }
 
