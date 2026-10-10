@@ -136,6 +136,16 @@ git commit -m "fix: complete manual follow-ups in cloudflare.config.ts"
 
 ### Task 3: 意思決定ゲート — `cf build` の検証
 
+> **結果（2026-10-10 実行後）: PASS（フォールバック 2 の変形で解決）**
+> Step 2 の `cf build` は既知事例どおり `astro build` 委譲 → BOS 欠落エラーで失敗した。
+> Step 3 の案 A（フラグ明示）は `cf build --help` に bundler 指定フラグがなく不成立。
+> 案 B（BOS 手動生成）は、自前スクリプトではなく **Wrangler の隠しフラグで解決**:
+> `npx wrangler build --x-new-config --x-cf-build-output` が `cloudflare.config.ts` +
+> `wrangler.config.ts` から `.cloudflare/output/v0/`（BOS）を生成する。
+> その後 `npx cf deploy --prebuilt --dry-run` が検証を通過（assets 3785 ファイル読み込み、
+> `env.ASSETS` バインディング確認、dry-run 完了）。
+> 以降のデプロイ経路は「`astro build` → `wrangler build --x-new-config --x-cf-build-output` → `cf deploy --prebuilt`」で統一する。
+
 **Files:**
 - Modify: `docs/superpowers/plans/2026-10-10-wrangler-to-cf-migration.md`（結果を書き戻し）
 
