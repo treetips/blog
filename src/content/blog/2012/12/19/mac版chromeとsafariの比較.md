@@ -5,11 +5,11 @@ basename: "2012/12/19/mac版chromeとsafariの比較"
 sourceUrl: "/entry/2012/12/19/mac版chromeとsafariの比較/"
 legacyUrl: "/entry/2012/12/19/mac版chromeとsafariの比較/"
 categories: ["mac"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180418/20180418121733.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180418/20180418121733.png"
 ---
 結構safariもいいですよ〜
 
-![f:id:treeapps:20180418121733p:plain](/hatena-images/images/fotolife/t/treeapps/20180418/20180418121733.png)
+![](/blog-images/images/fotolife/t/treeapps/20180418/20180418121733.png)
 
 retina macbook proを使うようになって、chromeとsafariを色々検証して、両者のメリット・デメリットが見えてきました。 簡単に両者を比較してみたいと思います。
 

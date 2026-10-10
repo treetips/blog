@@ -5,11 +5,11 @@ basename: "2012/12/24/はてなblogのsitemap.xmlをgoogleに送信する"
 sourceUrl: "/entry/2012/12/24/はてなblogのsitemap.xmlをgoogleに送信する/"
 legacyUrl: "/entry/2012/12/24/はてなblogのsitemap.xmlをgoogleに送信する/"
 categories: ["SEO"]
-image: "/hatena-images/images/fotolife/t/treeapps/20170818/20170818174241.png"
+image: "/blog-images/images/fotolife/t/treeapps/20170818/20170818174241.png"
 ---
 実はsitemap.xmlあるんですよね〜
 
-![f:id:treeapps:20170818174241p:plain](/hatena-images/images/fotolife/t/treeapps/20170818/20170818174241.png)
+![](/blog-images/images/fotolife/t/treeapps/20170818/20170818174241.png)
 
 何気なくbingのウェブマスターツールを見ていて気づいたのですが、無料版はてなblogにsitemap.xmlあるじゃん。 今更ですが発見しました。atom feedがある事は知ってましたが、sitemap.xmlがあるとは。 という事で早速googleのウェブマスターツールに登録する手順を記載します。
 

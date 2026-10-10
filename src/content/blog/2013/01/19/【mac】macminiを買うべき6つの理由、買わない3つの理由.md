@@ -5,11 +5,11 @@ basename: "2013/01/19/【mac】macminiを買うべき6つの理由、買わな�
 sourceUrl: "/entry/2013/01/19/【mac】macminiを買うべき6つの理由、買わない3つの理由/"
 legacyUrl: "/entry/2013/01/19/【mac】macminiを買うべき6つの理由、買わない3つの理由/"
 categories: ["mac"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180418/20180418114029.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180418/20180418114029.png"
 ---
 最近新型macminiがでなくて悲しいですね〜
 
-![f:id:treeapps:20180418114029p:plain](/hatena-images/images/fotolife/t/treeapps/20180418/20180418114029.png)
+![](/blog-images/images/fotolife/t/treeapps/20180418/20180418114029.png)
 
 本日macmini2011(mid)を売却しました。
 

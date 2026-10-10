@@ -5,11 +5,11 @@ basename: "2012/09/16/ermasterで外部キーを貼らずにリレーション�
 sourceUrl: "/entry/2012/09/16/ermasterで外部キーを貼らずにリレーションの線を引く/"
 legacyUrl: "/entry/2012/09/16/ermasterで外部キーを貼らずにリレーションの線を引く/"
 categories: ["ER図"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180418/20180418131549.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180418/20180418131549.png"
 ---
 トリッキーな事をすれば可能です〜
 
-![f:id:treeapps:20180418131549p:plain](/hatena-images/images/fotolife/t/treeapps/20180418/20180418131549.png)
+![](/blog-images/images/fotolife/t/treeapps/20180418/20180418131549.png)
 
 私の周りではER図と言えばermaster、という程に普及しました。（させました）
 
@@ -26,7 +26,7 @@ image: "/hatena-images/images/fotolife/t/treeapps/20180418/20180418131549.png"
 
 よくあるパターン。
 
-![f:id:treeapps:20120916205613p:plain](/hatena-images/images/fotolife/t/treeapps/20120916/20120916205613.png)
+![](/blog-images/images/fotolife/t/treeapps/20120916/20120916205613.png)
 
 子テーブルBは、親テーブルAの主キーと、B自身もPKをもっているパターン。
 
@@ -38,11 +38,11 @@ image: "/hatena-images/images/fotolife/t/treeapps/20180418/20180418131549.png"
 
 ここでまず右クリックから、以下のように「エクスポート→DDL」と選択します。
 
-![f:id:treeapps:20120916205847p:plain](/hatena-images/images/fotolife/t/treeapps/20120916/20120916205847.png)
+![](/blog-images/images/fotolife/t/treeapps/20120916/20120916205847.png)
 
 次がポイントです。出力オプションをよく見て下さい。
 
-![f:id:treeapps:20120916210059p:plain](/hatena-images/images/fotolife/t/treeapps/20120916/20120916210059.png)
+![](/blog-images/images/fotolife/t/treeapps/20120916/20120916210059.png)
 
 「CREATE」の部分に「外部キー」があります。つまり、
 

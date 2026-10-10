@@ -5,11 +5,11 @@ basename: "2013/01/18/DBの定義を更新した際のデプロイ順序"
 sourceUrl: "/entry/2013/01/18/DBの定義を更新した際のデプロイ順序/"
 legacyUrl: "/entry/2013/01/18/DBの定義を更新した際のデプロイ順序/"
 categories: ["mysql"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180418/20180418131549.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180418/20180418131549.png"
 ---
 デプロイ担当者は注意しましょう〜
 
-![f:id:treeapps:20180418131549p:plain](/hatena-images/images/fotolife/t/treeapps/20180418/20180418131549.png)
+![](/blog-images/images/fotolife/t/treeapps/20180418/20180418131549.png)
 
 これは基本的ではありますが、非常に重要です。
 

@@ -8,7 +8,7 @@ categories: ["SEO"]
 ---
 うーん、これは・・・
 
-![f:id:treeapps:20170818174241p:plain](/hatena-images/images/fotolife/t/treeapps/20170818/20170818174241.png)
+![](/blog-images/images/fotolife/t/treeapps/20170818/20170818174241.png)
 
 はてなblogの管理画面にアクセス数が表示されますが、これは信憑性ありません。 （はてなダイアリーはblog上にアクセス数を表示できますが、これも信憑性無し） 最も顕著に現れるのは管理画面の操作までカウントされる点です。
 

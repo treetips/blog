@@ -5,11 +5,11 @@ basename: "2012/10/20/javaのロガーが多すぎて訳が解らないので整
 sourceUrl: "/entry/2012/10/20/javaのロガーが多すぎて訳が解らないので整理して/"
 legacyUrl: "/entry/2012/10/20/javaのロガーが多すぎて訳が解らないので整理して/"
 categories: ["java"]
-image: "/hatena-images/images/fotolife/t/treeapps/20170104/20170104173704.png"
+image: "/blog-images/images/fotolife/t/treeapps/20170104/20170104173704.png"
 ---
 最初は誰しもがファッ！？となるんですよねロガーって。
 
-![f:id:treeapps:20170104173704p:plain](/hatena-images/images/fotolife/t/treeapps/20170104/20170104173704.png)
+![](/blog-images/images/fotolife/t/treeapps/20170104/20170104173704.png)
 
 いずれtree-tipsで公開しようと思っている、solrのプロジェクトを今作っています。mavenでjarを管理している訳ですが・・
 

@@ -5,11 +5,11 @@ basename: "2012/11/28/macbook_pro_retina用液晶保護フィルムLCD-MBR15KF�
 sourceUrl: "/entry/2012/11/28/macbook_pro_retina用液晶保護フィルムLCD-MBR15KFのレビュー/"
 legacyUrl: "/entry/2012/11/28/macbook_pro_retina用液晶保護フィルムLCD-MBR15KFのレビュー/"
 categories: ["mac"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180418/20180418114029.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180418/20180418114029.png"
 ---
 結構いいと思いますよ〜
 
-![f:id:treeapps:20180418114029p:plain](/hatena-images/images/fotolife/t/treeapps/20180418/20180418114029.png)
+![](/blog-images/images/fotolife/t/treeapps/20180418/20180418114029.png)
 
 mac book retina 15インチを購入してから液晶保護フィルムの購入をすっかり忘れていたので購入しました。
 

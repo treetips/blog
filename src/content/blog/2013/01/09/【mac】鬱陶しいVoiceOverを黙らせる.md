@@ -5,11 +5,11 @@ basename: "2013/01/09/【mac】鬱陶しいVoiceOverを黙らせる"
 sourceUrl: "/entry/2013/01/09/【mac】鬱陶しいVoiceOverを黙らせる/"
 legacyUrl: "/entry/2013/01/09/【mac】鬱陶しいVoiceOverを黙らせる/"
 categories: ["mac"]
-image: "/hatena-images/images/fotolife/t/treeapps/20170829/20170829002500.png"
+image: "/blog-images/images/fotolife/t/treeapps/20170829/20170829002500.png"
 ---
 勝手に喋りだすの、結構ウザいんですよね。
 
-![f:id:treeapps:20170829002500p:plain](/hatena-images/images/fotolife/t/treeapps/20170829/20170829002500.png)
+![](/blog-images/images/fotolife/t/treeapps/20170829/20170829002500.png)
 
 Firefox等のブラウザを使っている場合、Ctrl + F5でキャッシュ無効化でリロードする事ができます。
 
@@ -41,7 +41,7 @@ Command + F5でON/OFFを切り替え可能です。
 
 環境設定 → アクセシビリティ → VoiceOver → 「VoiceOverを有効にする」をオフにする
 
-![f:id:treeapps:20130109220335p:plain](/hatena-images/images/fotolife/t/treeapps/20130109/20130109220335.png)
+![](/blog-images/images/fotolife/t/treeapps/20130109/20130109220335.png)
 
 <a id="誤って起動しないよう抹殺する"></a>
 
@@ -53,7 +53,7 @@ Command + F5でON/OFFを切り替え可能です。
 
 環境設定 → キーボード → アクセシビリティ → 「VoiceOverの入／切」をオフ
 
-![f:id:treeapps:20130109220733p:plain](/hatena-images/images/fotolife/t/treeapps/20130109/20130109220733.png)
+![](/blog-images/images/fotolife/t/treeapps/20130109/20130109220733.png)
 
 これで鬱陶しいVoiceOverともお別れできましたね！！
 

@@ -6,7 +6,7 @@ sourceUrl: "/entry/2013/02/21/PS4正式発表！8コアCPU,_GDDR5-8Gメモリ,GP
 legacyUrl: "/entry/2013/02/21/PS4正式発表！8コアCPU,_GDDR5-8Gメモリ,GPU帯域127GB/s,タッチパッド/"
 categories: ["まとめ", "ゲーム"]
 ---
-![f:id:treeapps:20130221091434j:plain](/hatena-images/images/fotolife/t/treeapps/20130221/20130221091434.jpg) [「PS4」ついに正式発表、新たなゲームハード登場へ - GIGAZINE](http://gigazine.net/news/20130221-ps4/)[!\[\]\(http://b.hatena.ne.jp/entry/image/http://gigazine.net/news/20130221-ps4/\)](http://b.hatena.ne.jp/entry/http://gigazine.net/news/20130221-ps4/) ついに発表されました。
+![](/blog-images/images/fotolife/t/treeapps/20130221/20130221091434.jpg) [「PS4」ついに正式発表、新たなゲームハード登場へ - GIGAZINE](http://gigazine.net/news/20130221-ps4/)[!\[\]\(http://b.hatena.ne.jp/entry/image/http://gigazine.net/news/20130221-ps4/\)](http://b.hatena.ne.jp/entry/http://gigazine.net/news/20130221-ps4/) ついに発表されました。
 
 Play Station 4が正式発表です！！！
 

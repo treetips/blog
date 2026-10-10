@@ -5,11 +5,11 @@ basename: "2012/11/17/各種ジオコーディングapiの罠と対処法"
 sourceUrl: "/entry/2012/11/17/各種ジオコーディングapiの罠と対処法/"
 legacyUrl: "/entry/2012/11/17/各種ジオコーディングapiの罠と対処法/"
 categories: ["位置情報", "ジオコーディング"]
-image: "/hatena-images/images/fotolife/t/treeapps/20170104/20170104163728.png"
+image: "/blog-images/images/fotolife/t/treeapps/20170104/20170104163728.png"
 ---
 色々あるのでそれぞれ規約を調べてみましたよ〜
 
-![f:id:treeapps:20170104163728p:plain](/hatena-images/images/fotolife/t/treeapps/20170104/20170104163728.png)
+![](/blog-images/images/fotolife/t/treeapps/20170104/20170104163728.png)
 
 各種ジオコーディングサービスですが、主に利用制限周りに罠があります。これをしっていないと色々利用規約に違反してしまうので、気をつける必要があります。それぞれ内容を確認し、まずは制限を知り、対策を検討する必要があります。
 
@@ -151,7 +151,7 @@ yahooはそもそも利用制限が不明なため解説不要とします。 go
 
 #### 猫でも解る簡易処理フロー
 
-画像で簡単な処理フローを解説します。 おおまかにこんな感じです。 ![f:id:treeapps:20131225194011p:plain](/hatena-images/images/fotolife/t/treeapps/20131225/20131225194011.png)
+画像で簡単な処理フローを解説します。 おおまかにこんな感じです。 ![](/blog-images/images/fotolife/t/treeapps/20131225/20131225194011.png)
 
 画面表示時にサーバサイド側で緯度経度の存在有無をチェックして、有ったらそれを使う。無かったらgoogle geocoderでクライアントサイドでジオコーディングしつつ、取得した緯度経度を非同期でキャッシュDBに保存していく訳だな。
 

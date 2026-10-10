@@ -5,11 +5,11 @@ basename: "2013/02/10/my.confの変更点のせいでなかなかMySQL5.6が起�
 sourceUrl: "/entry/2013/02/10/my.confの変更点のせいでなかなかMySQL5.6が起動しない件/"
 legacyUrl: "/entry/2013/02/10/my.confの変更点のせいでなかなかMySQL5.6が起動しない件/"
 categories: ["mysql"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180418/20180418131549.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180418/20180418131549.png"
 ---
 いつのものやつですね。
 
-![f:id:treeapps:20180418131549p:plain](/hatena-images/images/fotolife/t/treeapps/20180418/20180418131549.png)
+![](/blog-images/images/fotolife/t/treeapps/20180418/20180418131549.png)
 
 つい先日MySQL 5.6 GAが公開されたので、早速macにインストールしてみました。 DMG形式インストールしたので、インストールで躓くことはありませんでした。 .bash_profileにmysql/binのパスも通しました。 さて、起動です。 ( #^^) 「今日も平常運転ですねMySQLさん」
 
@@ -71,4 +71,4 @@ long_query_time =1
 
 環境設定のペインから起動する際の注意点
 
-DMG形式でインストールする場合、macの環境設定からGUIでMySQLを起動できるようにする、 ペインも一緒にインストールできます。 ![f:id:treeapps:20130210003106p:plain](/hatena-images/images/fotolife/t/treeapps/20130210/20130210003106.png) しかしこのペイン、挙動不審なのです。 特に、エラーが起きた「後」の起動がおかしいのです。 エラーが起きた後は本当に注意が必要で、 プロセスが多重起動する事もあります。 多重起動するとkillするのが面倒なので、エラー後は一旦環境設定を終了してから再度開いて起動しましょう。
+DMG形式でインストールする場合、macの環境設定からGUIでMySQLを起動できるようにする、 ペインも一緒にインストールできます。 ![](/blog-images/images/fotolife/t/treeapps/20130210/20130210003106.png) しかしこのペイン、挙動不審なのです。 特に、エラーが起きた「後」の起動がおかしいのです。 エラーが起きた後は本当に注意が必要で、 プロセスが多重起動する事もあります。 多重起動するとkillするのが面倒なので、エラー後は一旦環境設定を終了してから再度開いて起動しましょう。

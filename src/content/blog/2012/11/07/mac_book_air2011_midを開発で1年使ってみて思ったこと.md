@@ -5,11 +5,11 @@ basename: "2012/11/07/mac_book_air2011_midを開発で1年使ってみて思っ�
 sourceUrl: "/entry/2012/11/07/mac_book_air2011_midを開発で1年使ってみて思ったこと/"
 legacyUrl: "/entry/2012/11/07/mac_book_air2011_midを開発で1年使ってみて思ったこと/"
 categories: ["mac"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180418/20180418114029.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180418/20180418114029.png"
 ---
 書いてみますよ〜
 
-![f:id:treeapps:20180418114029p:plain](/hatena-images/images/fotolife/t/treeapps/20180418/20180418114029.png)
+![](/blog-images/images/fotolife/t/treeapps/20180418/20180418114029.png)
 
 mac book airをプログラム開発の現場で使い始めて1年近く経ちました。 windowsから変えて良かったこと、悪かったこと、等を振り返ってみようと思います。 ガチガチのプログラム開発で使っているので、そこそこ酷使しているかと思います。
 

@@ -5,11 +5,11 @@ basename: "2013/01/26/Luxmanから単体DAC:DA-06が発売。DSDネイティブ�
 sourceUrl: "/entry/2013/01/26/Luxmanから単体DAC:DA-06が発売。DSDネイティブ・ASIO・DoP・USB非同期/"
 legacyUrl: "/entry/2013/01/26/Luxmanから単体DAC:DA-06が発売。DSDネイティブ・ASIO・DoP・USB非同期/"
 categories: ["雑談"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180427/20180427191355.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180427/20180427191355.png"
 ---
 カチカチ・・・
 
-![f:id:treeapps:20180427191355p:plain](/hatena-images/images/fotolife/t/treeapps/20180427/20180427191355.png)
+![](/blog-images/images/fotolife/t/treeapps/20180427/20180427191355.png)
 
 http://www.luxman.co.jp/presspro/da06.html[!\[\]\(//b.hatena.ne.jp/entry/image/http://www.luxman.co.jp/presspro/da06.html\)](http://b.hatena.ne.jp/entry/http://www.luxman.co.jp/presspro/da06.html) [LUXMAN ヘッドホンアンプ・DAC DA-06](http://www.amazon.co.jp/exec/obidos/ASIN/B00B68F7HG/treeapps5-22/) ![LUXMAN ヘッドホンアンプ・DAC DA-06](https://images-fe.ssl-images-amazon.com/images/I/31NV0fqlF7L._SL160_.jpg)LuxmanからDSDネイティブ再生対応の単体DAC：DA-06が発売されます。 DA-200より更に上級機です。 http://www.luxman.co.jp/product/aa_da200.html[!\[\]\(//b.hatena.ne.jp/entry/image/http://www.luxman.co.jp/product/aa_da200.html\)](http://b.hatena.ne.jp/entry/http://www.luxman.co.jp/product/aa_da200.html) [LUXMAN ヘッドホンアンプ・DAC DA-200 \[ブラスターホワイト\]](http://www.amazon.co.jp/exec/obidos/ASIN/B0049E12R8/treeapps5-22/) ![LUXMAN ヘッドホンアンプ・DAC DA-200 \[ブラスターホワイト\]](https://images-fe.ssl-images-amazon.com/images/I/21P3ZniNJAL._SL160_.jpg)
 

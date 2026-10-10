@@ -5,9 +5,9 @@ basename: "2012/09/28/tree-tips更新しました：【シェルスクリプト�
 sourceUrl: "/entry/2012/09/28/tree-tips更新しました：【シェルスクリプト版】MySQLのキ/"
 legacyUrl: "/entry/2012/09/28/tree-tips更新しました：【シェルスクリプト版】MySQLのキ/"
 categories: ["mysql", "シェルスクリプト"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180418/20180418131549.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180418/20180418131549.png"
 ---
-![f:id:treeapps:20180418131549p:plain](/hatena-images/images/fotolife/t/treeapps/20180418/20180418131549.png)
+![](/blog-images/images/fotolife/t/treeapps/20180418/20180418131549.png)
 
 前回の記事に書いた通り、シェルクリプト版のMySQLキャッシュヒット率計算スクリプトを用意しました。
 

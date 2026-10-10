@@ -5,11 +5,11 @@ basename: "2013/01/16/【mac】mac_pro2008にSamsung_SSD_840_PROを増設してt
 sourceUrl: "/entry/2013/01/16/【mac】mac_pro2008にSamsung_SSD_840_PROを増設してtrimを有効にする/"
 legacyUrl: "/entry/2013/01/16/【mac】mac_pro2008にSamsung_SSD_840_PROを増設してtrimを有効にする/"
 categories: ["mac"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180418/20180418114029.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180418/20180418114029.png"
 ---
 増設できました〜
 
-![f:id:treeapps:20180418114029p:plain](/hatena-images/images/fotolife/t/treeapps/20180418/20180418114029.png)
+![](/blog-images/images/fotolife/t/treeapps/20180418/20180418114029.png)
 
 [Samsung SSD Online | ITGマーケティング](http://www.itgm.co.jp/product/ssd840/)[!\[\]\(//b.hatena.ne.jp/entry/image/http://www.itgm.co.jp/product/ssd840/\)](http://b.hatena.ne.jp/entry/http://www.itgm.co.jp/product/ssd840/) Mac Pro Early 2008にSamsung SSD 840 PRO 256Gを増設してみました。 最近SSD安くなりましたね。256Gで2万円くらいで買えました。
 
@@ -70,16 +70,16 @@ Mac Proの空きスロットは全てSATA3.0Gbpsなので、どのスロット�
 
 #### trimの状態を確認する
 
-![f:id:treeapps:20130116002314p:plain](/hatena-images/images/fotolife/t/treeapps/20130116/20130116002314.png) あれ！？SSD自体にはtrim機能があるのにオフになってる！！ という事でオンにします。
+![](/blog-images/images/fotolife/t/treeapps/20130116/20130116002314.png) あれ！？SSD自体にはtrim機能があるのにオフになってる！！ という事でオンにします。
 
 <a id="Trim-Enablerをインストールする"></a>
 
 #### Trim Enablerをインストールする
 
-macの標準機能ではtrimをオンにできませんが、フリーソフトでオンにすることができます。 http://www.groths.org/?page_id=322[!\[\]\(//b.hatena.ne.jp/entry/image/http://www.groths.org/?page_id=322\)](http://b.hatena.ne.jp/entry/http://www.groths.org/?page_id=322) インストールして実行すると、環境によっては↓こんな風にアラートが発生して実行できません。 ![f:id:treeapps:20130116002556p:plain](/hatena-images/images/fotolife/t/treeapps/20130116/20130116002556.png) 環境設定 → セキュリティとプライバシー → 一般タブを開き、↓のように全て許可してしまいます。 変更時は左下の鍵マークをクリックしておく必要があります。 ![f:id:treeapps:20130116002704p:plain](/hatena-images/images/fotolife/t/treeapps/20130116/20130116002704.png)
+macの標準機能ではtrimをオンにできませんが、フリーソフトでオンにすることができます。 http://www.groths.org/?page_id=322[!\[\]\(//b.hatena.ne.jp/entry/image/http://www.groths.org/?page_id=322\)](http://b.hatena.ne.jp/entry/http://www.groths.org/?page_id=322) インストールして実行すると、環境によっては↓こんな風にアラートが発生して実行できません。 ![](/blog-images/images/fotolife/t/treeapps/20130116/20130116002556.png) 環境設定 → セキュリティとプライバシー → 一般タブを開き、↓のように全て許可してしまいます。 変更時は左下の鍵マークをクリックしておく必要があります。 ![](/blog-images/images/fotolife/t/treeapps/20130116/20130116002704.png)
 
 <a id="Trimをオンにする"></a>
 
 #### Trimをオンにする
 
-これでTrim Enablerが起動できるようになったので起動します。 起動したらtrimを早速オンにします。 ![f:id:treeapps:20130116002826p:plain](/hatena-images/images/fotolife/t/treeapps/20130116/20130116002826.png) 再起動後にtrimのオンが反映されるので、OSを再起動します。 再起動後、再びtrimの状態を確認します。 ![f:id:treeapps:20130116002956p:plain](/hatena-images/images/fotolife/t/treeapps/20130116/20130116002956.png) お疲れ様でした！これでmacのSSDのtrimは有効になりました！
+これでTrim Enablerが起動できるようになったので起動します。 起動したらtrimを早速オンにします。 ![](/blog-images/images/fotolife/t/treeapps/20130116/20130116002826.png) 再起動後にtrimのオンが反映されるので、OSを再起動します。 再起動後、再びtrimの状態を確認します。 ![](/blog-images/images/fotolife/t/treeapps/20130116/20130116002956.png) お疲れ様でした！これでmacのSSDのtrimは有効になりました！

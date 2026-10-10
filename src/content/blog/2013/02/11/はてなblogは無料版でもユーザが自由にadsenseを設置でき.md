@@ -5,11 +5,11 @@ basename: "2013/02/11/はてなblogは無料版でもユーザが自由にadsens
 sourceUrl: "/entry/2013/02/11/はてなblogは無料版でもユーザが自由にadsenseを設置でき/"
 legacyUrl: "/entry/2013/02/11/はてなblogは無料版でもユーザが自由にadsenseを設置でき/"
 categories: ["アフィリエイト", "はてなブログ"]
-image: "/hatena-images/images/fotolife/t/treeapps/20170818/20170818174241.png"
+image: "/blog-images/images/fotolife/t/treeapps/20170818/20170818174241.png"
 ---
 ちょっと注意点がありました
 
-![f:id:treeapps:20170818174241p:plain](/hatena-images/images/fotolife/t/treeapps/20170818/20170818174241.png)
+![](/blog-images/images/fotolife/t/treeapps/20170818/20170818174241.png)
 
 /entry/2013/01/17/%E3%81%AF%E3%81%A6%E3%81%AAblog%E3%81%AF%E7%84%A1%E6%96%99%E7%89%88%E3%81%A7%E3%82%82adsense%E3%82%92%E8%B2%BC%E3%81%A3%E3%81%A6%E3%82%82%E3%81%84%E3%81%84[!\[\]\(//b.hatena.ne.jp/entry/image//entry/2013/01/17/はてなblogは無料版でもadsenseを貼ってもいい\)](http://b.hatena.ne.jp/entry//entry/2013/01/17/はてなblogは無料版でもadsenseを貼ってもいい) 前回の記事では開発ブログの方を見ていました。 今回ヘルプのガイドラインに記述がある事が解りました。
 

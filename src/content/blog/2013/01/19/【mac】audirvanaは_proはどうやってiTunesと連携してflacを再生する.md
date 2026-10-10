@@ -5,11 +5,11 @@ basename: "2013/01/19/【mac】audirvanaは_proはどうやってiTunesと連携
 sourceUrl: "/entry/2013/01/19/【mac】audirvanaは_proはどうやってiTunesと連携してflacを再生する/"
 legacyUrl: "/entry/2013/01/19/【mac】audirvanaは_proはどうやってiTunesと連携してflacを再生する/"
 categories: ["mac"]
-image: "/hatena-images/images/fotolife/t/treeapps/20170829/20170829002500.png"
+image: "/blog-images/images/fotolife/t/treeapps/20170829/20170829002500.png"
 ---
 実体を直接参照しているわけではないのです〜
 
-![f:id:treeapps:20170829002500p:plain](/hatena-images/images/fotolife/t/treeapps/20170829/20170829002500.png)
+![](/blog-images/images/fotolife/t/treeapps/20170829/20170829002500.png)
 
 [Audirvana Plus &ndash; The Sound of your Dreams](http://audirvana.com/)[!\[\]\(//b.hatena.ne.jp/entry/image/http://audirvana.com/\)](http://b.hatena.ne.jp/entry/http://audirvana.com/) macでお馴染みのaudirvanaですが、iTunesをプレイリストとして使用・連携する事ができます。 ここまでは他のソフトウェアもやっている事なのですが、audirvanaはiTunesを使ってflacを再生できるのです。
 
@@ -17,11 +17,11 @@ iTunes自体にはflacを再生する機能はありません。プレイリス�
 
 ### itunes integrated modeを有効にする
 
-チェックをつけます。 ![f:id:treeapps:20130119223812p:plain](/hatena-images/images/fotolife/t/treeapps/20130119/20130119223812.png) すると、iTunesが自動的に起動します。
+チェックをつけます。 ![](/blog-images/images/fotolife/t/treeapps/20130119/20130119223812.png) すると、iTunesが自動的に起動します。
 
 ### iTunesに曲を追加する
 
-add files to itunesをクリックします。 ![f:id:treeapps:20130119224043p:plain](/hatena-images/images/fotolife/t/treeapps/20130119/20130119224043.png) リストにflacファイル（フォルダでもOK）を追加し、startボタンを押下するとitunesに曲が追加されます。
+add files to itunesをクリックします。 ![](/blog-images/images/fotolife/t/treeapps/20130119/20130119224043.png) リストにflacファイル（フォルダでもOK）を追加し、startボタンを押下するとitunesに曲が追加されます。
 
 なぜiTunesにファイルが追加できたのでしょう。 答えはflacからaifを作ってiTunesに読み込ませたからです。 ここでポイントなのが、proxy onlyで取り込んだ事です。
 

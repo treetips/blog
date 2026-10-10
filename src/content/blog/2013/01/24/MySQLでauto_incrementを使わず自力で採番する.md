@@ -5,11 +5,11 @@ basename: "2013/01/24/MySQLでauto_incrementを使わず自力で採番する"
 sourceUrl: "/entry/2013/01/24/MySQLでauto_incrementを使わず自力で採番する/"
 legacyUrl: "/entry/2013/01/24/MySQLでauto_incrementを使わず自力で採番する/"
 categories: ["mysql"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180418/20180418131549.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180418/20180418131549.png"
 ---
 できますよ〜
 
-![f:id:treeapps:20180418131549p:plain](/hatena-images/images/fotolife/t/treeapps/20180418/20180418131549.png)
+![](/blog-images/images/fotolife/t/treeapps/20180418/20180418131549.png)
 
 MySQLにはauto-increment-incrementとauto-increment-offsetという設定があって、auto_incrementの値を偶数・奇数に固定する事ができます。
 

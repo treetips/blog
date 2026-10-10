@@ -5,9 +5,9 @@ basename: "2012/08/03/solrで緯度経度をボックス検索する"
 sourceUrl: "/entry/2012/08/03/solrで緯度経度をボックス検索する/"
 legacyUrl: "/entry/2012/08/03/solrで緯度経度をボックス検索する/"
 categories: ["java", "solr", "mysql"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180418/20180418131549.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180418/20180418131549.png"
 ---
-![f:id:treeapps:20180418131549p:plain](/hatena-images/images/fotolife/t/treeapps/20180418/20180418131549.png)
+![](/blog-images/images/fotolife/t/treeapps/20180418/20180418131549.png)
 
 solrに限った話ではありませんが、
 

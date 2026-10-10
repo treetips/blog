@@ -5,11 +5,11 @@ basename: "2013/02/28/MySQLのストアドファンクションでisNotEmptyを�
 sourceUrl: "/entry/2013/02/28/MySQLのストアドファンクションでisNotEmptyを実装する/"
 legacyUrl: "/entry/2013/02/28/MySQLのストアドファンクションでisNotEmptyを実装する/"
 categories: ["mysql"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180418/20180418131549.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180418/20180418131549.png"
 ---
 結構簡単で有用なので、是非ストアドファンクションつかいましょう〜
 
-![f:id:treeapps:20180418131549p:plain](/hatena-images/images/fotolife/t/treeapps/20180418/20180418131549.png)
+![](/blog-images/images/fotolife/t/treeapps/20180418/20180418131549.png)
 
 MySQLで「空文字またはnullではない」という判定をしたいけど、hoge != null and hoge != '' と書くと冗長になってしまって嫌なので、ストアドファンクションで実装してみる事にしました。
 

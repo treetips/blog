@@ -5,21 +5,21 @@ basename: "2012/12/27/retinaディスプレイのスクリーンショットは�
 sourceUrl: "/entry/2012/12/27/retinaディスプレイのスクリーンショットは巨大にな/"
 legacyUrl: "/entry/2012/12/27/retinaディスプレイのスクリーンショットは巨大にな/"
 categories: ["mac"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180418/20180418114029.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180418/20180418114029.png"
 ---
 これ、未だに巨大なスクリーンショットになるんですよね〜
 
-![f:id:treeapps:20180418114029p:plain](/hatena-images/images/fotolife/t/treeapps/20180418/20180418114029.png)
+![](/blog-images/images/fotolife/t/treeapps/20180418/20180418114029.png)
 
 なにそれ？と思うかもしれませんが、ちょっと↓を見て下さい。
 
 ### retinaで撮ったスクリーンショット
 
-![f:id:treeapps:20121227174115p:plain](/hatena-images/images/fotolife/t/treeapps/20121227/20121227174115.png)
+![](/blog-images/images/fotolife/t/treeapps/20121227/20121227174115.png)
 
 ### retina以外で撮ったスクリーンショット
 
-![f:id:treeapps:20121227175425p:plain](/hatena-images/images/fotolife/t/treeapps/20121227/20121227175425.png) retinaディスプレイのスクリーンショット、超巨大ですね。 それもそのはず、スクリーンショットは本来の解像度で撮られているからです。
+![](/blog-images/images/fotolife/t/treeapps/20121227/20121227175425.png) retinaディスプレイのスクリーンショット、超巨大ですね。 それもそのはず、スクリーンショットは本来の解像度で撮られているからです。
 
 これは非常に残念仕様だと思ってます。 retinaディスプレイの本来の解像度は3360×2100ですが、画面表示時にスケーリング（縮小）して1680×1050にしています。（これが超高解像度の秘密です） retinaのスクリーンショットだと3360×2100のまま、つまり2倍の大きさになってしまう訳です。
 

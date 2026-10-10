@@ -5,11 +5,11 @@ basename: "2013/01/30/【java】Listのcontainsは要素と引数の型を合わ
 sourceUrl: "/entry/2013/01/30/【java】Listのcontainsは要素と引数の型を合わせないと意味/"
 legacyUrl: "/entry/2013/01/30/【java】Listのcontainsは要素と引数の型を合わせないと意味/"
 categories: ["java"]
-image: "/hatena-images/images/fotolife/t/treeapps/20170104/20170104173704.png"
+image: "/blog-images/images/fotolife/t/treeapps/20170104/20170104173704.png"
 ---
 誰しもがこのトラップに嵌まることでしょう。
 
-![f:id:treeapps:20170104173704p:plain](/hatena-images/images/fotolife/t/treeapps/20170104/20170104173704.png)
+![](/blog-images/images/fotolife/t/treeapps/20170104/20170104173704.png)
 
 物凄くつまらないというか、物凄く恥ずかしいトピックです。 Javaのjava.util.Listにはcontainsメソッドがあります。 リストの要素中に引数の値が含まれているかどうかを判定できるのですが、 これがしょうもない罠が潜んでいます。
 

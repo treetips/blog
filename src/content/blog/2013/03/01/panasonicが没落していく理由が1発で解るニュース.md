@@ -5,9 +5,9 @@ basename: "2013/03/01/panasonicが没落していく理由が1発で解るニュ
 sourceUrl: "/entry/2013/03/01/panasonicが没落していく理由が1発で解るニュース/"
 legacyUrl: "/entry/2013/03/01/panasonicが没落していく理由が1発で解るニュース/"
 categories: ["雑談"]
-image: "/hatena-images/images/fotolife/t/treeapps/20130301/20130301000040.jpg"
+image: "/blog-images/images/fotolife/t/treeapps/20130301/20130301000040.jpg"
 ---
-[「eneloop（エネループ）」の新型発表、パナソニック傘下でブランドの扱いが悲惨なことに\(BUZZAP！\) - IT - livedoor ニュース](http://news.livedoor.com/article/detail/7454799/)[!\[\]\(http://b.hatena.ne.jp/entry/image/http://news.livedoor.com/article/detail/7454799/\)](http://b.hatena.ne.jp/entry/http://news.livedoor.com/article/detail/7454799/) ![f:id:treeapps:20130301000040j:plain](/hatena-images/images/fotolife/t/treeapps/20130301/20130301000040.jpg) 新型[エネループ](http://d.hatena.ne.jp/keyword/%A5%A8%A5%CD%A5%EB%A1%BC%A5%D7)の外観はこんな風になってしまいました。1990年代くらいのデザインですね。 斜陽企業の末路、と言ったところか。時代錯誤も甚だしい・・ どこかの目の付け所がシャープな会社と同じレベルですね。
+[「eneloop（エネループ）」の新型発表、パナソニック傘下でブランドの扱いが悲惨なことに\(BUZZAP！\) - IT - livedoor ニュース](http://news.livedoor.com/article/detail/7454799/)[!\[\]\(http://b.hatena.ne.jp/entry/image/http://news.livedoor.com/article/detail/7454799/\)](http://b.hatena.ne.jp/entry/http://news.livedoor.com/article/detail/7454799/) ![](/blog-images/images/fotolife/t/treeapps/20130301/20130301000040.jpg) 新型[エネループ](http://d.hatena.ne.jp/keyword/%A5%A8%A5%CD%A5%EB%A1%BC%A5%D7)の外観はこんな風になってしまいました。1990年代くらいのデザインですね。 斜陽企業の末路、と言ったところか。時代錯誤も甚だしい・・ どこかの目の付け所がシャープな会社と同じレベルですね。
 
 [エネループ](http://d.hatena.ne.jp/keyword/%A5%A8%A5%CD%A5%EB%A1%BC%A5%D7)は三洋だから売れたんじゃないんだよ！！ と声を大にして言いたい。 三洋じゃなくて[エネループ](http://d.hatena.ne.jp/keyword/%A5%A8%A5%CD%A5%EB%A1%BC%A5%D7)っていう商品ブランドが売れたんだよ・・ アップル製品だってアップルだから売れた（とも言い切れないが）んじゃなくて、 [iPhone](http://d.hatena.ne.jp/keyword/iPhone)・[iPad](http://d.hatena.ne.jp/keyword/iPad)とか、商品ブランドが売れてるんだよ。 これじゃエボルタとの違いが全然解りません。
 

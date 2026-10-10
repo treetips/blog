@@ -5,11 +5,11 @@ basename: "2013/02/26/インデックスを貼ればcount(*)は一瞬になる�
 sourceUrl: "/entry/2013/02/26/インデックスを貼ればcount(*)は一瞬になるという誤/"
 legacyUrl: "/entry/2013/02/26/インデックスを貼ればcount(*)は一瞬になるという誤/"
 categories: ["mysql"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180418/20180418131549.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180418/20180418131549.png"
 ---
 必ずしも一瞬で結果が変えるわけではないのです〜
 
-![f:id:treeapps:20180418131549p:plain](/hatena-images/images/fotolife/t/treeapps/20180418/20180418131549.png)
+![](/blog-images/images/fotolife/t/treeapps/20180418/20180418131549.png)
 
 MySQLの話ですが、 インデックス貼ってるからcount(*)は一瞬だぜ！という事をドヤ顔でいう人がいますが、完全に誤解です。
 

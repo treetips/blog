@@ -5,11 +5,11 @@ basename: "2013/01/15/TextMate2をビルドしてインストールする"
 sourceUrl: "/entry/2013/01/15/TextMate2をビルドしてインストールする/"
 legacyUrl: "/entry/2013/01/15/TextMate2をビルドしてインストールする/"
 categories: ["mac", "ライブラリ"]
-image: "/hatena-images/images/fotolife/t/treeapps/20170829/20170829002500.png"
+image: "/blog-images/images/fotolife/t/treeapps/20170829/20170829002500.png"
 ---
 ビルドしちゃいました〜
 
-![f:id:treeapps:20170829002500p:plain](/hatena-images/images/fotolife/t/treeapps/20170829/20170829002500.png)
+![](/blog-images/images/fotolife/t/treeapps/20170829/20170829002500.png)
 
 [TextMate &mdash; The Missing Editor for Mac OS X](http://macromates.com/)[!\[\]\(//b.hatena.ne.jp/entry/image/http://macromates.com/\)](http://b.hatena.ne.jp/entry/http://macromates.com/) 去年オープンソース化されたTextMate2をインストールする手順を公開します。 TextMateはDMGやpkgなどのインストーラー形式では配布されていないので、自分でビルドする必要が有り、少々敷居が高いです。
 
@@ -35,11 +35,11 @@ javaがインストールされていない場合、上記コマンド実行後�
 
 #### XCodeのインストール
 
-アプリケーション → App Store → XCodeで検索してインストールして下さい。 ![f:id:treeapps:20130115004216p:plain](/hatena-images/images/fotolife/t/treeapps/20130115/20130115004216.png)
+アプリケーション → App Store → XCodeで検索してインストールして下さい。 ![](/blog-images/images/fotolife/t/treeapps/20130115/20130115004216.png)
 
 #### Command Line Toolsのインストール
 
-アプリケーション → XCodeでXCodeを起動します。 XCode起動後、メニューバー → XCode → Preferencesを選択します。 続いてDownloadsタブ → Componentsと選択します。 リストに「Command Line Tools」というものがあるので、右側にあるinstallボタンをクリックしてインストールします。 ![f:id:treeapps:20130115002210p:plain](/hatena-images/images/fotolife/t/treeapps/20130115/20130115002210.png)
+アプリケーション → XCodeでXCodeを起動します。 XCode起動後、メニューバー → XCode → Preferencesを選択します。 続いてDownloadsタブ → Componentsと選択します。 リストに「Command Line Tools」というものがあるので、右側にあるinstallボタンをクリックしてインストールします。 ![](/blog-images/images/fotolife/t/treeapps/20130115/20130115002210.png)
 
 ### Homebrew
 
@@ -115,7 +115,7 @@ rm -rf ~/build/TextMate/
 
 #### 起動してみる
 
-![f:id:treeapps:20130115004851p:plain](/hatena-images/images/fotolife/t/treeapps/20130115/20130115004851.png) お疲れ様でした！これでインストール完了です！！
+![](/blog-images/images/fotolife/t/treeapps/20130115/20130115004851.png) お疲れ様でした！これでインストール完了です！！
 
 ### ビルド等でエラーが出る場合の確認事項
 

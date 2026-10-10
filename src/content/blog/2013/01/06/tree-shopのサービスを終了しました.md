@@ -5,11 +5,11 @@ basename: "2013/01/06/tree-shopのサービスを終了しました"
 sourceUrl: "/entry/2013/01/06/tree-shopのサービスを終了しました/"
 legacyUrl: "/entry/2013/01/06/tree-shopのサービスを終了しました/"
 categories: ["サイト作成", "SEO", "アフィリエイト"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180418/20180418115102.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180418/20180418115102.png"
 ---
 tree-shopの実験的サービスを本日をもって終了しました。
 
-![f:id:treeapps:20180418115102p:plain](/hatena-images/images/fotolife/t/treeapps/20180418/20180418115102.png)
+![](/blog-images/images/fotolife/t/treeapps/20180418/20180418115102.png)
 
 このサイトを開設して得られたもの等をまとめてみたいと思います。
 
