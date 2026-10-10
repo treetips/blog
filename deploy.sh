@@ -13,10 +13,10 @@ echo "Astro でサイトをビルドします。"
 ASTRO_TELEMETRY_DISABLED=1 bun run build
 
 echo "Build Output (BOS) を生成します。"
-npx wrangler build --x-new-config --x-cf-build-output
+bunx wrangler build --x-new-config --x-cf-build-output
 
 echo "Build Output を検証します。"
-npx cf deploy --prebuilt --dry-run
+bunx cf deploy --prebuilt --dry-run
 
 echo "Cloudflare Workers にデプロイします。"
-npx cf deploy --prebuilt
+bunx cf deploy --prebuilt
