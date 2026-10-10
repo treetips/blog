@@ -30,26 +30,28 @@
 
 ## 現状で把握しているファイル一覧と移行先
 
-| 現行 | 役割 | 移行先 |
-| --- | --- | --- |
-| `wrangler.jsonc` | Worker 名・互換日・entrypoint・assets・routes・observability | `cloudflare.config.ts`（`wrangler migrate` 生成）+ `wrangler.config.ts`（assets directory 等のビルド設定） |
-| `package.json:10` `deploy` スクリプト | `bunx wrangler deploy` | `npx cf deploy` |
-| `deploy.sh:35-43` | Wrangler ログ回転 + `bunx wrangler deploy` | ログ回転を撤去し `npx cf deploy` へ |
-| `.github/workflows/deploy.yml:73` | `./deploy.sh` 呼び出し | 変更なし（deploy.sh 内で吸収） |
-| `src/worker.ts:3-5` `Env` | 手書き `Env { ASSETS: Fetcher }` | 生成型 `Env`（`.cloudflare/types/index.d.ts`）に置換 |
-| `.gitignore` | `.wrangler/`, `.wrangler-logs/` | `cf migrate` が `.cloudflare/` を追記、`.wrangler-logs/` は撤去時に整理 |
+| 現行                                  | 役割                                                         | 移行先                                                                                                     |
+| ------------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
+| `wrangler.jsonc`                      | Worker 名・互換日・entrypoint・assets・routes・observability | `cloudflare.config.ts`（`wrangler migrate` 生成）+ `wrangler.config.ts`（assets directory 等のビルド設定） |
+| `package.json:10` `deploy` スクリプト | `bunx wrangler deploy`                                       | `npx cf deploy`                                                                                            |
+| `deploy.sh:35-43`                     | Wrangler ログ回転 + `bunx wrangler deploy`                   | ログ回転を撤去し `npx cf deploy` へ                                                                        |
+| `.github/workflows/deploy.yml:73`     | `./deploy.sh` 呼び出し                                       | 変更なし（deploy.sh 内で吸収）                                                                             |
+| `src/worker.ts:3-5` `Env`             | 手書き `Env { ASSETS: Fetcher }`                             | 生成型 `Env`（`.cloudflare/types/index.d.ts`）に置換                                                       |
+| `.gitignore`                          | `.wrangler/`, `.wrangler-logs/`                              | `cf migrate` が `.cloudflare/` を追記、`.wrangler-logs/` は撤去時に整理                                    |
 
 ---
 
 ### Task 1: 検証ブランチでの `cf migrate`（dry-run → 実行）
 
 **Files:**
+
 - Create: `cloudflare.config.ts`（cf migrate が生成）
 - Create: `wrangler.config.ts`（cf migrate が生成）
 - Modify: `package.json` / `bun.lock`（cf が devDependency 追加・wrangler を 4.136+ に引き上げ）
 - Modify: `.gitignore`（`.cloudflare/` 追加）
 
 **Interfaces:**
+
 - Consumes: `wrangler.jsonc`（現行設定、23 行）
 - Produces: `cloudflare.config.ts` に `worker.entrypoint: ./src/worker.ts`、`triggers.fetch()` × 2、`assets.runWorkerFirst` 相当が存在すること。後続タスクはこの生成ファイルを前提とする
 
@@ -89,11 +91,13 @@ git commit -m "feat: run cf migrate from wrangler.jsonc"
 ### Task 2: 生成された `cloudflare.config.ts` の整備
 
 **Files:**
+
 - Modify: `cloudflare.config.ts`
 - Modify: `wrangler.config.ts`（必要なら）
 - Read-only: `src/worker.ts`（behavior を変えない）
 
 **Interfaces:**
+
 - Consumes: Task 1 で生成された設定ファイル
 - Produces: `cloudflare.config.ts` が以下を満たすこと（Step 2 の検証で確認）
   - `worker.name: "bunkei-programmer-net"`
@@ -115,6 +119,7 @@ Expected: `TODO(@cloudflare)` コメントの有無と、`routes` / `run_worker_
 - [ ] **Step 2: 動作面の設定が揃っていることを確認して反映する**
 
 確認内容（旧 `wrangler.jsonc` との対比で全項目）:
+
 1. `assets.runWorkerFirst: true`（旧 `run_worker_first: true`。欠けている手で追加）
 2. `notFoundHandling` / `htmlHandling` は旧設定と同じく未指定でよいか確認（旧設定でも指定なしなので、追加はしない）
 3. 旧設定には `directory: "./dist"` がある → 無いこと自体が正しい（`wrangler.config.ts` の `assetsDirectory` に移っているはず。無ければ手動で追加）
@@ -147,9 +152,11 @@ git commit -m "fix: complete manual follow-ups in cloudflare.config.ts"
 > 以降のデプロイ経路は「`astro build` → `wrangler build --x-new-config --x-cf-build-output` → `cf deploy --prebuilt`」で統一する。
 
 **Files:**
+
 - Modify: `docs/superpowers/plans/2026-10-10-wrangler-to-cf-migration.md`（結果を書き戻し）
 
 **Interfaces:**
+
 - Consumes: Task 2 で整備済みの `cloudflare.config.ts`
 - Produces: ゲート判定。PASS なら Task 4 以降へ進行、FAIL ならフォールバック案選定
 
@@ -200,11 +207,13 @@ git commit -m "docs: record cf build gate result"
 ### Task 4: スクリプト・CI の更新（Node 前提への書き換え）
 
 **Files:**
+
 - Modify: `package.json:10`（`deploy` スクリプト）
 - Modify: `deploy.sh:35-43`（ログ回転の撤去と deploy コマンド置換）
 - Modify: `.github/workflows/deploy.yml`（変更不要なら刻）
 
 **Interfaces:**
+
 - Consumes: Task 3 の PASS
 - Produces: `npm run deploy` → `cf deploy` 一本。Task 7 のドキュメント更新が参照する
 
@@ -256,11 +265,13 @@ git commit -m "feat: switch deploy commands from wrangler to cf"
 ### Task 5: 型生成と `Env` の型同期
 
 **Files:**
+
 - Create: `.cloudflare/types/index.d.ts`（生成物。`.cloudflare/` は gitignore 済みなので**コミットしない**）
 - Modify: `src/worker.ts:3-5`
 - Modify: `tsconfig.json`（生成物 include が必要な場合）
 
 **Interfaces:**
+
 - Consumes: `cloudflare.config.ts` の `env: { ASSETS: bindings.assets() }`
 - Produces: `src/worker.ts` が `Env` を生成物から import する。はてな画像フォールバックもこの型で動作検証する
 
@@ -275,7 +286,7 @@ Expected: `.cloudflare/types/index.d.ts` に `Env` が生成される（`ASSETS`
 - [ ] **Step 2: `src/worker.ts` の手書き `Env` を生成物の import に差し替える**
 
 ```ts
-import type { Env } from '../.cloudflare/types/index';
+import type { Env } from "../.cloudflare/types/index";
 ```
 
 （生成物が tsconfig の exclude 対象の場合、include に `.cloudflare/types/**` を足す。最終判断は `bun run check` の結果で）
@@ -302,9 +313,11 @@ git commit -m "feat: import generated Env type from cf workers types"
 ### Task 6: 動作検証（dry-run → 本番）
 
 **Files:**
+
 - Modify: なし（検証のみ。必要ならそのとき報告・対応）
 
 **Interfaces:**
+
 - Consumes: Task 1-5 の全部
 - Produces: 本番デプロイ成功証跡（URL・リダイレクト挙動確認）
 
@@ -359,6 +372,7 @@ Expected: それぞれ 301（www）と 200（apex）
 ### Task 7: 旧設定・文書・参照の後片付け
 
 **Files:**
+
 - Delete: `wrangler.jsonc`
 - Modify: `DEPLOYMENT.md`（`wrangler login`、`.wrangler-logs/` の説明を `cf` に書き換え）
 - Modify: `README.md`（`.wrangler-logs/` の言及、コミット排除一覧）
@@ -367,6 +381,7 @@ Expected: それぞれ 301（www）と 200（apex）
 - Modify: `package.json`（余計な devDependency が残っていれば entries 調整）
 
 **Interfaces:**
+
 - Consumes: Task 6 の PASS（本番動作確認済み）
 - Produces: リポジトリに旧設定が残らない状態
 

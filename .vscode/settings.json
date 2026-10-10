@@ -82,6 +82,6 @@
   "workbench.tree.indent": 16,
   "workbench.tree.renderIndentGuides": "always",
   "[markdown]": {
-    "editor.defaultFormatter": "fcrespo82.markdown-table-formatter",
+    "editor.defaultFormatter": "fcrespo82.markdown-table-formatter"
   }
 }

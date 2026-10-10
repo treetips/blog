@@ -5,9 +5,9 @@ basename: "2012/09/27/tree-tips更新しました：MySQLのキャッシュヒ�
 sourceUrl: "/entry/2012/09/27/tree-tips更新しました：MySQLのキャッシュヒット率計算ツ/"
 legacyUrl: "/entry/2012/09/27/tree-tips更新しました：MySQLのキャッシュヒット率計算ツ/"
 categories: ["サイト更新", "mysql"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180418/20180418131549.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180418/20180418131549.png"
 ---
-![f:id:treeapps:20180418131549p:plain](/hatena-images/images/fotolife/t/treeapps/20180418/20180418131549.png)
+![](/blog-images/images/fotolife/t/treeapps/20180418/20180418131549.png)
 
 仕事でMySQLのキャッシュヒット率を算出する事がたまにあったりするのですが、 計算式を忘れたり、一々excelに入力して計算していました。 面倒くさいのでツール作りました。
 

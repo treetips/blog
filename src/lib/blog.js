@@ -1,10 +1,10 @@
-import { getCollection } from 'astro:content';
+import { getCollection } from "astro:content";
 import {
   PAGE_SIZE,
   PAGINATION_AROUND_CURRENT_PAGE_COUNT,
   PAGINATION_EDGE_PAGE_COUNT,
   getPageHref,
-} from './pagination.js';
+} from "./pagination.js";
 
 export { PAGE_SIZE, PAGINATION_AROUND_CURRENT_PAGE_COUNT, PAGINATION_EDGE_PAGE_COUNT, getPageHref };
 
@@ -17,7 +17,7 @@ export { PAGE_SIZE, PAGINATION_AROUND_CURRENT_PAGE_COUNT, PAGINATION_EDGE_PAGE_C
  */
 export async function getSortedPosts() {
   /** @type {BlogPost[]} */
-  const posts = await getCollection('blog');
+  const posts = await getCollection("blog");
   return [...posts].sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime());
 }
 
@@ -59,7 +59,7 @@ export function getTagHref(tag) {
 
 function createPaginationPage(value, currentPage) {
   return {
-    type: 'page',
+    type: "page",
     page: value,
     href: getPageHref(value),
     current: value === currentPage,
@@ -106,7 +106,7 @@ export function getPaginationItems(currentPage, totalPages) {
     items.push(createPaginationPage(value, page));
   };
   const pushEllipsis = () => {
-    items.push({ type: 'ellipsis' });
+    items.push({ type: "ellipsis" });
   };
 
   const innerMin = 2;

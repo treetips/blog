@@ -1,7 +1,6 @@
 @theme {
   --font-serif:
-    "Iowan Old Style", "Palatino Linotype", Palatino, "Yu Mincho",
-    "Hiragino Mincho ProN", serif;
+    "Iowan Old Style", "Palatino Linotype", Palatino, "Yu Mincho", "Hiragino Mincho ProN", serif;
   --color-site-bg: #f6f1e8;
   --color-site-bg-alt: #fbf7f1;
   --color-site-text: #1e1b16;

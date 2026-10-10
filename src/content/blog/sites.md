@@ -5,11 +5,11 @@ basename: "sites"
 sourceUrl: "/entry/sites/"
 legacyUrl: "/entry/sites/"
 categories: ["WEB開発"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180418/20180418115102.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180418/20180418115102.png"
 ---
 管理人treeは、このブログ以外にもサイトを管理しています。
 
-![f:id:treeapps:20180418115102p:plain](/hatena-images/images/fotolife/t/treeapps/20180418/20180418115102.png)
+![](/blog-images/images/fotolife/t/treeapps/20180418/20180418115102.png)
 
 - [tree-maps](#tree-maps)
   - [大量の緯度経度を一度にピンでプロットする](#大量の緯度経度を一度にピンでプロットする)
@@ -33,13 +33,13 @@ tree-mapsでは以下の事が可能になるwebサービスを提供してい�
 
 #### 大量の緯度経度を一度にピンでプロットする
 
-![f:id:treeapps:20150508230509j:plain](/hatena-images/images/fotolife/t/treeapps/20150508/20150508230509.jpg)
+![](/blog-images/images/fotolife/t/treeapps/20150508/20150508230509.jpg)
 
 <a id="大量の緯度経度を一度にクラスターでプロットする"></a>
 
 #### 大量の緯度経度を一度にクラスターでプロットする
 
-![f:id:treeapps:20150508230559j:plain](/hatena-images/images/fotolife/t/treeapps/20150508/20150508230559.jpg)
+![](/blog-images/images/fotolife/t/treeapps/20150508/20150508230559.jpg)
 
 <a id="tree-tips"></a>
 

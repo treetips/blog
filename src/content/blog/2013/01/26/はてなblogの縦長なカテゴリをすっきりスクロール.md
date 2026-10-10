@@ -5,17 +5,17 @@ basename: "2013/01/26/はてなblogの縦長なカテゴリをすっきりスク
 sourceUrl: "/entry/2013/01/26/はてなblogの縦長なカテゴリをすっきりスクロール/"
 legacyUrl: "/entry/2013/01/26/はてなblogの縦長なカテゴリをすっきりスクロール/"
 categories: ["サイト作成", "はてなブログ"]
-image: "/hatena-images/images/fotolife/t/treeapps/20170818/20170818174241.png"
+image: "/blog-images/images/fotolife/t/treeapps/20170818/20170818174241.png"
 ---
 ちょっとCSSいじってやっちゃいましょう〜
 
-![f:id:treeapps:20170818174241p:plain](/hatena-images/images/fotolife/t/treeapps/20170818/20170818174241.png)
+![](/blog-images/images/fotolife/t/treeapps/20170818/20170818174241.png)
 
 はてなブログに限った話ではありませんが、 大抵のブログで見られる傾向、それは・・・・
 
 縦になが〜〜〜〜〜〜いカテゴリ
 
-です。当ブログの場合はフル表示でこんな感じになります。 ![f:id:treeapps:20130126231114p:plain](/hatena-images/images/fotolife/t/treeapps/20130126/20130126231114.png) ほとんど更新の無いカテゴリも多く、全て見えている必要も無いので、スペース縮小を目指して対応してみようと思います。
+です。当ブログの場合はフル表示でこんな感じになります。 ![](/blog-images/images/fotolife/t/treeapps/20130126/20130126231114.png) ほとんど更新の無いカテゴリも多く、全て見えている必要も無いので、スペース縮小を目指して対応してみようと思います。
 
 - [カテゴリ周りのhtmlとcssを確認](#カテゴリ周りのhtmlとcssを確認)
 - [管理画面でcssを追加](#管理画面でcssを追加)
@@ -52,7 +52,7 @@ image: "/hatena-images/images/fotolife/t/treeapps/20170818/20170818174241.png"
 
 ### 管理画面でcssを追加
 
-css編集ウインドウは以下にあります。 ![f:id:treeapps:20130126231320p:plain](/hatena-images/images/fotolife/t/treeapps/20130126/20130126231320.png)
+css編集ウインドウは以下にあります。 ![](/blog-images/images/fotolife/t/treeapps/20130126/20130126231320.png)
 
 <a id="cssを追加"></a>
 
@@ -81,12 +81,12 @@ heightで高さを固定し、はみ出した部分をスクロール表示 と�
 
 ### 修正後の画面を確認
 
-修正後の画面は以下の通りです。 ![f:id:treeapps:20130126231909p:plain](/hatena-images/images/fotolife/t/treeapps/20130126/20130126231909.png) macなのでスクロールバーが見えなくなってますが、windowsだとスクロールバーが見えているかと思います。
+修正後の画面は以下の通りです。 ![](/blog-images/images/fotolife/t/treeapps/20130126/20130126231909.png) macなのでスクロールバーが見えなくなってますが、windowsだとスクロールバーが見えているかと思います。
 
 <a id="表示されるカテゴリを調整"></a>
 
 ### 表示されるカテゴリを調整
 
-はてなブログの場合、カテゴリの表示順序を調整する事ができます。 ![f:id:treeapps:20130126232420p:plain](/hatena-images/images/fotolife/t/treeapps/20130126/20130126232420.png) 並び替え順を「記事が追加された順」にすることで、更新された記事が属するカテゴリを常に上位表示させる事ができます。 隠れてしまう（スクロールしないと見えない）カテゴリは更新が少ない事になるので、ファーストビューで表示されていなくても大きな問題にはならないでしょう。
+はてなブログの場合、カテゴリの表示順序を調整する事ができます。 ![](/blog-images/images/fotolife/t/treeapps/20130126/20130126232420.png) 並び替え順を「記事が追加された順」にすることで、更新された記事が属するカテゴリを常に上位表示させる事ができます。 隠れてしまう（スクロールしないと見えない）カテゴリは更新が少ない事になるので、ファーストビューで表示されていなくても大きな問題にはならないでしょう。
 
 「月刊アーカイブ」でも同様に縦に長くなりがちなので、同様の手法でスッキリ表示させる事ができます。

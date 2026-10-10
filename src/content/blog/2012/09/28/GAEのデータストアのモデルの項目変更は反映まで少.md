@@ -5,11 +5,11 @@ basename: "2012/09/28/GAEのデータストアのモデルの項目変更は反�
 sourceUrl: "/entry/2012/09/28/GAEのデータストアのモデルの項目変更は反映まで少/"
 legacyUrl: "/entry/2012/09/28/GAEのデータストアのモデルの項目変更は反映まで少/"
 categories: ["java", "gae", "slim3"]
-image: "/hatena-images/images/fotolife/t/treeapps/20170917/20170917230836.png"
+image: "/blog-images/images/fotolife/t/treeapps/20170917/20170917230836.png"
 ---
 少しタイムラグあるんですよね〜
 
-![f:id:treeapps:20170917230836p:plain](/hatena-images/images/fotolife/t/treeapps/20170917/20170917230836.png)
+![](/blog-images/images/fotolife/t/treeapps/20170917/20170917230836.png)
 
 モデルに項目を増やしてデプロイしたところ、以下のようなエラーが発生しました。
 

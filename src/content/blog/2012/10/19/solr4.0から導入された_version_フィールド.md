@@ -5,11 +5,11 @@ basename: "2012/10/19/solr4.0から導入された_version_フィールド"
 sourceUrl: "/entry/2012/10/19/solr4.0から導入された_version_フィールド/"
 legacyUrl: "/entry/2012/10/19/solr4.0から導入された_version_フィールド/"
 categories: ["solr"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180424/20180424102046.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180424/20180424102046.png"
 ---
 見慣れないフィールドが増えましたね〜
 
-![f:id:treeapps:20180424102046p:plain](/hatena-images/images/fotolife/t/treeapps/20180424/20180424102046.png)
+![](/blog-images/images/fotolife/t/treeapps/20180424/20180424102046.png)
 
 solr4.0がリリースされたので、早速使ってみました。 早速起動時に躓きました。。
 

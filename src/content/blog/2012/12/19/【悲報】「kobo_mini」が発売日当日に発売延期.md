@@ -5,11 +5,11 @@ basename: "2012/12/19/【悲報】「kobo_mini」が発売日当日に発売延�
 sourceUrl: "/entry/2012/12/19/【悲報】「kobo_mini」が発売日当日に発売延期/"
 legacyUrl: "/entry/2012/12/19/【悲報】「kobo_mini」が発売日当日に発売延期/"
 categories: ["製品レビュー"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180418/20180418112610.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180418/20180418112610.png"
 ---
 日本よ、これが楽天だ。
 
-![f:id:treeapps:20180418112610p:plain](/hatena-images/images/fotolife/t/treeapps/20180418/20180418112610.png)
+![](/blog-images/images/fotolife/t/treeapps/20180418/20180418112610.png)
 
 > 楽天は18日に発売を予定していた電子ブックリーダー「kobo mini」の発売を急遽延期した。
 >

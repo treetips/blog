@@ -6,28 +6,28 @@ import { bindings, defineConfig, triggers } from "cf/config";
  */
 
 export default defineConfig({
-	worker: {
-		name: "bunkei-programmer-net",
-		compatibilityDate: "2026-03-22",
-		entrypoint: "./src/worker.ts",
-		observability: {
-			enabled: true,
-		},
-		assets: {
-			runWorkerFirst: true,
-		},
-		triggers: [
-			triggers.fetch({
-				pattern: "bunkei-programmer.net/*",
-				zone: "bunkei-programmer.net",
-			}),
-			triggers.fetch({
-				pattern: "www.bunkei-programmer.net/*",
-				zone: "bunkei-programmer.net",
-			}),
-		],
-		env: {
-			ASSETS: bindings.assets(),
-		},
-	},
+  worker: {
+    name: "bunkei-programmer-net",
+    compatibilityDate: "2026-03-22",
+    entrypoint: "./src/worker.ts",
+    observability: {
+      enabled: true,
+    },
+    assets: {
+      runWorkerFirst: true,
+    },
+    triggers: [
+      triggers.fetch({
+        pattern: "bunkei-programmer.net/*",
+        zone: "bunkei-programmer.net",
+      }),
+      triggers.fetch({
+        pattern: "www.bunkei-programmer.net/*",
+        zone: "bunkei-programmer.net",
+      }),
+    ],
+    env: {
+      ASSETS: bindings.assets(),
+    },
+  },
 });

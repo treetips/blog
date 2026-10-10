@@ -5,11 +5,11 @@ basename: "2013/02/27/Google_Geocoding_APIの制約に関するよくある誤�
 sourceUrl: "/entry/2013/02/27/Google_Geocoding_APIの制約に関するよくある誤解/"
 legacyUrl: "/entry/2013/02/27/Google_Geocoding_APIの制約に関するよくある誤解/"
 categories: ["WEB API"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180425/20180425200506.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180425/20180425200506.png"
 ---
 結構制限って難しかったりするので要注意です〜
 
-![f:id:treeapps:20180425200506p:plain](/hatena-images/images/fotolife/t/treeapps/20180425/20180425200506.png)
+![](/blog-images/images/fotolife/t/treeapps/20180425/20180425200506.png)
 
 [緯度経度を一気にジオコーディング！ | tree-maps](https://www.tree-maps.com/geocoding/)
 
@@ -46,7 +46,7 @@ image: "/hatena-images/images/fotolife/t/treeapps/20180425/20180425200506.png"
 
 業務でよくある落とし穴として、会社から外部のネットに接続する際に1個のグローバルIPになって外に出る場合、ユーザ毎に回数がカウントされる筈が、社員全員が同じGIPになってしまうため、
 
-あっという間に回数制限オーバーし、403（利用制限オーバー）やstatic mapで以下の画像が表示される事があります。 ![f:id:treeapps:20130227000349p:plain](/hatena-images/images/fotolife/t/treeapps/20130227/20130227000349.png)
+あっという間に回数制限オーバーし、403（利用制限オーバー）やstatic mapで以下の画像が表示される事があります。 ![](/blog-images/images/fotolife/t/treeapps/20130227/20130227000349.png)
 
 ### サーバサイドでジオコーディングする必要がある場合
 

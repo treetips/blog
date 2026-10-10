@@ -1,6 +1,6 @@
 # bunkei-programmer.net
 
-はてなブログ `treeapps.hatenablog.com` を Astro 6.0.8 に移行したブログです。  
+はてなブログ `treeapps.hatenablog.com` から Astro 7 に移行したブログです。  
 記事は Markdown で管理し、Cloudflare Workers で配信します。
 
 ## 概要
@@ -10,6 +10,7 @@
 - 旧 `www` は apex に `301` リダイレクトします
 - 一覧、記事詳細、タグ一覧、RSS、sitemap を含みます
 - 画像はローカルに取り込み、必要に応じて MP4 に変換しています
+- はてなからの移行時の一次ツールは削除済みです (git 履歴・ADR 0002 を参照)
 
 ## 技術スタック
 
@@ -85,18 +86,15 @@ bun run deploy
 
 ## 記事データの再生成
 
-はてなブログのバックアップから Markdown を再生成する場合は、次を順番に実行します。
-
-```sh
-bun run content:generate
-bun run images:download
-```
-
-必要なら、ページング用のリダイレクトマップだけ再生成できます。
+ページング用のリダイレクトマップを再生成できます。
 
 ```sh
 bun run redirects:generate
 ```
+
+はてなブログからの再移行用ツール (`content:generate` / `images:download`) は
+本リポジトリから削除済みです。必要になった場合は git 履歴から
+`convert-hatena-export.ts` / `download-hatena-images.ts` を取り出してください。
 
 旧ブログ側のページング URL を再クロールしてスナップショットごと更新したい場合は、インターバルを指定して実行します。
 
@@ -147,9 +145,7 @@ bun run new-post -- "記事タイトル"
 - `bun run build`
   - 静的サイトを生成します
 - `bun run content:generate`
-  - はてなブログの export から Markdown を再生成します
-- `bun run images:download`
-  - 記事内で参照する画像を `public/hatena-images/` に保存します
+  - ページング用のリダイレクトマップを再生成します (旧 `convert-hatena-export` の呼び出しは削除済み)
 - `bun run x-card`
   - git 差分のある記事だけに対して X カード画像を生成し、`cardImage` を frontmatter に反映します
 - `bun run x-post`
@@ -163,7 +159,7 @@ bun run new-post -- "記事タイトル"
 
 - `src/content/blog/`
   - 記事本文の Markdown
-- `public/hatena-images/`
+- `public/blog-images/`
   - はてなブログから取り込んだ画像と動画
 - `src/generated/`
   - ビルド時に生成する補助データ

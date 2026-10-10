@@ -6,7 +6,7 @@ sourceUrl: "/entry/2013/02/22/WindowsVistaが余りに遅くて感動した/"
 legacyUrl: "/entry/2013/02/22/WindowsVistaが余りに遅くて感動した/"
 categories: ["mac"]
 ---
-![f:id:treeapps:20130222010448j:plain](/hatena-images/images/fotolife/t/treeapps/20130222/20130222010448.jpg) windowsのアプリの[スクリーンショット](http://d.hatena.ne.jp/keyword/%A5%B9%A5%AF%A5%EA%A1%BC%A5%F3%A5%B7%A5%E7%A5%C3%A5%C8)を撮るために、 長い間眠らせていたWindowsVista Ultimateをmacにインストールしました。
+![](/blog-images/images/fotolife/t/treeapps/20130222/20130222010448.jpg) windowsのアプリの[スクリーンショット](http://d.hatena.ne.jp/keyword/%A5%B9%A5%AF%A5%EA%A1%BC%A5%F3%A5%B7%A5%E7%A5%C3%A5%C8)を撮るために、 長い間眠らせていたWindowsVista Ultimateをmacにインストールしました。
 
 起動直後にやる事といえば[windows update](http://d.hatena.ne.jp/keyword/windows%20update)ですね。やってみました。
 

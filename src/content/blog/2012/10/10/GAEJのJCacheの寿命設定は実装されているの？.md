@@ -5,11 +5,11 @@ basename: "2012/10/10/GAEJのJCacheの寿命設定は実装されているの？
 sourceUrl: "/entry/2012/10/10/GAEJのJCacheの寿命設定は実装されているの？/"
 legacyUrl: "/entry/2012/10/10/GAEJのJCacheの寿命設定は実装されているの？/"
 categories: ["java", "gae"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180426/20180426142529.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180426/20180426142529.png"
 ---
 調べてみました〜
 
-![f:id:treeapps:20180426142529p:plain](/hatena-images/images/fotolife/t/treeapps/20180426/20180426142529.png)
+![](/blog-images/images/fotolife/t/treeapps/20180426/20180426142529.png)
 
 tree-tipsでmemcacheを試しに使ってみました。 挙動を見ていて気づいたのですが、JCacheの寿命設定って動く？と思いました。
 

@@ -5,7 +5,7 @@ basename: "2013/02/25/jetty.xmlの誤りを修正してjetty9を起動できる�
 sourceUrl: "/entry/2013/02/25/jetty.xmlの誤りを修正してjetty9を起動できるようにする手/"
 legacyUrl: "/entry/2013/02/25/jetty.xmlの誤りを修正してjetty9を起動できるようにする手/"
 categories: ["java", "tomcat", "mac", "jetty"]
-image: "/hatena-images/images/fotolife/t/treeapps/20130225/20130225015053.png"
+image: "/blog-images/images/fotolife/t/treeapps/20130225/20130225015053.png"
 ---
 [Jetty - Servlet Engine and Http Server](http://jetty.codehaus.org/jetty/)[!\[\]\(http://b.hatena.ne.jp/entry/image/http://jetty.codehaus.org/jetty/\)](http://b.hatena.ne.jp/entry/http://jetty.codehaus.org/jetty/) jettyは[java](http://d.hatena.ne.jp/keyword/java)の[サーブレット](http://d.hatena.ne.jp/keyword/%A5%B5%A1%BC%A5%D6%A5%EC%A5%C3%A5%C8)コンテナであり、[tomcat](http://d.hatena.ne.jp/keyword/tomcat)やJBossと競合するミドルウェアです。 [google app engine](http://d.hatena.ne.jp/keyword/google%20app%20engine)もjettyが使われており、実績も十分です。 仕事では[tomcat](http://d.hatena.ne.jp/keyword/tomcat)ばかりで、そろそろ新しいものを使いたかったので、jetty9を試すことにしました。 環境はmac（mountain lion）です。
 
@@ -65,7 +65,7 @@ Caused by: java.lang.ClassNotFoundException: org.eclipse.jetty.util.thread.Timer
     </Call>
 ```
 
-これですね。 TimerScheduler.TimerScheduler って非常に怪しい・・ [eclipse](http://d.hatena.ne.jp/keyword/eclipse)でこのjarをクラスパスに追加して、このクラスのパスが合っているか確認します。 ![f:id:treeapps:20130225015053p:plain](/hatena-images/images/fotolife/t/treeapps/20130225/20130225015053.png) ( #^^) パス間違ってるじゃん おいおい初期設定ファイルだぞこれ・・・ 正しくは以下ですね。
+これですね。 TimerScheduler.TimerScheduler って非常に怪しい・・ [eclipse](http://d.hatena.ne.jp/keyword/eclipse)でこのjarをクラスパスに追加して、このクラスのパスが合っているか確認します。 ![](/blog-images/images/fotolife/t/treeapps/20130225/20130225015053.png) ( #^^) パス間違ってるじゃん おいおい初期設定ファイルだぞこれ・・・ 正しくは以下ですね。
 
 ```
     <!-- =========================================================== -->
@@ -101,7 +101,7 @@ tree-macpro:bin tree$ WARNING: System properties and/or JVM args set.  Consider 
 2013-02-25 01:53:13.760:INFO:oejs.ServerConnector:main: Started ServerConnector@3cb5922e{HTTP/1.1}{0.0.0.0:8080}
 ```
 
-よし、起動OK。 ではブラウザで画面を開いてみましょう。 http://localhost:8080/test/ ![f:id:treeapps:20130225015520p:plain](/hatena-images/images/fotolife/t/treeapps/20130225/20130225015520.png) やっと動いた。 それにしても初期設定ファイルが間違ってるとか・・・ 1回でも起動すれば1発で解るレベルのエラーなんですけどね。
+よし、起動OK。 ではブラウザで画面を開いてみましょう。 http://localhost:8080/test/ ![](/blog-images/images/fotolife/t/treeapps/20130225/20130225015520.png) やっと動いた。 それにしても初期設定ファイルが間違ってるとか・・・ 1回でも起動すれば1発で解るレベルのエラーなんですけどね。
 
 フォルダ構成とか大体以下の感じの構成です。[tomcat](http://d.hatena.ne.jp/keyword/tomcat)とほぼ変わりませんね。 [tomcat](http://d.hatena.ne.jp/keyword/tomcat)でおなじみの webapps/ROOT もあり、解りやすいです。
 

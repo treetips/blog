@@ -5,9 +5,9 @@ basename: "2013/03/06/はてなブックマーク数をXML-RPCで取得して表
 sourceUrl: "/entry/2013/03/06/はてなブックマーク数をXML-RPCで取得して表示を高速/"
 legacyUrl: "/entry/2013/03/06/はてなブックマーク数をXML-RPCで取得して表示を高速/"
 categories: ["java", "サイト作成", "gae"]
-image: "/hatena-images/images/fotolife/t/treeapps/20160521/20160521191008.png"
+image: "/blog-images/images/fotolife/t/treeapps/20160521/20160521191008.png"
 ---
-実はXML-RPCで取得できるんですよ〜 ![f:id:treeapps:20160521191008p:plain](/hatena-images/images/fotolife/t/treeapps/20160521/20160521191008.png)
+実はXML-RPCで取得できるんですよ〜 ![](/blog-images/images/fotolife/t/treeapps/20160521/20160521191008.png)
 
 [自分のブログに「○○users」を表示する - はてなブックマークヘルプ](http://b.hatena.ne.jp/help/count#count)[!\[\]\(//b.hatena.ne.jp/entry/image/http://b.hatena.ne.jp/help/count%23count\)](http://b.hatena.ne.jp/entry/http://b.hatena.ne.jp/help/count%23count) はてなブックマークの数を、画像で取得する機能があり、皆使っていますね。 しかし手軽に使える反面、デメリットもあるのです。
 

@@ -5,17 +5,17 @@ basename: "2012/11/27/macでflacのメタデータを編集する"
 sourceUrl: "/entry/2012/11/27/macでflacのメタデータを編集する/"
 legacyUrl: "/entry/2012/11/27/macでflacのメタデータを編集する/"
 categories: ["mac"]
-image: "/hatena-images/images/fotolife/t/treeapps/20170829/20170829002500.png"
+image: "/blog-images/images/fotolife/t/treeapps/20170829/20170829002500.png"
 ---
 いくつか編集ソフトありますが、これはどうでしょう〜
 
-![f:id:treeapps:20170829002500p:plain](/hatena-images/images/fotolife/t/treeapps/20170829/20170829002500.png)
+![](/blog-images/images/fotolife/t/treeapps/20170829/20170829002500.png)
 
 windowsからmacに移行して以来、音楽データはmp3からflacに変更しました。 そのflacのアーティスト名やアルバム名、所謂メタデータを編集したかったんですが、これがなかなかいいツールが見つからない訳です。
 
 いろいろ探してみた結果、身近なところにいい編集ツールがありました。 songbirdでflacのメタデータが編集できた！
 
-実に簡単でした。 右クリック→メタデータを表示、で編集可能です。 以下は、手持ちのCDをflacにしてメタデータを編集している例です。 ![f:id:treeapps:20121127015346p:plain](/hatena-images/images/fotolife/t/treeapps/20121127/20121127015346.png) ![f:id:treeapps:20121127015355p:plain](/hatena-images/images/fotolife/t/treeapps/20121127/20121127015355.png) OKボタンをクリックした際にメタデータが更新されます。 たまに更新に失敗する事がありますが、リトライするか再起動すれば更新できます。
+実に簡単でした。 右クリック→メタデータを表示、で編集可能です。 以下は、手持ちのCDをflacにしてメタデータを編集している例です。 ![](/blog-images/images/fotolife/t/treeapps/20121127/20121127015346.png) ![](/blog-images/images/fotolife/t/treeapps/20121127/20121127015355.png) OKボタンをクリックした際にメタデータが更新されます。 たまに更新に失敗する事がありますが、リトライするか再起動すれば更新できます。
 
 songbirdはitunesを目指しているオープンソースの音楽ソフトウェアで、 firefoxでお馴染みのXUL（ズール）フレームワークで作られています。 従って、UIがfirefoxとそっくりなのです。操作感までそっくりです。
 

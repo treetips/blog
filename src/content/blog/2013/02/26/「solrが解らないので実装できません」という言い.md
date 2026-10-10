@@ -5,11 +5,11 @@ basename: "2013/02/26/「solrが解らないので実装できません」とい
 sourceUrl: "/entry/2013/02/26/「solrが解らないので実装できません」という言い/"
 legacyUrl: "/entry/2013/02/26/「solrが解らないので実装できません」という言い/"
 categories: ["solr", "mysql", "雑談"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180418/20180418122452.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180418/20180418122452.png"
 ---
 ちょっと、アレですね・・・
 
-![f:id:treeapps:20180418122452p:plain](/hatena-images/images/fotolife/t/treeapps/20180418/20180418122452.png)
+![](/blog-images/images/fotolife/t/treeapps/20180418/20180418122452.png)
 
 solrに限った話ではありませんが、最近「solrが解らないので実装できない・見積もりできない」という言い訳を沢山耳にします。
 

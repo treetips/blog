@@ -5,11 +5,11 @@ basename: "2012/10/10/GAEJでEHCacheを動かす"
 sourceUrl: "/entry/2012/10/10/GAEJでEHCacheを動かす/"
 legacyUrl: "/entry/2012/10/10/GAEJでEHCacheを動かす/"
 categories: ["java", "gae"]
-image: "/hatena-images/images/fotolife/t/treeapps/20170917/20170917230836.png"
+image: "/blog-images/images/fotolife/t/treeapps/20170917/20170917230836.png"
 ---
 ちゃんと動きますよ〜
 
-![f:id:treeapps:20170917230836p:plain](/hatena-images/images/fotolife/t/treeapps/20170917/20170917230836.png)
+![](/blog-images/images/fotolife/t/treeapps/20170917/20170917230836.png)
 
 [GAEJのJCacheの寿命設定は実装されているの？ - 文系プログラマによるTIPSブログ](/entry/2012/10/10/GAEJのJCacheの寿命設定は実装されているの？/)
 

@@ -5,11 +5,11 @@ basename: "2012/06/30/mac_book_pro_15インチ_retinaディスプレイモデル
 sourceUrl: "/entry/2012/06/30/mac_book_pro_15インチ_retinaディスプレイモデルレビュー：その1/"
 legacyUrl: "/entry/2012/06/30/mac_book_pro_15インチ_retinaディスプレイモデルレビュー：その1/"
 categories: ["mac"]
-image: "/hatena-images/images/fotolife/t/treeapps/20120630/20120630180134.png"
+image: "/blog-images/images/fotolife/t/treeapps/20120630/20120630180134.png"
 ---
 さて、ようやくmac book pro 15インチ retinaディスプレイモデルが届きました！
 
-![f:id:treeapps:20180418114029p:plain](/hatena-images/images/fotolife/t/treeapps/20180418/20180418114029.png)
+![](/blog-images/images/fotolife/t/treeapps/20180418/20180418114029.png)
 
 早速レビューしたいと思います。
 
@@ -31,15 +31,15 @@ image: "/hatena-images/images/fotolife/t/treeapps/20120630/20120630180134.png"
 
 ■ mac mini mid 2011
 
->![f:id:treeapps:20120630180134p:plain](/hatena-images/images/fotolife/t/treeapps/20120630/20120630180134.png)
+>![](/blog-images/images/fotolife/t/treeapps/20120630/20120630180134.png)
 
 ■ mac pro 2008
 
-![f:id:treeapps:20120630180209p:plain](/hatena-images/images/fotolife/t/treeapps/20120630/20120630180209.png)
+![](/blog-images/images/fotolife/t/treeapps/20120630/20120630180209.png)
 
 ■ mac book pro 2012 retina
 
-![f:id:treeapps:20120630180241p:plain](/hatena-images/images/fotolife/t/treeapps/20120630/20120630180241.png)
+![](/blog-images/images/fotolife/t/treeapps/20120630/20120630180241.png)
 
 キャプチャに表示されているCPU使用率が、大まかな平均値です。
 

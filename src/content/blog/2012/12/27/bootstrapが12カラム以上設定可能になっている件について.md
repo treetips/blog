@@ -5,15 +5,15 @@ basename: "2012/12/27/bootstrapが12カラム以上設定可能になってい�
 sourceUrl: "/entry/2012/12/27/bootstrapが12カラム以上設定可能になっている件について/"
 legacyUrl: "/entry/2012/12/27/bootstrapが12カラム以上設定可能になっている件について/"
 categories: ["サイト作成", "bootstrap"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180418/20180418115102.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180418/20180418115102.png"
 ---
 ひっそりと改善したようです〜
 
-![f:id:treeapps:20180418115102p:plain](/hatena-images/images/fotolife/t/treeapps/20180418/20180418115102.png)
+![](/blog-images/images/fotolife/t/treeapps/20180418/20180418115102.png)
 
 bootstrap2.0の時は確かにできなかったはずのカラム数を12個以上に設定する件ですが、現在できるようになっている事が解りました。 これはありがたい！！
 
-↓この画面で、 ![f:id:treeapps:20121227181604p:plain](/hatena-images/images/fotolife/t/treeapps/20121227/20121227181604.png) ↓こう設定すると、 ![f:id:treeapps:20121227181613p:plain](/hatena-images/images/fotolife/t/treeapps/20121227/20121227181613.png) ↓こんな風に今までの12カラムの上限値を突破することができます。
+↓この画面で、 ![](/blog-images/images/fotolife/t/treeapps/20121227/20121227181604.png) ↓こう設定すると、 ![](/blog-images/images/fotolife/t/treeapps/20121227/20121227181613.png) ↓こんな風に今までの12カラムの上限値を突破することができます。
 
 ```css
 .span16 {

@@ -8,7 +8,7 @@ categories: ["mac"]
 ---
 引き続き、キーボードにつレビューです〜
 
-![f:id:treeapps:20180418114029p:plain](/hatena-images/images/fotolife/t/treeapps/20180418/20180418114029.png)
+![](/blog-images/images/fotolife/t/treeapps/20180418/20180418114029.png)
 
 率直に言うと、硬いです。
 

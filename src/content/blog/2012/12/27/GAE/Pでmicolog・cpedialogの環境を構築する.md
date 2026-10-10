@@ -5,11 +5,11 @@ basename: "2012/12/27/GAE/Pでmicolog・cpedialogの環境を構築する"
 sourceUrl: "/entry/2012/12/27/GAE/Pでmicolog・cpedialogの環境を構築する/"
 legacyUrl: "/entry/2012/12/27/GAE/Pでmicolog・cpedialogの環境を構築する/"
 categories: ["gae", "サイト作成"]
-image: "/hatena-images/images/fotolife/t/treeapps/20170917/20170917230836.png"
+image: "/blog-images/images/fotolife/t/treeapps/20170917/20170917230836.png"
 ---
 ちょっとだけ試してみました〜
 
-![f:id:treeapps:20170917230836p:plain](/hatena-images/images/fotolife/t/treeapps/20170917/20170917230836.png)
+![](/blog-images/images/fotolife/t/treeapps/20170917/20170917230836.png)
 
 [tree-tips: GAEにmicologをインストールする | Google App Engine](http://tree-tips.appspot.com/gae/install/micolog/)[!\[\]\(//b.hatena.ne.jp/entry/image/http://tree-tips.appspot.com/gae/install/micolog/\)](http://b.hatena.ne.jp/entry/http://tree-tips.appspot.com/gae/install/micolog/) tree-tipsの方にGAE/Pでmicologを動かすための手順を公開したのですが、 どうやらmicolog以外にも適用できるようです。 この記事はsrcフォルダにmicologをコピーしましたが、cpedialogをコピーしても動きました。
 

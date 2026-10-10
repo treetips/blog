@@ -5,11 +5,11 @@ basename: "2012/12/24/GAE上で動くCMSを調べてみました"
 sourceUrl: "/entry/2012/12/24/GAE上で動くCMSを調べてみました/"
 legacyUrl: "/entry/2012/12/24/GAE上で動くCMSを調べてみました/"
 categories: ["サイト作成", "gae", "slim3"]
-image: "/hatena-images/images/fotolife/t/treeapps/20170917/20170917230836.png"
+image: "/blog-images/images/fotolife/t/treeapps/20170917/20170917230836.png"
 ---
 そんなに沢山は無いですが、一応有るんですよ〜
 
-![f:id:treeapps:20170917230836p:plain](/hatena-images/images/fotolife/t/treeapps/20170917/20170917230836.png)
+![](/blog-images/images/fotolife/t/treeapps/20170917/20170917230836.png)
 
 gaeで新サイトが作りたいと思い、CMS使えないか？と思ったので探してみました。 かなり少ないです。
 

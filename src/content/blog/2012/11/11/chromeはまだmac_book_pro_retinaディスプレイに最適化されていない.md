@@ -5,11 +5,11 @@ basename: "2012/11/11/chromeはまだmac_book_pro_retinaディスプレイに最
 sourceUrl: "/entry/2012/11/11/chromeはまだmac_book_pro_retinaディスプレイに最適化されていない/"
 legacyUrl: "/entry/2012/11/11/chromeはまだmac_book_pro_retinaディスプレイに最適化されていない/"
 categories: ["mac"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180418/20180418121733.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180418/20180418121733.png"
 ---
 微妙に最適化されてないっぽいんですよね〜
 
-![f:id:treeapps:20180418121733p:plain](/hatena-images/images/fotolife/t/treeapps/20180418/20180418121733.png)
+![](/blog-images/images/fotolife/t/treeapps/20180418/20180418121733.png)
 
 mac book pro retinaを購入する前からずっとchromeを使っていたのですが、 最近 [tree-tips](http://tree-tips.appspot.com) をchromeで見ていて気づいた事があります。
 

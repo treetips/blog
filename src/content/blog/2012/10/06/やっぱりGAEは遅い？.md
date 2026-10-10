@@ -5,11 +5,11 @@ basename: "2012/10/06/やっぱりGAEは遅い？"
 sourceUrl: "/entry/2012/10/06/やっぱりGAEは遅い？/"
 legacyUrl: "/entry/2012/10/06/やっぱりGAEは遅い？/"
 categories: ["gae", "slim3", "java"]
-image: "/hatena-images/images/fotolife/t/treeapps/20170917/20170917230836.png"
+image: "/blog-images/images/fotolife/t/treeapps/20170917/20170917230836.png"
 ---
 さあ、どうでしょう〜？
 
-![f:id:treeapps:20170917230836p:plain](/hatena-images/images/fotolife/t/treeapps/20170917/20170917230836.png)
+![](/blog-images/images/fotolife/t/treeapps/20170917/20170917230836.png)
 
 tree-tipsを作成した当初は、パフォーマンスをほとんど考えてませんでした。 コンテンツも少しづつ増えてきて、ちょっと遅いと感じたので対策しました。
 

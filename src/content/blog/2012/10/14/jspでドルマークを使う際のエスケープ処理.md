@@ -5,11 +5,11 @@ basename: "2012/10/14/jspでドルマークを使う際のエスケープ処理"
 sourceUrl: "/entry/2012/10/14/jspでドルマークを使う際のエスケープ処理/"
 legacyUrl: "/entry/2012/10/14/jspでドルマークを使う際のエスケープ処理/"
 categories: ["java"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180426/20180426142529.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180426/20180426142529.png"
 ---
 たまにこれが起きて面倒なのですよね〜
 
-![f:id:treeapps:20180426142529p:plain](/hatena-images/images/fotolife/t/treeapps/20180426/20180426142529.png)
+![](/blog-images/images/fotolife/t/treeapps/20180426/20180426142529.png)
 
 [tree-tips: 主にsolr・MySQLのtipsを掲載しています](http://tree-tips.appspot.com/)[!\[\]\(//b.hatena.ne.jp/entry/image/http://tree-tips.appspot.com/\)](http://b.hatena.ne.jp/entry/http://tree-tips.appspot.com/) シェルスクリプトの記事を書いていていて、シェルスクリプトの変数とel式の「${}」の記述が全く同じなのでエラーになりました。
 

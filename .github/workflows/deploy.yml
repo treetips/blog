@@ -15,7 +15,7 @@ jobs:
       contents: write
 
     env:
-      ASTRO_TELEMETRY_DISABLED: '1'
+      ASTRO_TELEMETRY_DISABLED: "1"
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 
@@ -38,6 +38,9 @@ jobs:
 
       - name: 依存関係をインストール
         run: bun install --frozen-lockfile
+
+      - name: Lint / フォーマット検査
+        run: bun run lint
 
       - name: ImageMagick をインストール
         run: sudo apt-get update && sudo apt-get install -y imagemagick

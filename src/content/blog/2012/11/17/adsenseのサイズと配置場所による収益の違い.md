@@ -5,11 +5,11 @@ basename: "2012/11/17/adsenseのサイズと配置場所による収益の違い
 sourceUrl: "/entry/2012/11/17/adsenseのサイズと配置場所による収益の違い/"
 legacyUrl: "/entry/2012/11/17/adsenseのサイズと配置場所による収益の違い/"
 categories: ["SEO", "サイト作成"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180418/20180418112745.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180418/20180418112745.png"
 ---
 最適解は無いので、皆で頑張って試行錯誤していきましょう〜
 
-![f:id:treeapps:20180418112745p:plain](/hatena-images/images/fotolife/t/treeapps/20180418/20180418112745.png)
+![](/blog-images/images/fotolife/t/treeapps/20180418/20180418112745.png)
 
 [tree-tips: 主にsolr・MySQLのtipsを掲載しています](http://tree-tips.appspot.com)[!\[\]\(//b.hatena.ne.jp/entry/image/http://tree-tips.appspot.com\)](http://b.hatena.ne.jp/entry/http://tree-tips.appspot.com) tree-tipsにはadsenseを主に3個表示しています。 tree-tipsを運用していて、広告がテキストか画像か、広告が縦長か横長か、で収益が違うという興味深い結果がでました。
 

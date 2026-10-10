@@ -5,11 +5,11 @@ basename: "2012/11/03/twitter_bootstrapをカスタマイズして使う"
 sourceUrl: "/entry/2012/11/03/twitter_bootstrapをカスタマイズして使う/"
 legacyUrl: "/entry/2012/11/03/twitter_bootstrapをカスタマイズして使う/"
 categories: ["サイト作成", "bootstrap"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180418/20180418115102.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180418/20180418115102.png"
 ---
 直接本体をいじらず、別途カスタマイズする事ができます〜
 
-![f:id:treeapps:20180418115102p:plain](/hatena-images/images/fotolife/t/treeapps/20180418/20180418115102.png)
+![](/blog-images/images/fotolife/t/treeapps/20180418/20180418115102.png)
 
 [Bootstrap](http://twitter.github.com/bootstrap/)[!\[\]\(//b.hatena.ne.jp/entry/image/http://twitter.github.com/bootstrap/\)](http://b.hatena.ne.jp/entry/http://twitter.github.com/bootstrap/) [tree-tips](http://tree-tips.appspot.com/)ではtwitter bootstrapを使ってデザインしています。
 
@@ -17,11 +17,11 @@ image: "/hatena-images/images/fotolife/t/treeapps/20180418/20180418115102.png"
 
 ### bootstrapをカスタマイズしたデザイン
 
-![f:id:treeapps:20121103144948p:plain](/hatena-images/images/fotolife/t/treeapps/20121103/20121103144948.png)
+![](/blog-images/images/fotolife/t/treeapps/20121103/20121103144948.png)
 
 ### bootstrapをカスタマイズしないデザイン
 
-![f:id:treeapps:20121103145007p:plain](/hatena-images/images/fotolife/t/treeapps/20121103/20121103145007.png)
+![](/blog-images/images/fotolife/t/treeapps/20121103/20121103145007.png)
 
 色々いじってるので単純な比較ではありませんが、 カスタマイズしない場合はmargin・paddingが酷い事になっているように見えます。
 

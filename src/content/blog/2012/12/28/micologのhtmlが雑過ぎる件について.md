@@ -5,11 +5,11 @@ basename: "2012/12/28/micologのhtmlが雑過ぎる件について"
 sourceUrl: "/entry/2012/12/28/micologのhtmlが雑過ぎる件について/"
 legacyUrl: "/entry/2012/12/28/micologのhtmlが雑過ぎる件について/"
 categories: ["gae"]
-image: "/hatena-images/images/fotolife/t/treeapps/20170917/20170917230836.png"
+image: "/blog-images/images/fotolife/t/treeapps/20170917/20170917230836.png"
 ---
 むむむむ・・・
 
-![f:id:treeapps:20170917230836p:plain](/hatena-images/images/fotolife/t/treeapps/20170917/20170917230836.png)
+![](/blog-images/images/fotolife/t/treeapps/20170917/20170917230836.png)
 
 [Google Code Archive - Long-term storage for Google Code Project Hosting.](http://code.google.com/p/micolog/)[!\[\]\(//b.hatena.ne.jp/entry/image/http://code.google.com/p/micolog/\)](http://b.hatena.ne.jp/entry/http://code.google.com/p/micolog/) micolog0.74で新たにブログを始めようと思い、デフォルトテンプレートのhtmlを見ながらオレオレテンプレを作っているのですが、micologのhtmlソースが雑すぎる！と感じています。
 

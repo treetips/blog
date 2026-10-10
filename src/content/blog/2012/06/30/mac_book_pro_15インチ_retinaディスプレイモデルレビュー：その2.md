@@ -5,17 +5,17 @@ basename: "2012/06/30/mac_book_pro_15インチ_retinaディスプレイモデル
 sourceUrl: "/entry/2012/06/30/mac_book_pro_15インチ_retinaディスプレイモデルレビュー：その2/"
 legacyUrl: "/entry/2012/06/30/mac_book_pro_15インチ_retinaディスプレイモデルレビュー：その2/"
 categories: ["mac"]
-image: "/hatena-images/images/fotolife/t/treeapps/20120630/20120630201447.png"
+image: "/blog-images/images/fotolife/t/treeapps/20120630/20120630201447.png"
 ---
 レビューその1に引き続き、ディスプレイ関連についてレビューしてみます〜
 
-![f:id:treeapps:20180418114029p:plain](/hatena-images/images/fotolife/t/treeapps/20180418/20180418114029.png)
+![](/blog-images/images/fotolife/t/treeapps/20180418/20180418114029.png)
 
 ブラウザ上のフォントの見え方
 
 まず、これを見て下さい。左がGoogle Chromeで、右がsafariです。
 
-![f:id:treeapps:20120630201447p:plain](/hatena-images/images/fotolife/t/treeapps/20120630/20120630201447.png)
+![](/blog-images/images/fotolife/t/treeapps/20120630/20120630201447.png)
 
 ↑大分見難いですが、chromeのほうは異様にフォントがぼやけています
 

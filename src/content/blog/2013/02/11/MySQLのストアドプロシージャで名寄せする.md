@@ -5,9 +5,9 @@ basename: "2013/02/11/MySQLのストアドプロシージャで名寄せする"
 sourceUrl: "/entry/2013/02/11/MySQLのストアドプロシージャで名寄せする/"
 legacyUrl: "/entry/2013/02/11/MySQLのストアドプロシージャで名寄せする/"
 categories: ["mysql"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180418/20180418131549.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180418/20180418131549.png"
 ---
-![f:id:treeapps:20180418131549p:plain](/hatena-images/images/fotolife/t/treeapps/20180418/20180418131549.png)最近「電話番号」または「メールアドレス」が同一の場合同一人物とみなす、 という処理が必要になったので、MySQLを使って名寄せする処理を書きました。
+![](/blog-images/images/fotolife/t/treeapps/20180418/20180418131549.png)最近「電話番号」または「メールアドレス」が同一の場合同一人物とみなす、 という処理が必要になったので、MySQLを使って名寄せする処理を書きました。
 
 頭がいい人たちは非常に高度で少ない手順で名寄せする方式を組み上げているかと思います。 が、私のような凡人にそれは理解できないので、自分が理解できる、手の届く処理を書きました。
 

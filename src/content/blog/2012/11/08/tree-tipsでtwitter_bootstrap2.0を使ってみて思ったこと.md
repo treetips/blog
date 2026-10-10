@@ -5,11 +5,11 @@ basename: "2012/11/08/tree-tipsでtwitter_bootstrap2.0を使ってみて思っ�
 sourceUrl: "/entry/2012/11/08/tree-tipsでtwitter_bootstrap2.0を使ってみて思ったこと/"
 legacyUrl: "/entry/2012/11/08/tree-tipsでtwitter_bootstrap2.0を使ってみて思ったこと/"
 categories: ["サイト作成"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180418/20180418115102.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180418/20180418115102.png"
 ---
 ちょっとした感想を書いてみました〜
 
-![f:id:treeapps:20180418115102p:plain](/hatena-images/images/fotolife/t/treeapps/20180418/20180418115102.png)
+![](/blog-images/images/fotolife/t/treeapps/20180418/20180418115102.png)
 
 前回の記事に引き続き、思ったことシリーズです。 結論を先に言ってしまうと、bootstrapを使ってよかった事は殆ど無かった
 

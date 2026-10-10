@@ -5,11 +5,11 @@ basename: "2012/11/10/retina_ipadのバッテリーの持ち方が半端じゃ�
 sourceUrl: "/entry/2012/11/10/retina_ipadのバッテリーの持ち方が半端じゃない件/"
 legacyUrl: "/entry/2012/11/10/retina_ipadのバッテリーの持ち方が半端じゃない件/"
 categories: ["mac"]
-image: "/hatena-images/images/fotolife/t/treeapps/20180418/20180418114029.png"
+image: "/blog-images/images/fotolife/t/treeapps/20180418/20180418114029.png"
 ---
 結構ビビりますよ〜
 
-![f:id:treeapps:20180418114029p:plain](/hatena-images/images/fotolife/t/treeapps/20180418/20180418114029.png)
+![](/blog-images/images/fotolife/t/treeapps/20180418/20180418114029.png)
 
 初代ipadもそうだったんですが、ipadってなんでこんなにバッテリーが持つの？と常々思っています。 私の場合は充電は1〜2ヶ月に1回しかしていないです。
 
