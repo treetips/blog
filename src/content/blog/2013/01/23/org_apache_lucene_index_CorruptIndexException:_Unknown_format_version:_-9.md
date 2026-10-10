@@ -6,6 +6,7 @@ sourceUrl: "/entry/2013/01/23/org_apache_lucene_index_CorruptIndexException:_Unk
 legacyUrl: "/entry/2013/01/23/org_apache_lucene_index_CorruptIndexException:_Unknown_format_version:_-9/"
 categories: ["solr"]
 image: "/blog-images/images/fotolife/t/treeapps/20180424/20180424102046.png"
+cardImage: "/2013/01/23/card-image-20261010193624.png"
 ---
 solrの例外エラーについてです〜
 

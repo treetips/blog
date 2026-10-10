@@ -6,6 +6,7 @@ sourceUrl: "/entry/programming-info/"
 legacyUrl: "/entry/programming-info/"
 categories: ["IT業界", "ライブラリ"]
 image: "/blog-images/images/fotolife/t/treeapps/20180418/20180418115102.png"
+cardImage: "/card-image-20261010194308.png"
 ---
 この記事では私が日頃から調査している技術の動向を追い続ける記事です。ずっと追記してメモっていきます。（この記事のリンクはブログタイトル下のメニューにもあります）
 

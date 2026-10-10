@@ -6,6 +6,7 @@ sourceUrl: "/entry/sites/"
 legacyUrl: "/entry/sites/"
 categories: ["WEB開発"]
 image: "/blog-images/images/fotolife/t/treeapps/20180418/20180418115102.png"
+cardImage: "/card-image-20261010194309.png"
 ---
 管理人treeは、このブログ以外にもサイトを管理しています。
 

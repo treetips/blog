@@ -6,6 +6,7 @@ sourceUrl: "/entry/use-software/"
 legacyUrl: "/entry/use-software/"
 categories: ["ソフトウェア"]
 image: "/blog-images/images/fotolife/t/treeapps/20170829/20170829002500.png"
+cardImage: "/card-image-20261010194310.png"
 ---
 私が開発やネット関連で実際に使用している有償・無償のMACのソフトウェアを紹介します。
 
