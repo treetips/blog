@@ -6,6 +6,7 @@ dist/
 # Cloudflare Wrangler local state and logs
 .wrangler/
 .wrangler-logs/
+.cloudflare/
 
 # Local scratch files
 .tmp/

@@ -7,7 +7,8 @@
     "build": "bun run redirects:generate && astro build",
     "check": "astro check",
     "content:generate": "bun scripts/convert-hatena-export.ts backup/treeapps.hatenablog.com.export.txt --output src/content/blog && bun run redirects:generate",
-    "deploy": "bun run build && WRANGLER_LOG_PATH=.wrangler-logs bunx wrangler deploy",
+    "deploy": "bun run build && bunx wrangler build --x-new-config --x-cf-build-output && bunx cf deploy --prebuilt --dry-run && bunx cf deploy --prebuilt",
+    "deploy:dry-run": "bun run build && bunx wrangler build --x-new-config --x-cf-build-output && bunx cf deploy --prebuilt --dry-run",
     "dev": "bun run redirects:generate && astro dev",
     "images:download": "bun scripts/download-hatena-images.ts src/content/blog --output public/hatena-images",
     "preview": "astro preview",
@@ -23,8 +24,10 @@
   "devDependencies": {
     "@astrojs/check": "0.9.10",
     "@tailwindcss/vite": "^4.3.3",
+    "cf": "^1.0.0-beta.12",
     "tailwindcss": "^4.3.3",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "wrangler": "^4.147.0"
   },
   "engines": {
     "node": ">=24.0.0"
