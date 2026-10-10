@@ -1,10 +1,15 @@
 import tailwind from "@tailwindcss/vite";
 import { defineConfig, sharpImageService } from "astro/config";
+import { satteri } from "@astrojs/markdown-satteri";
+import { imageSizePlugin } from "./src/markdown/image-size-plugin.js";
 
 export default defineConfig({
   site: "https://bunkei-programmer.net",
   output: "static",
   markdown: {
+    processor: satteri({
+      hastPlugins: [imageSizePlugin],
+    }),
     shikiConfig: {
       langAlias: {
         mysql: "sql",
