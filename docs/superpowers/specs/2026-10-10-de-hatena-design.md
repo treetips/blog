@@ -52,13 +52,12 @@
    - 現行の canonical redirect, `/?page=N` → `/entry/...` redirect, `env.ASSETS.fetch` の流しは変えない
    - 期待: Worker が はてなドメインに fetch しないコードになる
 
-4. **width/height の rehype プラグイン (ビルド時)**
-   - `src/markdown/rehype-image-size.ts` (新規):
-     - 生成 HTML の `<img src>` が `/blog-images/` を指すとき、`public/blog-images/` にある実ファイルの寸法を sharp で読み `width` / `height` 属性を注入
-     - `decoding="async"` も付けてよい(折に触れて注入する他属性は拡張しない)
-   - `astro.config.ts` の `markdown.rehypePlugins` に1行追加
-   - markdown 事態は無変更。CLS(レイアウトシフト)はこれで消えるはず
-   - 丸のオプション(media中に512px以下などの分岐)はつけない
+4. **width/height 注入プラグイン (ビルド時)**
+   - 実装: `src/markdown/image-size-plugin.ts` (Sätteri hast plugin / Astro 7 既定プロセッサ)
+   - 生成 HTML の `<img src>` が `/blog-images/` を指すとき、`public/blog-images/` にある実ファイルの寸法を sharp で読み `width` / `height` 属性を注入し、`decoding="async"` も付ける。それ以外の属性は導入しない
+   - 旧 `markdown.rehypePlugins` (unified) は Astro 7 で default 外 (セットで `@astrojs/markdown-remark` が必要かつ非推奨) のため、Sätteri の `hastPlugins` を採用 (`@astrojs/markdown-satteri` を依存に追加)
+   - markdown 自体は無変更。CLS (レイアウトシフト) はこれで消えるはず
+   - 条件分岐 (画面幅など) は設けない
 
 5. **ツール整備 (AGENTS.md の要求を満たす最小構成)**
    - `bun add -d vite-plus`(バージョンは1.1.0固定)
@@ -73,7 +72,7 @@
 
 ## URL の単一の真実源
 
-- 画像 URL は **`/blog-images/`** だけが単一の真実源。旧 `/hatena-images/` は Worker の 301 の 1 箇所と、rehype プラグインの prefix 判定にしか現れない。
+- 画像 URL は **`/blog-images/`** だけが単一の真実源。旧 `/hatena-images/` は Worker の 301 の 1 箇所と、寸法注入プラグインの prefix 判定にしか現れない。
 
 ## バリデーション
 
@@ -98,7 +97,7 @@
 2. vp tooling 追加 ('format apply' コミットを最初に)
 3. Worker 変更 (hatena CDN削除+301 追加)
 4. Asset rename (git mv) + md convert (script → run → verify → remove script)
-5. rehype plugin 実装
+5. 寸法注入 plugin 実装
 6. docs 更新 + skill 更新
 7. 検証 (lint/build/curl/greps) 全経路
 8. PR提出
