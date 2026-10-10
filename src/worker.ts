@@ -6,7 +6,7 @@ export interface Env {
 
 const CANONICAL_HOST = "bunkei-programmer.net";
 const WWW_HOST = "www.bunkei-programmer.net";
-const HATENA_IMAGE_CDN = "https://cdn-ak.f.st-hatena.com";
+const LEGACY_IMAGES_PREFIX = "/hatena-images/";
 
 function redirectToCanonical(request: Request) {
   const url = new URL(request.url);
@@ -36,6 +36,17 @@ export default {
   async fetch(request: Request, env: Env) {
     const url = new URL(request.url);
 
+    // はてな時代の画像 URL (/hatena-images/*) を新 URL に 301 で受ける。
+    // Why not: 404 にするのは外部リンク・ブックマーク・検索インデックスを
+    // 壊すため。canonical 補正より先に置くのは www → apex との往復を
+    // 1 回で済ませるため (ADR 0002)。
+    if (url.pathname.startsWith(LEGACY_IMAGES_PREFIX)) {
+      url.protocol = "https:";
+      url.hostname = CANONICAL_HOST;
+      url.pathname = url.pathname.replace(/^\/hatena-images/, "/blog-images");
+      return Response.redirect(url.toString(), 301);
+    }
+
     if (url.protocol !== "https:" || url.hostname === WWW_HOST) {
       return redirectToCanonical(request);
     }
@@ -47,17 +58,6 @@ export default {
       }
     }
 
-    const assetsResponse = await env.ASSETS.fetch(request);
-    if (assetsResponse.status !== 404 || !url.pathname.startsWith("/hatena-images/")) {
-      return assetsResponse;
-    }
-
-    const remoteUrl = `${HATENA_IMAGE_CDN}${url.pathname.replace(/^\/hatena-images/, "")}${url.search}`;
-    return fetch(remoteUrl, {
-      headers: {
-        "user-agent": request.headers.get("user-agent") ?? "Mozilla/5.0",
-        referer: "https://treeapps.hatenablog.com/",
-      },
-    });
+    return env.ASSETS.fetch(request);
   },
 };
