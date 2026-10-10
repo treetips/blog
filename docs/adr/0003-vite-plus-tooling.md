@@ -13,7 +13,8 @@ AGENTS.md に「ソースの変更後は lint → フォーマッター → ビ�
 ## 決定
 
 - **Vite+ (`vp` CLI) を採用する**
-- `vite-plus` を devDependency として固定 (1.1.0) し、`bunx vp check` を lint+format の実行手段とする
+- `vite-plus` を devDependency として固定 (1.1.0) し、scripts 内で素の `vp check` を呼び出して lint+format の実行手段とする (scripts 内では `node_modules/.bin` から自動解決されるため、bunx やグローバル CLI は不要)
+- グローバル CLI は導入しない。端末から直接使いたい場合は `./node_modules/.bin/vp check` か `bun run lint` / `bun run format` で実行する
 - スパイク結果:
   - Astro 7.2.9 は内部 Vite 8.1.0 を同梱しており、Vite+ 移行の前提 (Vite 8+) を満たす
   - プロジェクトの完全移行 (`vp build` / `vp dev` への乗り換え) はせず、`vp check` 単体を既存 Astro のビルドパイプラインと併用する (スパイクで `vp check` が未移行の Astro プロジェクトで動作することを確認)
