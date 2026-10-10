@@ -62,13 +62,15 @@ export default {
       }
     }
 
-    // _headers は Assets パイプラインを通る直配信でのみ効く可能性があり、
-    // ASSETS binding 経由では適用が保証されない。Why: 画像の毎回の取り直しを
-    // 止めるため、binding 経由でも Cache-Control が確実に付くようにする
-    // (既に付いている場合は上書きしない) (ADR 0004)。
+    // Workers Static Assets は既定値として max-age=0 を常時付与するため、
+    // 「既存が無ければ付与」の分岐では常に no-op になる。
+    // Why: 画像 URL は内容不変 (はてなのタイムスタンプ付きファイル名) なので
+    // 上書きは安全。_headers と拡張子ルールの同時一致による連結値も、
+    // ここで確定値に置き換えることで一意にする。404 は immutable にしない
+    // (誤 URL を 1 年間キャッシュさせるリスク回避) (ADR 0004)。
     if (url.pathname.startsWith(BLOG_IMAGES_PREFIX)) {
       const assetsResponse = await env.ASSETS.fetch(request);
-      if (assetsResponse.headers.get("cache-control")) {
+      if (assetsResponse.status !== 200) {
         return assetsResponse;
       }
       const headers = new Headers(assetsResponse.headers);

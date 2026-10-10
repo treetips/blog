@@ -22,7 +22,8 @@
 2. **下地色を壁紙の平均色へ変更** — sharp で算出した `#dad4dd` (旧 `#e0d1d5`)
 3. **画像の長期キャッシュ**
    - `public/_headers` に `/blog-images/*` → `Cache-Control: public, max-age=31536000, immutable` を追加
-   - Worker 側でも `/blog-images/*` の ASSETS 応答に Cache-Control が無い場合のみ付与 (ASSETS binding 経由では `_headers` が適用される保証がないため)。既存の cache-control は上書きしない
+   - **Worker 側で無条件に上書き** (`status 200` の `/blog-images/*` ASSETS 応答に確定値を付与)。理由: Workers Static Assets は既定値として `Cache-Control: public, max-age=0, must-revalidate` を常時応答に付けるため「無ければ付与」の分岐は常に no-op になる。また `_headers` では複数ルール (`/blog-images/*` と `/*.jpg` 等) の同時一致で同名ヘッダーが連結され得るため、Worker で確定値に整理するのが確実
+   - 404 応答には immutable を付けない (誤 URL を 1 年間キャッシュさせるリスク回避)
 
 ## 妥当性
 
@@ -32,7 +33,7 @@
 
 ## トレードオフ
 
-- `_headers` と Worker の二重防御になる (いずれか片方でも immutable は付く)
+- `_headers` の本来の値と Worker の上書きが重なる構成 (ヘッダーの確定は Worker 側が authority)
 - 変更後の視覚確認は Safari (会社/自宅) で行う必要がある (本 ADR の効果はブラウザ依存のため自動検証は不可)
 
 ## 留意
