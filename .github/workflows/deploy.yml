@@ -39,6 +39,9 @@ jobs:
       - name: 依存関係をインストール
         run: bun install --frozen-lockfile
 
+      - name: Lint / フォーマット検査
+        run: bun run lint
+
       - name: ImageMagick をインストール
         run: sudo apt-get update && sudo apt-get install -y imagemagick
 

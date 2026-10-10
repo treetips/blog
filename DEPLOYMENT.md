@@ -6,11 +6,13 @@
 ASTRO_TELEMETRY_DISABLED=1 bun run build
 ```
 
-はてなブログのバックアップから記事や画像を再生成する場合は、先に次を実行します。
+はてな移行用の再生成ツール (`content:generate` / `images:download`) は削除済みです。
+必要になった場合は git 履歴から復旧してください (README.md も参照)。
+
+ページング用のリダイレクトマップだけ再生成する場合は次を実行します。
 
 ```sh
 bun run content:generate
-bun run images:download
 ```
 
 ## デプロイ
