@@ -1,0 +1,74 @@
+@reference "./reference.css";
+
+/* 記事ページの右余白に置く固定目次 (TOC rail)。
+   Why not: パネル (.panel--glass) の中には置かない。backdrop-filter が
+   fixed 要素の包含ブロックを作るため、パネル内に置くと位置基準が壊れ、
+   overflow-hidden で切り取られてしまう。
+   位置の基準はパネル右端。.shell の幅は min(1080px, 100vw - 2rem) で
+   中央寄せなので、横幅 1080px 以上では右端は常に 50% + 540px。 */
+.toc-rail {
+  position: fixed;
+  top: 6.5rem;
+  left: calc(50% + 552px);
+  right: 0.75rem;
+  z-index: 20;
+  display: none;
+  max-height: calc(100vh - 6.5rem - 9rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0.85rem 1rem 0.95rem;
+  border: 1px solid var(--color-site-glass-border);
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0.2));
+  box-shadow: var(--shadow-site-card);
+  backdrop-filter: blur(10px) saturate(1.1);
+  -webkit-backdrop-filter: blur(10px) saturate(1.1);
+  color: var(--color-site-text);
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
+/* Why not: 1280px ではパネル右の余白が 100px しかなく目次が潰れる。
+   余白 (1080px が採用される前提) が目次の最低幅を確保できる 1440px を
+   出現条件とする。 */
+@media (min-width: 1440px) {
+  .toc-rail {
+    display: block;
+  }
+}
+
+.toc-rail-heading {
+  @apply m-0 mb-2 pb-1.5 border-b border-site-glass-border text-[0.72rem] font-bold tracking-[0.14em] text-site-muted;
+}
+
+.toc-rail-list,
+.toc-rail-sublist {
+  @apply m-0 list-none p-0;
+}
+
+.toc-rail-sublist {
+  @apply mt-0.5 ml-[0.95em];
+}
+
+.toc-rail-link {
+  @apply block py-1 no-underline text-site-muted;
+  border-radius: 6px;
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.toc-rail-link:hover {
+  @apply text-site-accent;
+  background-color: rgba(255, 255, 255, 0.35);
+}
+
+.toc-rail-link[data-toc-active] {
+  @apply text-site-accent font-bold;
+  background-color: rgba(255, 255, 255, 0.45);
+}
+
+/* 目次のアンカーで跳んだとき、見出しが窓の上端に張り付かないように一枚分の余白を残す。 */
+.article-body :is(h1, h2, h3, h4, h5, h6) {
+  scroll-margin-top: 1.5rem;
+}

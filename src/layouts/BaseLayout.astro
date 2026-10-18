@@ -119,6 +119,10 @@ const jsonLdItems = Array.isArray(structuredData) ? structuredData : [structured
         </script>
       </div>
     </div>
+    <!-- パネルの外側 (backdrop-filter の包含ブロック外) に置く要素用の差し込み口。
+         fixed 配置の TOC など、パネルの overflow-hidden / backdrop-filter の
+         影響を受けると困るものはここ経由で出力する。 -->
+    <slot name="overlay" />
     <div class="floating-actions" aria-label="ページ操作">
       <a class="floating-action liquid-shadow" href="/" aria-label="トップページへ移動" title="Homeに戻る">
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
