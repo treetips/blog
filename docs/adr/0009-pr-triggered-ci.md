@@ -31,3 +31,9 @@ human partner が「PR 作成時に CI を実行したい」と要求した。
 - merge ゲート (チェック必須化・マージ禁止) は GitHub リポジトリ設定側の作業で、
   このワークフロー追加だけでは強制されない
 - ワークフローファイルの変更自体は初回マージまで既存 PR (PR #8) 上で検証される
+- 必須ステータスチェックの context は**チェックラン名 (`ci`) で指定する**。
+  GitHub UI 上の表示は `CI / ci` (workflow名 / job名) に合成されているが、
+  Branch Protection API の `contexts` にその形で渡すとワークフロー名まで
+  照合されず報告されないチェック扱いになり、CI が緑でも merge が BLOCKED になる
+  (2026-10-19 実測)。`contexts: ["ci"]` で登録すると GitHub Actions アプリ
+  (`app_id: 15368`) に解決される
