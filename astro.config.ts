@@ -22,6 +22,13 @@ export default defineConfig({
   image: {
     service: sharpImageService(),
   },
+  experimental: {
+    // 983ページの静的生成をワーカースレッドで分散して速くするため。
+    // Why not: アダプター (@astrojs/cloudflare) が prerenderer を提供していない
+    // 静的出力なので、このフラグの効果が最大化する構成だから。
+    // ビルドがメモリ不足・逆に遅化した場合は workers 数を下げて調整する。
+    parallelPrerender: true,
+  },
   vite: {
     plugins: [
       tailwind(),
