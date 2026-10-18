@@ -9,6 +9,7 @@
     "content:generate": "bun run redirects:generate",
     "lint": "vp check",
     "format": "vp check --fix",
+    "test": "bun test",
     "deploy": "bun run build && bunx wrangler build --x-new-config --x-cf-build-output && bunx cf deploy --prebuilt --dry-run && bunx cf deploy --prebuilt",
     "deploy:dry-run": "bun run build && bunx wrangler build --x-new-config --x-cf-build-output && bunx cf deploy --prebuilt --dry-run",
     "dev": "bun run redirects:generate && astro dev",

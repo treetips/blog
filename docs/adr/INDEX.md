@@ -11,6 +11,7 @@
 | 0007 | body 背景を撤去し theme-color で遷移フレームを制御            | Accepted           | 表示                        |
 | 0008 | experimental.parallelPrerender を有効化                       | Accepted           | ビルド                      |
 | 0009 | PR トリガーの CI を追加                                       | Accepted           | CI                          |
+| 0010 | 記事ページ右余白の固定目次 (TOC) を追加                       | Accepted           | 記事ページ表示              |
 
 - ステータス凡例
   - 提案済み (Proposed)

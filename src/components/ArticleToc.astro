@@ -1,0 +1,119 @@
+---
+import { buildTocTree } from '../lib/toc.js';
+
+interface Props {
+  /** render() が返す見出し一覧。深度の絞り込みは buildTocTree 側で行う。 */
+  headings?: Array<{ depth: number; slug: string; text: string }>;
+}
+
+const { headings } = Astro.props;
+// Why not: h2 / h3 のみを目次にする。旧はてな移行分に深い見出しが多く、
+// h4 以降まで出すと右ナビが読みにくい長さになるため。
+const chapters = buildTocTree(headings);
+---
+
+{
+  chapters.length > 0 && (
+    <nav class="toc-rail" aria-label="目次" data-toc-rail>
+      <p class="toc-rail-heading">目次</p>
+      <ol class="toc-rail-list">
+        {chapters.map((chapter) => (
+          <li>
+            <a class="toc-rail-link" data-toc-link href={`#${chapter.heading.slug}`}>
+              {chapter.heading.text}
+            </a>
+            {chapter.children.length > 0 && (
+              <ul class="toc-rail-sublist">
+                {chapter.children.map((section) => (
+                  <li>
+                    <a class="toc-rail-link" data-toc-link href={`#${section.slug}`}>
+                      {section.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ol>
+    </nav>
+  )
+}
+
+<script>
+  // スクロール連動ハイライト。IntersectionObserver で「見出しバンド」を
+  // 監視し、画面内で最後に現れた見出しを目次上で強調する。
+  const rail = document.querySelector<HTMLElement>('[data-toc-rail]');
+
+  if (rail) {
+    const links = rail.querySelectorAll<HTMLAnchorElement>('[data-toc-link]');
+    const linksBySlug = new Map<string, HTMLAnchorElement>();
+    for (const link of links) {
+      const href = decodeURIComponent(link.getAttribute('href') ?? '').replace(/^#/, '');
+      if (href) {
+        linksBySlug.set(href, link);
+      }
+    }
+
+    const targets: HTMLElement[] = [];
+    for (const slug of linksBySlug.keys()) {
+      const element = document.getElementById(slug);
+      if (element) {
+        targets.push(element);
+      }
+    }
+
+    const setActive = (activeSlug: string) => {
+      for (const [slug, link] of linksBySlug) {
+        const isActive = slug === activeSlug;
+        link.toggleAttribute('data-toc-active', isActive);
+        if (isActive) {
+          link.setAttribute('aria-current', 'true');
+          // Why not: 長い目次でアクティブ項目が画面外に見失われないよう、
+          // 選択項目へ軽くスクロールして追従させる。
+          link.scrollIntoView({ block: 'nearest' });
+        } else {
+          link.removeAttribute('aria-current');
+        }
+      }
+    };
+
+    const visible = new Set<string>();
+    let activeSlug: string | null = null;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          const slug = entry.target.id;
+          if (entry.isIntersecting) {
+            visible.add(slug);
+          } else {
+            visible.delete(slug);
+          }
+        }
+
+        // Why not: 見出しがバンドから外れた後もハイライトを維持する。
+        // 目次は「どこを読んでいるか」の目安なので、空になっても白紙化しない。
+        let next: string | null = null;
+        for (const target of targets) {
+          if (visible.has(target.id)) {
+            next = target.id;
+          }
+        }
+
+        if (next && next !== activeSlug) {
+          activeSlug = next;
+          setActive(next);
+        }
+      },
+      {
+        // 上端10%〜下端35%までの帯を「現在読んでいる位置」とみなす。
+        rootMargin: '-10% 0px -65% 0px',
+      },
+    );
+
+    for (const target of targets) {
+      observer.observe(target);
+    }
+  }
+</script>
