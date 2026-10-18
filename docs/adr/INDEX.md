@@ -9,6 +9,8 @@
 | 0005 | SVG グラス歪みフィルタの廃止と color-scheme の先行宣言        | Accepted           | 表示 (Chrome 黒フラッシュ)  |
 | 0006 | body に不透明な下地色を常設し Chromium 系の黒フラッシュを遮る | Superseded by 0007 | 表示                        |
 | 0007 | body 背景を撤去し theme-color で遷移フレームを制御            | Accepted           | 表示                        |
+| 0008 | experimental.parallelPrerender を有効化                       | Accepted           | ビルド                      |
+| 0009 | PR トリガーの CI を追加                                       | Accepted           | CI                          |
 
 - ステータス凡例
   - 提案済み (Proposed)
